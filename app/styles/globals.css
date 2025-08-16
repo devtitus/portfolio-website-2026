@@ -1,0 +1,44 @@
+:root {
+  /* Colors */
+  --glass-color: rgba(255, 255, 255, 0.06);
+  --page-bg: #0c0811;
+  --default-text-color: #ffffff;
+
+  /* Navigation Text Colors */
+  --nav-text-active: #ffffff;
+  --nav-text-inactive: rgba(255, 255, 255, 0.6);
+  --nav-text-hover: rgba(255, 255, 255, 0.8);
+  --contact-button-border-color: rgba(255, 255, 255, 0.1);
+  --navitem-border-color: rgba(255, 255, 255, 0.1);
+  --navbar-border-color: rgba(255, 255, 255, 0.08);
+  --nav-text-active-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  --nav-text-active-shadow-2: 0 0 24px rgba(255, 255, 255, 0.4);
+
+  /* Border Radius */
+  --border-radius-18px: 18px;
+  --border-radius-24px: 24px;
+
+  /* Font */
+  --font-family-primary: "Inter", sans-serif;
+  --font-family-secondary: "Inter", sans-serif;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--default-text-color);
+  background: var(--page-bg);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
