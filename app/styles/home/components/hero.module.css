@@ -19,3 +19,14 @@
   font-weight: 500;
   line-height: normal;
 }
+
+.heroTitleLine {
+  display: block;
+}
+
+.auraText {
+  font-family: var(--font-family-primary);
+  font-size: 56px;
+  font-weight: 700;
+  text-transform: capitalize;
+}

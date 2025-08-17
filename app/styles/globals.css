@@ -172,9 +172,15 @@
   --nav-text-active-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
   --nav-text-active-shadow-2: 0 0 24px rgba(255, 255, 255, 0.4);
 
+  /* Scrollbar Colors */
+  --scrollbar-thumb-color: rgba(255, 255, 255, 0.3);
+  --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.5);
+  --scrollbar-track-color: rgba(255, 255, 255, 0.05);
+
   /* Border Radius */
   --border-radius-18px: 18px;
   --border-radius-24px: 24px;
+  --border-radius-40px: 40px;
 
   /* Padding */
   --padding-inline-60px: 60px;
@@ -199,6 +205,23 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body::-webkit-scrollbar {
+  width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: var(--border-radius-40px);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
 }
 
 * {
@@ -261,9 +284,6 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-  .theme {
-    --animate-aurora: aurora 8s ease-in-out infinite alternate;
-  }
 }
 
 @layer base {
@@ -272,30 +292,5 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-@theme inline {
-  @keyframes aurora {
-  0% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
-    }
-  25% {
-    background-position: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
-    }
-  50% {
-    background-position: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
-    }
-  75% {
-    background-position: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
-    }
-  100% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
-    }
   }
 }

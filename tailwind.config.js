@@ -54,7 +54,34 @@ export default {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
 				}
-			}
+			},
+			animation: {
+				aurora: "aurora 8s ease-in-out infinite alternate",
+			},
+			keyframes: {
+				aurora: {
+					"0%": {
+						"background-position": "0% 50%",
+						transform: "rotate(-5deg) scale(0.9)",
+					},
+					"25%": {
+						"background-position": "50% 100%",
+						transform: "rotate(5deg) scale(1.1)",
+					},
+					"50%": {
+						"background-position": "100% 50%",
+						transform: "rotate(-3deg) scale(0.95)",
+					},
+					"75%": {
+						"background-position": "50% 0%",
+						transform: "rotate(3deg) scale(1.05)",
+					},
+					"100%": {
+						"background-position": "0% 50%",
+						transform: "rotate(-5deg) scale(0.9)",
+					},
+				},
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
