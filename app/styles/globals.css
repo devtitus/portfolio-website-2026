@@ -161,6 +161,12 @@
   --glass-color: rgba(255, 255, 255, 0.06);
   --page-bg: #0c0811;
   --default-text-color: #ffffff;
+  --monochrome-gradient-text-color: linear-gradient(
+    189deg,
+    #fff 6.79%,
+    rgba(153, 153, 153, 0.9) 105.17%
+  );
+  --hero-separator-border-color: rgba(255, 255, 255, 0.4);
 
   /* Navigation Text Colors */
   --nav-text-active: #ffffff;
@@ -184,6 +190,10 @@
 
   /* Padding */
   --padding-inline-60px: 60px;
+
+  /* Gap */
+  --gap-12px: 12px;
+  --gap-60px: 60px;
 
   /* Font */
   --font-family-primary: "Excon", system-ui, -apple-system, BlinkMacSystemFont,

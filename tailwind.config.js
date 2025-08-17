@@ -57,6 +57,7 @@ export default {
 			},
 			animation: {
 				aurora: "aurora 8s ease-in-out infinite alternate",
+				wave: "wave 2s ease-in-out infinite",
 			},
 			keyframes: {
 				aurora: {
@@ -79,6 +80,17 @@ export default {
 					"100%": {
 						"background-position": "0% 50%",
 						transform: "rotate(-5deg) scale(0.9)",
+					},
+				},
+				wave: {
+					"0%, 100%": {
+						transform: "rotate(0deg)",
+					},
+					"10%, 30%, 50%, 70%, 90%": {
+						transform: "rotate(-10deg)",
+					},
+					"20%, 40%, 60%, 80%": {
+						transform: "rotate(10deg)",
 					},
 				},
 			},
