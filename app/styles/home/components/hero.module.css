@@ -139,3 +139,44 @@
   transform: scale(0.99);
   transition: box-shadow 0.02s ease-out;
 }
+
+.copyButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-8px);
+}
+
+.copyIcon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1/1;
+}
+
+.copyButtonText {
+  color: var(--copy-button-text-color);
+  font-family: var(--font-family-secondary);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 196px;
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1);
+  transition: transform ease-in;
+}
+
+.copyButton:hover {
+  transform: scale(1.02);
+  transition: transform ease-out;
+}
+
+.copyButton:active {
+  transform: scale(0.99);
+  transition: transform ease-in;
+}

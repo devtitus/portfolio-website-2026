@@ -169,6 +169,8 @@
     rgba(153, 153, 153, 0.9) 105.17%
   );
   --hero-separator-border-color: rgba(255, 255, 255, 0.4);
+  --copy-button-text-color: rgba(255, 255, 255, 0.6);
+  --copy-button-border-color: rgba(255, 255, 255, 0.8);
 
   /* Navigation Text Colors */
   --nav-text-active: #ffffff;
@@ -195,6 +197,8 @@
   --padding-inline-60px: 60px;
 
   /* Gap */
+  --gap-4px: 4px;
+  --gap-8px: 8px;
   --gap-12px: 12px;
   --gap-24px: 24px;
   --gap-40px: 40px;

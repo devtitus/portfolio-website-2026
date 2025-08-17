@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "@/app/styles/home/components/hero.module.css";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Image from "next/image";
 
 const HeroSection = () => {
+  const [isCopied, setIsCopied] = useState(false);
+  const email = "m.works.gd@gmail.com";
+
+  // Email Copy Handle Function
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setIsCopied(true);
+
+      // Reset the copied state after 2 seconds
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = email;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  };
+
   return (
     <section className={`${styles.heroSection} ${styles.commonStyleSection}`}>
       <div className={styles.heroSectionWrapper}>
@@ -49,6 +78,24 @@ const HeroSection = () => {
           >
             Let’s Connect
           </button>
+          <div className={styles.copyButtonWrapper}>
+            <button
+              className={`${styles.copyButton}`}
+              onClick={handleCopyEmail}
+              title={isCopied ? "Copied!" : "Copy email to clipboard"}
+            >
+              <Image
+                src="/icons/copy.svg"
+                alt="Copy Icon"
+                width={24}
+                height={24}
+                className={styles.copyIcon}
+              />
+            </button>
+            <span className={styles.copyButtonText}>
+              {isCopied ? "Copied!" : email}
+            </span>
+          </div>
         </div>
       </div>
     </section>
