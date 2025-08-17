@@ -243,6 +243,10 @@ body::-webkit-scrollbar-track {
   background: var(--scrollbar-track-color);
 }
 
+.page-content {
+  padding-top: 120px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
