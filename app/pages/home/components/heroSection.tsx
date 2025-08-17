@@ -98,6 +98,14 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      {/* Background Aurora Orb Effect */}
+      <div className={styles.auroraBackground}>
+        <div className={styles.auroraContainer}>
+          <div className={styles.auroraGlow}></div>
+          <div className={styles.auroraBase}></div>
+          <div className={styles.auroraOrb}></div>
+        </div>
+      </div>
     </section>
   );
 };
