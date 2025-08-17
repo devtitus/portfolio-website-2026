@@ -152,6 +152,10 @@
   font-display: swap;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Colors */
   --glass-color: rgba(255, 255, 255, 0.06);
