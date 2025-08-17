@@ -42,6 +42,14 @@ const HeroSection = () => {
             a Full stack Developer
           </span>
         </div>
+        {/* Hero Buttons */}
+        <div className={styles.heroButtonsWrapper}>
+          <button
+            className={`${styles.heroButton} ${styles.commonButtonStyle}`}
+          >
+            Let’s Connect
+          </button>
+        </div>
       </div>
     </section>
   );

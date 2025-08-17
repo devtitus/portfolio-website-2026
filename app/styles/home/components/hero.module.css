@@ -85,6 +85,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid var(--hero-separator-border-color);
+  cursor: pointer;
 }
 
 .separatorShutter {
@@ -98,4 +99,43 @@
 .heroDescriptionSeparator:hover .separatorShutter {
   transform: translateY(-100%);
   transition: transform 0.4s ease-out;
+}
+
+.heroButtonsWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-40px);
+}
+
+.commonButtonStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--BG, #0c0811);
+  box-shadow: 4px 4px 0 0 var(--default-violet-color);
+  border-radius: var(--border-radius-4px);
+  background: var(--default-text-color);
+}
+
+.heroButton {
+  padding: 12px 32px;
+  color: var(--default-text-color-2);
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transform: scale(1);
+  transition: box-shadow 0.04s ease-in-out;
+}
+
+.heroButton:hover {
+  transform: scale(1.02);
+}
+
+.heroButton:active {
+  box-shadow: none;
+  transform: scale(0.99);
+  transition: box-shadow 0.02s ease-out;
 }
