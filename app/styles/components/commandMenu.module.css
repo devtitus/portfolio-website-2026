@@ -1,0 +1,187 @@
+/* Command Dialog Overlay */
+.commandDialogOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.commandDialogContent {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  width: 90%;
+  max-width: 640px;
+  transform: translate(-50%, -50%);
+  background: var(--page-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 16px 70px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Command Component */
+.command {
+  overflow: hidden;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.command[cmdk-root] {
+  max-height: 500px;
+}
+
+/* Input */
+.commandInput {
+  display: flex;
+  height: 48px;
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-family: var(--font-family-secondary);
+  color: var(--default-text-color);
+  outline: none;
+}
+
+.commandInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.commandInput[cmdk-input] {
+  outline: none;
+}
+
+/* List */
+.commandList {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.commandList[cmdk-list] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.commandList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.commandList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.commandList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Empty State */
+.commandEmpty {
+  padding: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-family-secondary);
+  font-size: 14px;
+}
+
+.commandEmpty[cmdk-empty] {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Group */
+.commandGroup[cmdk-group]:not([hidden]) {
+  padding: 8px 0;
+  overflow: hidden;
+}
+
+.commandGroup[cmdk-group]:not([hidden])
+  + .commandGroup[cmdk-group]:not([hidden]) {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.commandGroup[cmdk-group-heading] {
+  padding: 8px 16px 4px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-family-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Items */
+.commandItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: var(--font-family-secondary);
+  color: var(--default-text-color);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0;
+  outline: none;
+}
+
+.commandItem[cmdk-item][aria-selected="true"] {
+  background: rgba(246, 178, 225, 0.1);
+  color: var(--default-violet-color);
+}
+
+.commandItem[cmdk-item][data-disabled="true"] {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.commandIcon {
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.commandShortcut {
+  margin-left: auto;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
