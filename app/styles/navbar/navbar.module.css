@@ -56,7 +56,7 @@
   background: var(--glass-color);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 0.5px solid var(--navitem-border-color);
+  border: 1px solid var(--navitem-border-color);
   transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
   will-change: background, border, backdrop-filter;
   transform: translateZ(0);
@@ -64,7 +64,7 @@
 
 .navItemActive .navText {
   color: var(--nav-text-active);
-  font-weight: 500;
+  font-weight: 400;
   text-shadow: var(--nav-text-active-shadow), var(--nav-text-active-shadow-2);
 }
 
@@ -73,7 +73,7 @@
   padding: 8px 16px;
   justify-content: center;
   align-items: center;
-  border: 0.5px solid transparent;
+  border: 1px solid transparent;
   cursor: pointer;
   border-radius: var(--border-radius-18px);
   transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);

@@ -1,0 +1,21 @@
+.commonStyleSection {
+  height: 100vh;
+  padding-inline: var(--padding-inline-60px);
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroTitle {
+  color: var(--default-text-color);
+  text-align: center;
+  font-family: var(--font-family-primary);
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

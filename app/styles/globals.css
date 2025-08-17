@@ -176,6 +176,9 @@
   --border-radius-18px: 18px;
   --border-radius-24px: 24px;
 
+  /* Padding */
+  --padding-inline-60px: 60px;
+
   /* Font */
   --font-family-primary: "Excon", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
