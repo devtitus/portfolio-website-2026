@@ -56,6 +56,21 @@
   max-height: 500px;
 }
 
+.commandInputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Input */
 .commandInput {
   display: flex;
@@ -65,8 +80,9 @@
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: transparent;
-  padding: 12px 16px;
-  font-size: 16px;
+  padding-block: var(--padding-12px);
+  padding-inline: var(--padding-48px);
+  font-size: 14px;
   font-family: var(--font-family-secondary);
   color: var(--default-text-color);
   outline: none;

@@ -1,6 +1,6 @@
 .commonStyleSection {
   height: 100vh;
-  padding-inline: var(--padding-inline-60px);
+  padding-inline: var(--padding-60px);
 }
 
 .heroSection {

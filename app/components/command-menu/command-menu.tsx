@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Command } from "cmdk";
 import styles from "@/app/styles/components/commandMenu.module.css";
+import Image from "next/image";
 
 interface CommandMenuProps {
   isOpen: boolean;
@@ -60,12 +61,21 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
     <div className={styles.commandDialogOverlay}>
       <div className={styles.commandDialogContent}>
         <Command className={styles.command}>
-          <Command.Input
-            value={search}
-            onValueChange={setSearch}
-            placeholder="Type a command or search..."
-            className={styles.commandInput}
-          />
+          <div className={styles.commandInputContainer}>
+            <Image
+              src={"/icons/search.svg"}
+              width={18}
+              height={18}
+              alt="Command menu"
+              className={styles.searchIcon}
+            />
+            <Command.Input
+              value={search}
+              onValueChange={setSearch}
+              placeholder="Type a command or search..."
+              className={styles.commandInput}
+            />
+          </div>
           <Command.List className={styles.commandList}>
             <Command.Empty className={styles.commandEmpty}>
               No results found.

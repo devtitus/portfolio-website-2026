@@ -189,12 +189,24 @@
 
   /* Border Radius */
   --border-radius-4px: 4px;
+  --border-radius-12px: 12px;
   --border-radius-18px: 18px;
   --border-radius-24px: 24px;
   --border-radius-40px: 40px;
+  --border-radius-48px: 48px;
 
   /* Padding */
-  --padding-inline-60px: 60px;
+  --padding-12px: 12px;
+  --padding-16px: 16px;
+  --padding-24px: 24px;
+  --padding-32px: 32px;
+  --padding-48px: 48px;
+  --padding-12px: 12px;
+  --padding-16px: 16px;
+  --padding-24px: 24px;
+  --padding-32px: 32px;
+  --padding-48px: 48px;
+  --padding-60px: 60px;
 
   /* Margin */
   --margin-top-48px: 48px;
