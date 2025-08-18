@@ -30,17 +30,15 @@
 
 .navList {
   display: flex;
-  padding: 8px;
+  padding: var(--padding-6px);
   align-items: center;
-  gap: 12px;
+  gap: var(--gap-8px);
   border-radius: var(--border-radius-24px);
-  background: var(--glass-color);
-  backdrop-filter: blur(10px);
+  background-color: var(--glass-color);
+  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--navbar-border-color);
-  /* Ensure backdrop filter works */
   isolation: isolate;
-  will-change: backdrop-filter;
 }
 
 .navText {
@@ -59,7 +57,7 @@
 
 .navItemActive {
   display: flex;
-  padding: 8px 16px;
+  padding: var(--padding-6px) var(--padding-14px);
   justify-content: center;
   align-items: center;
   border-radius: var(--border-radius-18px);
@@ -80,7 +78,7 @@
 
 .navItem {
   display: flex;
-  padding: 8px 16px;
+  padding: var(--padding-6px) var(--padding-14px);
   justify-content: center;
   align-items: center;
   border: 1px solid transparent;
@@ -115,12 +113,11 @@
 
 .navItemContact {
   display: flex;
-  padding: 8px 16px;
+  padding: var(--padding-6px) var(--padding-14px);
   justify-content: center;
   align-items: center;
   border-radius: var(--border-radius-18px);
-  border: 1px solid var(--contact-button-border-color);
-  background: var(--glass-color);
+  border: 1px solid transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
