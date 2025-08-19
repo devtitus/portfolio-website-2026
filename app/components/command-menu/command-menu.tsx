@@ -18,6 +18,24 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
 }) => {
   const [search, setSearch] = useState("");
 
+  // Add click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isOpen && !target.closest(`.${styles.commandDialogContent}`)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, setIsOpen]);
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -75,6 +93,12 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
               placeholder="Type a command or search..."
               className={styles.commandInput}
             />
+            <button
+              className={styles.escKeyButton}
+              onClick={() => setIsOpen(false)}
+            >
+              esc
+            </button>
           </div>
           <Command.List className={styles.commandList}>
             <Command.Empty className={styles.commandEmpty}>

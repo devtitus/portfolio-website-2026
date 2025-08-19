@@ -170,17 +170,23 @@
   );
   --hero-separator-border-color: rgba(255, 255, 255, 0.4);
   --copy-button-text-color: rgba(255, 255, 255, 0.6);
-  --copy-button-border-color: rgba(255, 255, 255, 0.8);
+
+  /* Hover Colors */
+  --esc-key-hover-color: rgba(255, 255, 255, 0.8);
+  --nav-text-hover: rgba(255, 255, 255, 0.8);
 
   /* Navigation Text Colors */
   --nav-text-active: #ffffff;
   --nav-text-inactive: rgba(255, 255, 255, 0.6);
-  --nav-text-hover: rgba(255, 255, 255, 0.8);
+  --nav-text-active-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  --nav-text-active-shadow-2: 0 0 24px rgba(255, 255, 255, 0.4);
+
+  /* Border Colors */
+  --esc-key-border-color: rgba(255, 255, 255, 0.1);
   --contact-button-border-color: rgba(255, 255, 255, 0.1);
   --navitem-border-color: rgba(255, 255, 255, 0.1);
   --navbar-border-color: rgba(255, 255, 255, 0.08);
-  --nav-text-active-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-  --nav-text-active-shadow-2: 0 0 24px rgba(255, 255, 255, 0.4);
+  --copy-button-border-color: rgba(255, 255, 255, 0.8);
 
   /* Scrollbar Colors */
   --scrollbar-thumb-color: rgba(255, 255, 255, 0.3);
@@ -189,6 +195,7 @@
 
   /* Border Radius */
   --border-radius-4px: 4px;
+  --border-radius-6px: 6px;
   --border-radius-12px: 12px;
   --border-radius-18px: 18px;
   --border-radius-24px: 24px;
@@ -196,9 +203,11 @@
   --border-radius-48px: 48px;
 
   /* Padding */
+  --padding-2px: 2px;
   --padding-4px: 4px;
   --padding-6px: 6px;
   --padding-8px: 8px;
+  --padding-10px: 10px;
   --padding-12px: 12px;
   --padding-14px: 14px;
   --padding-16px: 16px;

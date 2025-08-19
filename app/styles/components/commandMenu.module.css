@@ -2,7 +2,7 @@
 .commandDialogOverlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 49;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -69,6 +69,28 @@
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.escKeyButton {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--default-text-color);
+  border: 0.5px solid var(--esc-key-border-color);
+  border-radius: var(--border-radius-6px);
+  padding: var(--padding-4px) var(--padding-10px);
+  font-size: 12px;
+  font-family: var(--font-family-secondary);
+  font-weight: 400;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* Input */
