@@ -3,7 +3,18 @@
 import React, { useState, useEffect } from "react";
 import { Command } from "cmdk";
 import styles from "@/app/styles/components/commandMenu.module.css";
-import Image from "next/image";
+import {
+  HomeIcon,
+  SearchIcon,
+  AboutIcon,
+  ProjectsIcon,
+  ContactIcon,
+  CopyIcon,
+  LinkedInIcon,
+  LinkIcon,
+  XIcon,
+  GithubIcon,
+} from "@/app/utils/icons";
 
 interface CommandMenuProps {
   isOpen: boolean;
@@ -80,13 +91,7 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
       <div className={styles.commandDialogContent}>
         <Command className={styles.command}>
           <div className={styles.commandInputContainer}>
-            <Image
-              src={"/icons/search.svg"}
-              width={18}
-              height={18}
-              alt="Command menu"
-              className={styles.searchIcon}
-            />
+            <SearchIcon className={styles.searchIcon} />
             <Command.Input
               value={search}
               onValueChange={setSearch}
@@ -105,15 +110,22 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
               No results found.
             </Command.Empty>
 
-            <Command.Group heading="Pages" className={styles.commandGroup}>
+            <Command.Group className={styles.commandGroup}>
+              <span className={styles.commandGroupHeading}>Pages</span>
               <Command.Item
                 value="home"
                 onSelect={() => handleSelect("home")}
                 className={styles.commandItem}
               >
-                <span className={styles.commandIcon}>🏠</span>
-                <span>Home</span>
-                <span className={styles.commandShortcut}>⌘H</span>
+                <div className={styles.commandIconWrapper}>
+                  <HomeIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>Home</span>
+                  <p className={styles.commandDescription}>
+                    Go to the home page
+                  </p>
+                </div>
               </Command.Item>
 
               <Command.Item
@@ -121,9 +133,15 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
                 onSelect={() => handleSelect("about")}
                 className={styles.commandItem}
               >
-                <span className={styles.commandIcon}>👨‍💻</span>
-                <span>About</span>
-                <span className={styles.commandShortcut}>⌘A</span>
+                <div className={styles.commandIconWrapper}>
+                  <AboutIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>About</span>
+                  <p className={styles.commandDescription}>
+                    Learn more about me
+                  </p>
+                </div>
               </Command.Item>
 
               <Command.Item
@@ -131,51 +149,90 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
                 onSelect={() => handleSelect("projects")}
                 className={styles.commandItem}
               >
-                <span className={styles.commandIcon}>💼</span>
-                <span>Projects</span>
-                <span className={styles.commandShortcut}>⌘P</span>
-              </Command.Item>
-
-              <Command.Item
-                value="contact"
-                onSelect={() => handleSelect("contact")}
-                className={styles.commandItem}
-              >
-                <span className={styles.commandIcon}>📧</span>
-                <span>Contact</span>
-                <span className={styles.commandShortcut}>⌘C</span>
+                <div className={styles.commandIconWrapper}>
+                  <ProjectsIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>Projects</span>
+                  <p className={styles.commandDescription}>View my projects</p>
+                </div>
               </Command.Item>
             </Command.Group>
 
-            <Command.Group heading="Actions" className={styles.commandGroup}>
+            <Command.Group className={styles.commandGroup}>
+              <span className={styles.commandGroupHeading}>Actions</span>
               <Command.Item
                 value="copy-email"
                 onSelect={() => handleSelect("copy-email")}
                 className={styles.commandItem}
               >
-                <span className={styles.commandIcon}>📋</span>
-                <span>Copy Email</span>
-                <span className={styles.commandShortcut}>⌘E</span>
+                <div className={styles.commandIconWrapper}>
+                  <CopyIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>Copy Email</span>
+                  <p className={styles.commandDescription}>
+                    Copy my email to clipboard
+                  </p>
+                </div>
               </Command.Item>
-
               <Command.Item
-                value="theme-dark"
-                onSelect={() => handleSelect("theme-dark")}
+                value="contact"
+                onSelect={() => handleSelect("contact")}
                 className={styles.commandItem}
               >
-                <span className={styles.commandIcon}>🌙</span>
-                <span>Dark Theme</span>
-                <span className={styles.commandShortcut}>⌘D</span>
+                <div className={styles.commandIconWrapper}>
+                  <ContactIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>Contact</span>
+                  <p className={styles.commandDescription}>
+                    Get in touch with me
+                  </p>
+                </div>
+              </Command.Item>
+            </Command.Group>
+
+            <Command.Group className={styles.commandGroup}>
+              <span className={styles.commandGroupHeading}>Socials</span>
+
+              <Command.Item value="linkedin" className={styles.commandItem}>
+                <div className={styles.commandIconWrapper}>
+                  <LinkedInIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>LinkedIn</span>
+                  <p className={styles.commandDescription}>
+                    Connect with me on LinkedIn
+                  </p>
+                </div>
+
+                <LinkIcon className={styles.commandShortcut} />
               </Command.Item>
 
-              <Command.Item
-                value="theme-light"
-                onSelect={() => handleSelect("theme-light")}
-                className={styles.commandItem}
-              >
-                <span className={styles.commandIcon}>☀️</span>
-                <span>Light Theme</span>
-                <span className={styles.commandShortcut}>⌘L</span>
+              <Command.Item value="x" className={styles.commandItem}>
+                <div className={styles.commandIconWrapper}>
+                  <XIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>X</span>
+                  <p className={styles.commandDescription}>
+                    Connect with me on X
+                  </p>
+                </div>
+                <LinkIcon className={styles.commandShortcut} />
+              </Command.Item>
+              <Command.Item value="github" className={styles.commandItem}>
+                <div className={styles.commandIconWrapper}>
+                  <GithubIcon className={styles.commandIcon} />
+                </div>
+                <div className={styles.commandTextContainer}>
+                  <span className={styles.commandText}>Github</span>
+                  <p className={styles.commandDescription}>
+                    Connect with me on Github
+                  </p>
+                </div>
+                <LinkIcon className={styles.commandShortcut} />
               </Command.Item>
             </Command.Group>
           </Command.List>

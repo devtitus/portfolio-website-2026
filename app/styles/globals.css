@@ -161,7 +161,7 @@
   --glass-color: rgba(255, 255, 255, 0.06);
   --page-bg: #0c0811;
   --default-text-color: #ffffff;
-  --default-text-color-2: #0c0811;
+  --default-text-color-dark: #0c0811;
   --default-violet-color: #f6b2e1;
   --monochrome-gradient-text-color: linear-gradient(
     189deg,
@@ -170,10 +170,14 @@
   );
   --hero-separator-border-color: rgba(255, 255, 255, 0.4);
   --copy-button-text-color: rgba(255, 255, 255, 0.6);
+  --command-menu-icon-color: rgba(255, 255, 255, 0.1);
 
   /* Hover Colors */
   --esc-key-hover-color: rgba(255, 255, 255, 0.8);
   --nav-text-hover: rgba(255, 255, 255, 0.8);
+  --cmdk-text-hover: rgba(255, 255, 255, 0.7);
+  --cmdk-glass-color: rgba(255, 255, 255, 0.06);
+  --command-menu-icon-color-hover: rgba(255, 255, 255, 0.9);
 
   /* Navigation Text Colors */
   --nav-text-active: #ffffff;
@@ -196,6 +200,7 @@
   /* Border Radius */
   --border-radius-4px: 4px;
   --border-radius-6px: 6px;
+  --border-radius-8px: 8px;
   --border-radius-12px: 12px;
   --border-radius-18px: 18px;
   --border-radius-24px: 24px;
@@ -220,6 +225,7 @@
   --margin-top-48px: 48px;
 
   /* Gap */
+  --gap-2px: 2px;
   --gap-4px: 4px;
   --gap-8px: 8px;
   --gap-12px: 12px;

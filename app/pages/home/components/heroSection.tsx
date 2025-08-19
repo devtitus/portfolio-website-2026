@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "@/app/styles/home/components/hero.module.css";
 import { AuroraText } from "@/components/magicui/aurora-text";
+import { CopyIcon } from "@/app/utils/icons";
 import Image from "next/image";
 
 const HeroSection = () => {
@@ -84,13 +85,7 @@ const HeroSection = () => {
               onClick={handleCopyEmail}
               title={isCopied ? "Copied!" : "Copy email to clipboard"}
             >
-              <Image
-                src="/icons/copy.svg"
-                alt="Copy Icon"
-                width={24}
-                height={24}
-                className={styles.copyIcon}
-              />
+              <CopyIcon className={styles.copyIcon} />
             </button>
             <span className={styles.copyButtonText}>
               {isCopied ? "Copied!" : email}

@@ -96,7 +96,7 @@
 /* Input */
 .commandInput {
   display: flex;
-  height: 48px;
+  height: 56px;
   width: 100%;
   border-radius: 0;
   border: none;
@@ -123,7 +123,6 @@
   max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 8px 0;
 }
 
 .commandList[cmdk-list] {
@@ -159,20 +158,15 @@
 
 /* Group */
 .commandGroup[cmdk-group]:not([hidden]) {
-  padding: 8px 0;
+  padding: 8px 6px;
   overflow: hidden;
 }
 
-.commandGroup[cmdk-group]:not([hidden])
-  + .commandGroup[cmdk-group]:not([hidden]) {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.commandGroup[cmdk-group-heading] {
-  padding: 8px 16px 4px 16px;
-  font-size: 12px;
+.commandGroupHeading {
+  padding-left: 10px;
+  font-size: 10px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--nav-text-inactive);
   font-family: var(--font-family-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -184,10 +178,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
+  padding: 12px 10px;
   font-size: 14px;
   font-family: var(--font-family-secondary);
-  color: var(--default-text-color);
   cursor: pointer;
   user-select: none;
   border-radius: 0;
@@ -195,8 +188,8 @@
 }
 
 .commandItem[cmdk-item][aria-selected="true"] {
-  background: rgba(246, 178, 225, 0.1);
-  color: var(--default-violet-color);
+  background: var(--cmdk-glass-color);
+  border-radius: var(--border-radius-8px);
 }
 
 .commandItem[cmdk-item][data-disabled="true"] {
@@ -204,10 +197,49 @@
   cursor: not-allowed;
 }
 
-.commandIcon {
-  width: 16px;
-  height: 16px;
+.commandTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2px);
+}
+
+.commandItem .commandText {
   font-size: 14px;
+  font-family: var(--font-family-secondary);
+  color: var(--cmdk-text-hover);
+  text-transform: capitalize;
+}
+
+.commandItem:hover .commandText,
+.commandItem:hover .commandDescription {
+  color: var(--default-text-color);
+}
+
+.commandDescription {
+  font-size: 11px;
+  font-family: var(--font-family-secondary);
+  color: var(--nav-text-inactive);
+  text-transform: capitalize;
+}
+
+.commandIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--command-menu-icon-color);
+}
+
+.commandItem:hover .commandIconWrapper {
+  background: var(--command-menu-icon-color-hover);
+  color: var(--default-text-color-dark);
+}
+
+.commandIcon {
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,9 +249,9 @@
 .commandShortcut {
   margin-left: auto;
   padding: 2px 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--command-menu-icon-color);
   border-radius: 4px;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--default-text-color);
   font-weight: 500;
 }
