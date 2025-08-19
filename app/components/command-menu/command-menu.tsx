@@ -109,7 +109,7 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
             <Command.Empty className={styles.commandEmpty}>
               No results found.
             </Command.Empty>
-
+            {/* Pages */}
             <Command.Group className={styles.commandGroup}>
               <span className={styles.commandGroupHeading}>Pages</span>
               <Command.Item
@@ -158,7 +158,7 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
                 </div>
               </Command.Item>
             </Command.Group>
-
+            {/* Actions */}
             <Command.Group className={styles.commandGroup}>
               <span className={styles.commandGroupHeading}>Actions</span>
               <Command.Item
@@ -192,7 +192,7 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
                 </div>
               </Command.Item>
             </Command.Group>
-
+            {/* Socials */}
             <Command.Group className={styles.commandGroup}>
               <span className={styles.commandGroupHeading}>Socials</span>
 
@@ -236,6 +236,32 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
               </Command.Item>
             </Command.Group>
           </Command.List>
+          {/* Add this footer section after Command.List */}
+          <div className={styles.commandFooter}>
+            <div className={styles.socialIcons}>
+              <LinkedInIcon className={styles.footerIcon} />
+              <XIcon className={styles.footerIcon} />
+              <GithubIcon className={styles.footerIcon} />
+            </div>
+
+            <div className={styles.navigationControls}>
+              <div className={styles.controlGroup}>
+                <span className={styles.controlKey}>↑</span>
+                <span className={styles.controlKey}>↓</span>
+                <span className={styles.controlText}>navigate</span>
+              </div>
+
+              <div className={styles.controlGroup}>
+                <span className={styles.controlKey}>←</span>
+                <span className={styles.controlText}>select</span>
+              </div>
+
+              <div className={styles.controlGroup}>
+                <span className={styles.controlKey}>esc</span>
+                <span className={styles.controlText}>close</span>
+              </div>
+            </div>
+          </div>
         </Command>
       </div>
     </div>
