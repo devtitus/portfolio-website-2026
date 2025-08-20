@@ -223,6 +223,7 @@
 
   /* Margin */
   --margin-top-48px: 48px;
+  --margin-top-56px: 56px;
 
   /* Gap */
   --gap-2px: 2px;
@@ -231,6 +232,8 @@
   --gap-12px: 12px;
   --gap-24px: 24px;
   --gap-40px: 40px;
+  --gap-48px: 48px;
+  --gap-56px: 56px;
   --gap-60px: 60px;
 
   /* Font */

@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-top: var(--margin-top-48px);
+  margin-top: var(--margin-top-56px);
 }
 
 .heroTitleLine {
@@ -28,7 +28,7 @@
 
 .auraText {
   font-family: var(--font-family-primary);
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 700;
   text-transform: capitalize;
 }
@@ -38,7 +38,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--gap-60px);
+  gap: var(--gap-48px);
   position: relative;
   z-index: 10;
 }
