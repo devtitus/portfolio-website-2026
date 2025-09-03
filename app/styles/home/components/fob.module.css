@@ -1,0 +1,101 @@
+.commonStyleSection {
+  height: 100vh;
+  padding-inline: var(--padding-60px);
+}
+
+.fobSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fobSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-40px);
+}
+
+.fobSectionTitle {
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-family-primary);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: var(--margin-top-60px);
+}
+
+.fobSectionContent {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-24px);
+  height: max-content;
+}
+
+.fobFirstContentCard,
+.fobSecondContentCardWrapper {
+  width: 50%;
+  height: 580px;
+  max-height: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-24px);
+}
+
+.fobFirstContentCard {
+  border-radius: var(--border-radius-12px);
+  background: var(--glass-color);
+  padding: var(--padding-32px);
+  backdrop-filter: blur(8px);
+  height: 100%;
+}
+
+.fobSecondContentCard,
+.fobThirdContentCard {
+  border-radius: var(--border-radius-12px);
+  background: var(--glass-color);
+  padding: var(--padding-24px);
+  backdrop-filter: blur(8px);
+}
+
+.fobSecondContentCard,
+.fobThirdContentCard {
+  height: 290px;
+}
+
+.fobFirstContentCardImage {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #d4d4d4;
+  height: 480px;
+  max-height: 480px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-8px);
+}
+
+.fobFirstContentCardTitle {
+  color: #fff;
+  font-family: var(--font-family-primary);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.fobFirstContentCardDescription {
+  color: #fff;
+  font-family: var(--font-family-secondary);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

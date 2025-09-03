@@ -218,12 +218,14 @@
   --padding-16px: 16px;
   --padding-24px: 24px;
   --padding-32px: 32px;
+  --padding-40px: 40px;
   --padding-48px: 48px;
   --padding-60px: 60px;
 
   /* Margin */
   --margin-top-48px: 48px;
   --margin-top-56px: 56px;
+  --margin-top-60px: 60px;
 
   /* Gap */
   --gap-2px: 2px;
@@ -231,6 +233,7 @@
   --gap-8px: 8px;
   --gap-12px: 12px;
   --gap-24px: 24px;
+  --gap-32px: 32px;
   --gap-40px: 40px;
   --gap-48px: 48px;
   --gap-56px: 56px;
