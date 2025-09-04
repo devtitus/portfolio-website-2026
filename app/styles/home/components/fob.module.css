@@ -27,7 +27,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: var(--margin-top-60px);
 }
 
 .fobSectionContent {
@@ -89,6 +88,12 @@
   overflow: hidden;
 }
 
+.infiniteMarqueeCardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-40px);
+}
+
 .fobFirstContentCard:hover .fobFirstContentCardTextWrapper {
   bottom: 32px;
   transition: opacity 1s ease-out, bottom 0.5s ease-out;
@@ -127,29 +132,4 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
-
-.bentoCard {
-  /* Base styles */
-  position: relative;
-  width: 8rem; /* w-32 = 32 * 0.25rem = 8rem */
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 0.75rem; /* rounded-xl */
-  border: 1px solid;
-  padding: 1rem; /* p-4 = 1rem */
-
-  /* Light mode styles */
-  border-color: rgba(3, 7, 18, 0.1); /* border-gray-950/[.1] */
-  background-color: rgba(3, 7, 18, 0.01); /* bg-gray-950/[.01] */
-
-  /* Transform and animation */
-  transform: translateZ(0); /* transform-gpu */
-  filter: blur(1px); /* blur-[1px] */
-  transition: all 300ms ease-out; /* transition-all duration-300 ease-out */
-}
-
-.bentoCard:hover {
-  background-color: rgba(3, 7, 18, 0.05); /* hover:bg-gray-950/[.05] */
-  filter: blur(0px); /* hover:blur-none */
 }

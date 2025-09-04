@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "@/app/styles/home/components/fob.module.css";
-import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-import { motion } from "motion/react";
 import dynamic from "next/dynamic";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -402,6 +401,7 @@ const FobSection = () => {
       <div className={styles.fobSectionWrapper}>
         <h2 className={styles.fobSectionTitle}>Focusing on the Best</h2>
         <div className={styles.fobSectionContent}>
+          {/* Column 1 */}
           <div className={styles.fobFirstContentCard}>
             <div className={styles.fobFirstContentCardImage}>
               <World data={sampleArcs} globeConfig={globeConfig} />
@@ -416,13 +416,40 @@ const FobSection = () => {
               </p>
             </div>
           </div>
+          {/* Column 2 */}
           <div className={styles.fobSecondContentCardWrapper}>
             <div className={styles.fobSecondContentCard}></div>
             <div className={styles.fobThirdContentCard}></div>
           </div>
+          {/* Column 3 */}
           <div className={styles.fobFirstContentCard}>
-            <div className={styles.fobFirstContentCardImage}></div>
-            <div className={styles.textWrapper}>
+            <div
+              className={`${styles.fobFirstContentCardImage} ${styles.infiniteMarqueeCardWrapper}`}
+            >
+              <InfiniteMovingCards
+                items={testimonials}
+                direction="right"
+                speed="slow"
+              />
+              <InfiniteMovingCards
+                items={testimonials}
+                direction="left"
+                speed="slow"
+              />
+              <InfiniteMovingCards
+                items={testimonials}
+                direction="right"
+                speed="slow"
+              />
+              <InfiniteMovingCards
+                items={testimonials}
+                direction="left"
+                speed="slow"
+              />
+            </div>
+            <div
+              className={`${styles.textWrapper} ${styles.fobFirstContentCardTextWrapper}`}
+            >
               <h3 className={styles.fobFirstContentCardTitle}>Tech Stack</h3>
               <p className={styles.fobFirstContentCardDescription}>
                 I have worked with multiple technologies and frameworks to build
@@ -437,3 +464,26 @@ const FobSection = () => {
 };
 
 export default FobSection;
+
+const testimonials = [
+  {
+    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    name: "Charles Dickens",
+  },
+  {
+    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    name: "William Shakespeare",
+  },
+  {
+    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    name: "Edgar Allan Poe",
+  },
+  {
+    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    name: "Jane Austen",
+  },
+  {
+    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    name: "Herman Melville",
+  },
+];
