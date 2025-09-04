@@ -16,7 +16,6 @@ declare module "@react-three/fiber" {
 extend({ ThreeGlobe: ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
-const aspect = 1.2;
 const cameraZ = 300;
 
 type Position = {
@@ -64,7 +63,7 @@ let numbersOfRings = [0];
 
 export function Globe({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);
-  const groupRef = useRef();
+  const groupRef = useRef<HTMLDivElement>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
   const defaultProps = {
@@ -115,42 +114,29 @@ export function Globe({ globeConfig, data }: WorldProps) {
     globeConfig.shininess,
   ]);
 
-  // Build data when globe is initialized or when data changes
+  // Build data when globe is initialized
   useEffect(() => {
-    if (!globeRef.current || !isInitialized || !data) return;
+    if (!globeRef.current || !isInitialized) return;
 
-    const arcs = data;
-    let points = [];
-    for (let i = 0; i < arcs.length; i++) {
-      const arc = arcs[i];
-      const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
-      points.push({
+    // Single point for Mumbai, India
+    const mumbai = { lat: 19.076, lng: 72.8777, color: "#3b82f6" };
+    const filteredPoints = [
+      {
         size: defaultProps.pointSize,
-        order: arc.order,
-        color: arc.color,
-        lat: arc.startLat,
-        lng: arc.startLng,
-      });
-      points.push({
-        size: defaultProps.pointSize,
-        order: arc.order,
-        color: arc.color,
-        lat: arc.endLat,
-        lng: arc.endLng,
-      });
-    }
-
-    // remove duplicates for same lat and lng
-    const filteredPoints = points.filter(
-      (v, i, a) =>
-        a.findIndex((v2) =>
-          ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"],
-          ),
-        ) === i,
-    );
+        order: 1,
+        color: mumbai.color,
+        lat: mumbai.lat,
+        lng: mumbai.lng,
+      },
+    ];
 
     globeRef.current
+      .globeImageUrl(
+        "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+      )
+      .bumpImageUrl(
+        "https://unpkg.com/three-globe/example/img/earth-topology.png"
+      )
       .hexPolygonsData(countries.features)
       .hexPolygonResolution(3)
       .hexPolygonMargin(0.7)
@@ -159,19 +145,12 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .atmosphereAltitude(defaultProps.atmosphereAltitude)
       .hexPolygonColor(() => defaultProps.polygonColor);
 
+    // No arcs when showing single point
     globeRef.current
-      .arcsData(data)
-      .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
-      .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
-      .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
-      .arcEndLng((d) => (d as { endLng: number }).endLng * 1)
-      .arcColor((e: any) => (e as { color: string }).color)
-      .arcAltitude((e) => (e as { arcAlt: number }).arcAlt * 1)
-      .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
-      .arcDashLength(defaultProps.arcLength)
-      .arcDashInitialGap((e) => (e as { order: number }).order * 1)
-      .arcDashGap(15)
-      .arcDashAnimateTime(() => defaultProps.arcTime);
+      .arcsData([])
+      .arcDashLength(0)
+      .arcDashGap(0)
+      .arcDashAnimateTime(() => 0);
 
     globeRef.current
       .pointsData(filteredPoints)
@@ -180,56 +159,35 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .pointAltitude(0.0)
       .pointRadius(2);
 
+    // Pulsing signal rings at Mumbai
     globeRef.current
-      .ringsData([])
-      .ringColor(() => defaultProps.polygonColor)
+      .ringsData([{ lat: mumbai.lat, lng: mumbai.lng, color: mumbai.color }])
+      .ringColor(() => mumbai.color)
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
+        (defaultProps.arcTime * defaultProps.arcLength) /
+          Math.max(1, defaultProps.rings)
       );
   }, [
     isInitialized,
-    data,
     defaultProps.pointSize,
     defaultProps.showAtmosphere,
     defaultProps.atmosphereColor,
     defaultProps.atmosphereAltitude,
     defaultProps.polygonColor,
-    defaultProps.arcLength,
-    defaultProps.arcTime,
-    defaultProps.rings,
-    defaultProps.maxRings,
   ]);
 
-  // Handle rings animation with cleanup
+  // Keep rings pulsing around Mumbai
   useEffect(() => {
-    if (!globeRef.current || !isInitialized || !data) return;
-
+    if (!globeRef.current || !isInitialized) return;
     const interval = setInterval(() => {
-      if (!globeRef.current) return;
-
-      const newNumbersOfRings = genRandomNumbers(
-        0,
-        data.length,
-        Math.floor((data.length * 4) / 5),
-      );
-
-      const ringsData = data
-        .filter((d, i) => newNumbersOfRings.includes(i))
-        .map((d) => ({
-          lat: d.startLat,
-          lng: d.startLng,
-          color: d.color,
-        }));
-
-      globeRef.current.ringsData(ringsData);
+      globeRef.current!.ringsData([
+        { lat: 19.076, lng: 72.8777, color: "#3b82f6" },
+      ]);
     }, 2000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isInitialized, data]);
+    return () => clearInterval(interval);
+  }, [isInitialized]);
 
   return <group ref={groupRef} />;
 }
@@ -241,7 +199,7 @@ export function WebGLRendererConfig() {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [gl, size.width, size.height]);
 
   return null;
 }
@@ -250,35 +208,77 @@ export function World(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [autoRotateEnabled, setAutoRotateEnabled] = useState(
+    globeConfig.autoRotate
+  );
+
+  const canvasStyle = {
+    width: "100%",
+    height: "100%",
+    position: "absolute" as const,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    cursor: isHovering ? (isDragging ? "grabbing" : "grab") : "default",
+  };
+
+  const handlePointerEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handlePointerLeave = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
-      <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
-      <directionalLight
-        color={globeConfig.directionalLeftLight}
-        position={new Vector3(-400, 100, 400)}
-      />
-      <directionalLight
-        color={globeConfig.directionalTopLight}
-        position={new Vector3(-200, 500, 200)}
-      />
-      <pointLight
-        color={globeConfig.pointLight}
-        position={new Vector3(-200, 500, 200)}
-        intensity={0.8}
-      />
-      <Globe {...props} />
-      <OrbitControls
-        enablePan={false}
-        enableZoom={false}
-        minDistance={cameraZ}
-        maxDistance={cameraZ}
-        autoRotateSpeed={1}
-        autoRotate={true}
-        minPolarAngle={Math.PI / 3.5}
-        maxPolarAngle={Math.PI - Math.PI / 3}
-      />
-    </Canvas>
+    <div
+      style={canvasStyle}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+    >
+      <Canvas
+        scene={scene}
+        camera={{ fov: 50, near: 180, far: 1800, position: [0, 0, cameraZ] }}
+      >
+        <WebGLRendererConfig />
+        <ambientLight color={globeConfig.ambientLight} intensity={0.8} />
+        <directionalLight
+          color={globeConfig.directionalLeftLight}
+          position={new Vector3(-400, 100, 400)}
+        />
+        <directionalLight
+          color={globeConfig.directionalTopLight}
+          position={new Vector3(-200, 500, 200)}
+        />
+        <pointLight
+          color={globeConfig.pointLight}
+          position={new Vector3(-200, 500, 200)}
+          intensity={1.2}
+        />
+        <Globe {...props} />
+        <OrbitControls
+          enablePan={false}
+          enableZoom={false}
+          minDistance={cameraZ}
+          maxDistance={cameraZ}
+          autoRotateSpeed={globeConfig.autoRotateSpeed}
+          autoRotate={autoRotateEnabled}
+          onStart={() => {
+            setIsDragging(true);
+            setAutoRotateEnabled(false);
+          }}
+          onEnd={() => {
+            setIsDragging(false);
+            setAutoRotateEnabled(true);
+          }}
+          minPolarAngle={Math.PI / 3.5}
+          maxPolarAngle={Math.PI - Math.PI / 3}
+        />
+      </Canvas>
+    </div>
   );
 }
 

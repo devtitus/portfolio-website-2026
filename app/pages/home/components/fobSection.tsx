@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "@/app/styles/home/components/fob.module.css";
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
 
@@ -13,15 +14,15 @@ const World = dynamic(
 const FobSection = () => {
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#062056",
+    globeColor: "#113aab",
     showAtmosphere: true,
-    atmosphereColor: "#FFFFFF",
+    atmosphereColor: "#cfe6ff",
     atmosphereAltitude: 0.1,
-    emissive: "#062056",
-    emissiveIntensity: 0.1,
+    emissive: "#0a2b7e",
+    emissiveIntensity: 0.25,
     shininess: 0.9,
     polygonColor: "rgba(255,255,255,0.7)",
-    ambientLight: "#38bdf8",
+    ambientLight: "#9bdcfb",
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
@@ -405,7 +406,9 @@ const FobSection = () => {
             <div className={styles.fobFirstContentCardImage}>
               <World data={sampleArcs} globeConfig={globeConfig} />
             </div>
-            <div className={styles.textWrapper}>
+            <div
+              className={`${styles.textWrapper} ${styles.fobFirstContentCardTextWrapper}`}
+            >
               <h3 className={styles.fobFirstContentCardTitle}>Tech Stack</h3>
               <p className={styles.fobFirstContentCardDescription}>
                 I have worked with multiple technologies and frameworks to build
