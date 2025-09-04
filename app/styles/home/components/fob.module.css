@@ -82,6 +82,12 @@
   overflow: hidden;
 }
 
+.fobThirdContentCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .fobSecondContentCard,
 .fobThirdContentCard {
   height: 100%;

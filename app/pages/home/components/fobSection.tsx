@@ -3,6 +3,11 @@ import styles from "@/app/styles/home/components/fob.module.css";
 import dynamic from "next/dynamic";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { ScriptCopyBtn } from "@/components/magicui/script-copy-btn";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "@/components/ui/text-reveal-card";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -419,6 +424,7 @@ const FobSection = () => {
           </div>
           {/* Column 2 */}
           <div className={styles.fobSecondContentCardWrapper}>
+            {/* Bento 2 */}
             <div className={styles.fobSecondContentCard}>
               <ScriptCopyBtn
                 showMultiplePackageOptions={true}
@@ -437,7 +443,21 @@ const FobSection = () => {
                 </p>
               </div>
             </div>
-            <div className={styles.fobThirdContentCard}></div>
+            {/* Bento 3 */}
+            <div className={styles.fobThirdContentCard}>
+              <TextRevealCard
+                text="You know the business"
+                revealText="I know the chemistry"
+              >
+                <TextRevealCardTitle>
+                  Sometimes, you just need to see it.
+                </TextRevealCardTitle>
+                <TextRevealCardDescription>
+                  This is a text reveal card. Hover over the card to reveal the
+                  hidden text.
+                </TextRevealCardDescription>
+              </TextRevealCard>
+            </div>
           </div>
           {/* Column 3 */}
           <div className={styles.fobFourthContentCard}>

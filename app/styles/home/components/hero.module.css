@@ -11,6 +11,10 @@
   overflow: hidden;
 }
 
+.starBackground {
+  background: var(--page-bg);
+}
+
 .heroTitle {
   color: var(--default-text-color);
   text-align: center;
