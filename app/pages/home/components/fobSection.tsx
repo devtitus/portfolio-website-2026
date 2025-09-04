@@ -2,6 +2,7 @@ import React from "react";
 import styles from "@/app/styles/home/components/fob.module.css";
 import dynamic from "next/dynamic";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { ScriptCopyBtn } from "@/components/magicui/script-copy-btn";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -409,7 +410,7 @@ const FobSection = () => {
             <div
               className={`${styles.textWrapper} ${styles.fobFirstContentCardTextWrapper}`}
             >
-              <h3 className={styles.fobFirstContentCardTitle}>Tech Stack</h3>
+              <h3 className={styles.fobFirstContentCardTitle}>Remote</h3>
               <p className={styles.fobFirstContentCardDescription}>
                 I have worked with multiple technologies and frameworks to build
                 scalable and efficient applications.
@@ -418,13 +419,30 @@ const FobSection = () => {
           </div>
           {/* Column 2 */}
           <div className={styles.fobSecondContentCardWrapper}>
-            <div className={styles.fobSecondContentCard}></div>
+            <div className={styles.fobSecondContentCard}>
+              <ScriptCopyBtn
+                showMultiplePackageOptions={true}
+                codeLanguage="shell"
+                lightTheme=""
+                darkTheme=""
+                commandMap={customCommandMap}
+              />
+              <div
+                className={`${styles.textWrapper} ${styles.fobSecondContentCardTextWrapper}`}
+              >
+                <h3 className={styles.fobSecondContentCardTitle}>Email</h3>
+                <p className={styles.fobSecondContentCardDescription}>
+                  I have worked with multiple technologies and frameworks to
+                  build scalable and efficient applications.
+                </p>
+              </div>
+            </div>
             <div className={styles.fobThirdContentCard}></div>
           </div>
           {/* Column 3 */}
-          <div className={styles.fobFirstContentCard}>
+          <div className={styles.fobFourthContentCard}>
             <div
-              className={`${styles.fobFirstContentCardImage} ${styles.infiniteMarqueeCardWrapper}`}
+              className={`${styles.fobFourthContentCardImage} ${styles.infiniteMarqueeCardWrapper}`}
             >
               <InfiniteMovingCards
                 items={testimonials}
@@ -448,10 +466,10 @@ const FobSection = () => {
               />
             </div>
             <div
-              className={`${styles.textWrapper} ${styles.fobFirstContentCardTextWrapper}`}
+              className={`${styles.textWrapper} ${styles.fobFourthContentCardTextWrapper}`}
             >
-              <h3 className={styles.fobFirstContentCardTitle}>Tech Stack</h3>
-              <p className={styles.fobFirstContentCardDescription}>
+              <h3 className={styles.fobFourthContentCardTitle}>Technologies</h3>
+              <p className={styles.fobFourthContentCardDescription}>
                 I have worked with multiple technologies and frameworks to build
                 scalable and efficient applications.
               </p>
@@ -464,6 +482,10 @@ const FobSection = () => {
 };
 
 export default FobSection;
+
+const customCommandMap = {
+  email: "m.works.gd@gmail.com",
+};
 
 const testimonials = [
   {

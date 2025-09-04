@@ -38,7 +38,8 @@
 }
 
 .fobFirstContentCard,
-.fobSecondContentCardWrapper {
+.fobSecondContentCardWrapper,
+.fobFourthContentCard {
   width: 100%;
   height: 100%;
   grid-row: span 2;
@@ -49,7 +50,8 @@
   overflow: hidden;
 }
 
-.fobFirstContentCard {
+.fobFirstContentCard,
+.fobFourthContentCard {
   border-radius: var(--border-radius-12px);
   background-color: var(--page-bg);
   border: 1px solid #ffffff1a;
@@ -61,7 +63,8 @@
   transition: background-color 0.3s ease;
 }
 
-.fobFirstContentCard:hover {
+.fobFirstContentCard:hover,
+.fobFourthContentCard:hover {
   background-color: var(--fob-card-on-hover);
   transition: background-color 0.3s ease;
 }
@@ -69,9 +72,14 @@
 .fobSecondContentCard,
 .fobThirdContentCard {
   border-radius: var(--border-radius-12px);
-  background: var(--glass-color);
+  background-color: var(--page-bg);
+  border: 1px solid #ffffff1a;
+  box-shadow: inset 0 -20px 80px -20px #ffffff1f;
   padding: var(--padding-24px);
   backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .fobSecondContentCard,
@@ -79,7 +87,29 @@
   height: 100%;
 }
 
-.fobFirstContentCardImage {
+.fobSecondContentCard:hover,
+.fobThirdContentCard:hover {
+  background-color: var(--fob-card-on-hover);
+  transition: background-color 0.3s ease;
+}
+
+.fobSecondContentCardTextWrapper {
+  position: absolute;
+  bottom: -90px;
+  right: 32px;
+  left: 32px;
+  transition: opacity 0.4s ease, bottom 0.5s ease;
+  opacity: 0;
+}
+
+.fobSecondContentCard:hover .fobSecondContentCardTextWrapper {
+  bottom: 32px;
+  transition: opacity 1s ease-out, bottom 0.5s ease-out;
+  opacity: 1;
+}
+
+.fobFirstContentCardImage,
+.fobFourthContentCardImage {
   width: 100%;
   border-radius: 12px;
   height: 500px;
@@ -109,6 +139,21 @@
   opacity: 0;
 }
 
+.fobFourthContentCardTextWrapper {
+  position: absolute;
+  bottom: -90px;
+  right: 32px;
+  left: 32px;
+  transition: opacity 0.4s ease, bottom 0.5s ease;
+  opacity: 0;
+}
+
+.fobFourthContentCard:hover .fobFourthContentCardTextWrapper {
+  bottom: 32px;
+  transition: opacity 1s ease-out, bottom 0.5s ease-out;
+  opacity: 1;
+}
+
 .textWrapper {
   display: flex;
   flex-direction: column;
@@ -116,7 +161,9 @@
   gap: var(--gap-8px);
 }
 
-.fobFirstContentCardTitle {
+.fobFirstContentCardTitle,
+.fobSecondContentCardTitle,
+.fobFourthContentCardTitle {
   color: #fff;
   font-family: var(--font-family-primary);
   font-size: 24px;
@@ -125,7 +172,9 @@
   line-height: normal;
 }
 
-.fobFirstContentCardDescription {
+.fobFirstContentCardDescription,
+.fobSecondContentCardDescription,
+.fobFourthContentCardDescription {
   color: #fff;
   font-family: var(--font-family-secondary);
   font-size: 18px;
