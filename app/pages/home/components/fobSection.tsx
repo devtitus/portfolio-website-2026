@@ -8,6 +8,7 @@ import {
   TextRevealCardDescription,
   TextRevealCardTitle,
 } from "@/components/ui/text-reveal-card";
+import { MapPinIcon, MailIcon, TechnologiesIcon } from "@/app/utils/icons";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -415,7 +416,12 @@ const FobSection = () => {
             <div
               className={`${styles.textWrapper} ${styles.fobFirstContentCardTextWrapper}`}
             >
-              <h3 className={styles.fobFirstContentCardTitle}>Remote</h3>
+              <h3 className={styles.fobFirstContentCardTitle}>
+                <span className={styles.fobFirstContentCardTitleIcon}>
+                  <MapPinIcon className={`${styles.titleIcon}`} />
+                </span>
+                Remote
+              </h3>
               <p className={styles.fobFirstContentCardDescription}>
                 I have worked with multiple technologies and frameworks to build
                 scalable and efficient applications.
@@ -436,7 +442,14 @@ const FobSection = () => {
               <div
                 className={`${styles.textWrapper} ${styles.fobSecondContentCardTextWrapper}`}
               >
-                <h3 className={styles.fobSecondContentCardTitle}>Email</h3>
+                <h3 className={styles.fobSecondContentCardTitle}>
+                  <span className={styles.fobFirstContentCardTitleIcon}>
+                    <MailIcon
+                      className={`${styles.titleIcon} ${styles.mailIcon}`}
+                    />
+                  </span>
+                  Email
+                </h3>
                 <p className={styles.fobSecondContentCardDescription}>
                   I have worked with multiple technologies and frameworks to
                   build scalable and efficient applications.
@@ -488,7 +501,12 @@ const FobSection = () => {
             <div
               className={`${styles.textWrapper} ${styles.fobFourthContentCardTextWrapper}`}
             >
-              <h3 className={styles.fobFourthContentCardTitle}>Technologies</h3>
+              <h3 className={styles.fobFourthContentCardTitle}>
+                <span className={styles.fobFirstContentCardTitleIcon}>
+                  <TechnologiesIcon className={`${styles.titleIcon}`} />
+                </span>
+                Technologies
+              </h3>
               <p className={styles.fobFourthContentCardDescription}>
                 I have worked with multiple technologies and frameworks to build
                 scalable and efficient applications.

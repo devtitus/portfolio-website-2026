@@ -176,6 +176,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-8px);
 }
 
 .fobFirstContentCardDescription,
@@ -187,4 +190,17 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.fobFirstContentCardTitleIcon,
+.titleIcon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1/1;
+  color: #fff;
+}
+
+.mailIcon {
+  width: 28px;
+  height: 28px;
 }
