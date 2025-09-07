@@ -1,0 +1,38 @@
+.commonStyleSection {
+  height: 100vh;
+  padding-inline: var(--padding-60px);
+}
+
+.projectSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.projectSectionWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-40px);
+}
+
+.projectSectionTitle {
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-family-primary);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.projectGridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  grid-template-rows: repeat(2, 0.5fr);
+  column-gap: var(--gap-24px);
+  row-gap: var(--gap-24px);
+}

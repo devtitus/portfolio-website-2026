@@ -311,6 +311,7 @@ export const MailIcon = ({
   );
 };
 
+// Technologies Icon
 export const TechnologiesIcon = ({
   className,
   ...props
