@@ -2,8 +2,11 @@ import React from "react";
 import styles from "@/app/styles/home/components/skill.module.css";
 import { SkillSpinningImage } from "@/app/utils/icons";
 import SkillCard from "@/app/components/home/skillCard";
+import { getSkills } from "@/app/queries/getSkills";
 
-const SkillsSection = () => {
+const SkillsSection = async () => {
+  const skills = await getSkills();
+
   return (
     <section className={`${styles.skillSection} ${styles.commonStyleSection}`}>
       <div className={styles.skillSectionWrapper}>
@@ -12,10 +15,13 @@ const SkillsSection = () => {
           <h2 className={styles.skillSectionTitle}>My Skills</h2>
         </div>
         <div className={styles.skillBottomWrapper}>
-          <SkillCard
-            skillName="Skill 1"
-            skillIcon="https://picsum.photos/seed/picsum/200/300"
-          />
+          {skills.map((skill) => (
+            <SkillCard
+              key={skill.id}
+              skillName={skill.label}
+              skillIcon={skill.iconUrl}
+            />
+          ))}
         </div>
       </div>
     </section>
