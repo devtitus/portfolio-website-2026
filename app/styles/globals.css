@@ -162,6 +162,7 @@
   --page-bg: #0c0811;
   --default-text-color: #ffffff;
   --default-text-color-dark: #0c0811;
+  --skill-text-color: #b6b6b6;
   --default-violet-color: #f6b2e1;
   --monochrome-gradient-text-color: linear-gradient(
     189deg,
@@ -229,9 +230,9 @@
   --padding-60px: 60px;
 
   /* Margin */
-  --margin-top-48px: 48px;
-  --margin-top-56px: 56px;
-  --margin-top-60px: 60px;
+  --margin-48px: 48px;
+  --margin-56px: 56px;
+  --margin-60px: 60px;
 
   /* Gap */
   --gap-2px: 2px;

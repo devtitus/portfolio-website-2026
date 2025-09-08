@@ -1,0 +1,28 @@
+.skillCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-8px);
+  padding-block: var(--padding-8px);
+  padding-inline: var(--padding-16px);
+  border-radius: var(--border-radius-8px);
+  background: var(--glass-color);
+  border: 1px solid var(--glass-border-color);
+  backdrop-filter: blur(10px);
+}
+
+.skillImage {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.skillName {
+  color: var(--Skill-text-color);
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

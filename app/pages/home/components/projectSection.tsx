@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "@/app/styles/home/components/project.module.css";
-import ProjectCards from "@/app/components/home/projectCards";
+import ProjectCards from "@/app/components/home/projectCard";
 
-const projectSection = () => {
+const ProjectSection = () => {
   return (
     <section
       className={`${styles.projectSection} ${styles.commonStyleSection}`}
@@ -20,4 +20,4 @@ const projectSection = () => {
   );
 };
 
-export default projectSection;
+export default ProjectSection;

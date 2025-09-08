@@ -335,3 +335,18 @@ export const TechnologiesIcon = ({
     </svg>
   );
 };
+
+// Skill Spinning Image
+export const SkillSpinningImage = ({
+  className,
+  ...props
+}: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  return (
+    <img
+      src="/home/spinImage.png"
+      alt="skills"
+      className={className}
+      {...props}
+    />
+  );
+};

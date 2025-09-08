@@ -3,7 +3,7 @@
   padding-inline: var(--padding-60px);
 }
 
-.projectSection {
+.skillSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,29 +11,42 @@
   overflow: hidden;
 }
 
-.projectSectionWrapper {
+.skillSectionWrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: var(--gap-40px);
 }
 
-.projectSectionTitle {
+.skillSpinningImage {
+  width: 340px;
+  height: 340px;
+  aspect-ratio: 1/1;
+}
+
+.skillTopWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-20px);
+}
+
+.skillSectionTitle {
   color: #fff;
   text-align: center;
   font-family: var(--font-family-primary);
-  font-size: 32px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: var(--margin-56px);
 }
 
-.projectGridContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 0.5fr);
-  grid-template-rows: repeat(2, 0.5fr);
-  column-gap: var(--gap-24px);
-  row-gap: var(--gap-24px);
+.skillBottomWrapper {
+  width: 87.27%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-16px);
 }
