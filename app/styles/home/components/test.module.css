@@ -1,0 +1,71 @@
+.commonStyleSection {
+  height: 100vh;
+  padding-inline: var(--padding-60px);
+}
+
+.testimonialSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.testimonialSectionWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-40px);
+}
+
+.testimonialSectionTitle {
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-family-primary);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.testimonialMarqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  white-space: nowrap;
+}
+
+.testimonialMarquee {
+  display: flex;
+  gap: var(--gap-24px);
+  animation: marquee var(--marquee-duration, 60s) linear infinite;
+  width: fit-content;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonialMarquee:hover {
+  animation-play-state: paused;
+}

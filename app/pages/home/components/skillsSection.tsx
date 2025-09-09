@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import styles from "@/app/styles/home/components/skill.module.css";
 import { SkillSpinningImage } from "@/app/utils/icons";

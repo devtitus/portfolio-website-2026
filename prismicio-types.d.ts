@@ -112,7 +112,72 @@ export type MySkillsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = MySkillsDocument;
+/**
+ * Content for My Testimonials documents
+ */
+interface MyTestimonialsDocumentData {
+  /**
+   * Avatar field in *My Testimonials*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: my_testimonials.avatar
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  avatar: prismic.ImageField<never>;
+
+  /**
+   * Testimonial field in *My Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Testimonial
+   * - **API ID Path**: my_testimonials.testimonial
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  testimonial: prismic.KeyTextField;
+
+  /**
+   * Name field in *My Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Testimonial Name
+   * - **API ID Path**: my_testimonials.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Company field in *My Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Company Name
+   * - **API ID Path**: my_testimonials.company
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  company: prismic.KeyTextField;
+}
+
+/**
+ * My Testimonials document from Prismic
+ *
+ * - **API ID**: `my_testimonials`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MyTestimonialsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<MyTestimonialsDocumentData>,
+    "my_testimonials",
+    Lang
+  >;
+
+export type AllDocumentTypes = MySkillsDocument | MyTestimonialsDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -134,6 +199,12 @@ declare module "@prismicio/client" {
   }
 
   namespace Content {
-    export type { MySkillsDocument, MySkillsDocumentData, AllDocumentTypes };
+    export type {
+      MySkillsDocument,
+      MySkillsDocumentData,
+      MyTestimonialsDocument,
+      MyTestimonialsDocumentData,
+      AllDocumentTypes,
+    };
   }
 }
