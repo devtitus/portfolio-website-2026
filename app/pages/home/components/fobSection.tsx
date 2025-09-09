@@ -435,8 +435,6 @@ const FobSection = () => {
               <ScriptCopyBtn
                 showMultiplePackageOptions={true}
                 codeLanguage="shell"
-                lightTheme=""
-                darkTheme=""
                 commandMap={customCommandMap}
               />
               <div

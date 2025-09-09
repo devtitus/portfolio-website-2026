@@ -149,9 +149,21 @@ export const TextRevealCardDescription = ({
 };
 
 const Stars = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Only render stars on client side to avoid hydration mismatch
+  if (!isClient) {
+    return <div className="absolute inset-0" />;
+  }
+
   const randomMove = () => Math.random() * 4 - 2;
   const randomOpacity = () => Math.random();
   const random = () => Math.random();
+
   return (
     <div className="absolute inset-0">
       {[...Array(80)].map((_, i) => (

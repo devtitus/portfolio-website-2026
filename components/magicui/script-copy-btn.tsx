@@ -4,15 +4,12 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
 import { motion } from "motion/react";
-import { useTheme } from "next-themes";
-import { HTMLAttributes, useEffect, useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import styles from "@/app/styles/components/scriptCopyBtn.module.css";
 
 interface ScriptCopyBtnProps extends HTMLAttributes<HTMLDivElement> {
   showMultiplePackageOptions?: boolean;
   codeLanguage: string;
-  lightTheme: string;
-  darkTheme: string;
   commandMap: Record<string, string>;
   className?: string;
 }
@@ -20,39 +17,13 @@ interface ScriptCopyBtnProps extends HTMLAttributes<HTMLDivElement> {
 export function ScriptCopyBtn({
   showMultiplePackageOptions = true,
   codeLanguage,
-  lightTheme,
-  darkTheme,
   commandMap,
   className,
 }: ScriptCopyBtnProps) {
   const packageManagers = Object.keys(commandMap);
   const [packageManager, setPackageManager] = useState(packageManagers[0]);
   const [copied, setCopied] = useState(false);
-  const [highlightedCode, setHighlightedCode] = useState("");
-  const { theme } = useTheme();
   const command = commandMap[packageManager];
-
-  useEffect(() => {
-    async function loadHighlightedCode() {
-      try {
-        const { codeToHtml } = await import("shiki");
-        const highlighted = await codeToHtml(command, {
-          lang: codeLanguage,
-          themes: {
-            light: lightTheme,
-            dark: darkTheme,
-          },
-          defaultColor: theme === "dark" ? "dark" : "light",
-        });
-        setHighlightedCode(highlighted);
-      } catch (error) {
-        console.error("Error highlighting code:", error);
-        setHighlightedCode(`<pre class={styles.copyCommand}>${command}</pre>`);
-      }
-    }
-
-    loadHighlightedCode();
-  }, [command, theme, codeLanguage, lightTheme, darkTheme]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(command);
@@ -116,18 +87,11 @@ export function ScriptCopyBtn({
         </div>
         <div className="relative flex items-center">
           <div className="min-w-[300px] grow font-mono">
-            {highlightedCode ? (
-              <div
-                className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${styles.copyCommand}`}
-                dangerouslySetInnerHTML={{ __html: highlightedCode }}
-              />
-            ) : (
-              <pre
-                className={`${styles.copyCommand} rounded-md border border-border bg-white p-2 px-4 font-mono dark:bg-black`}
-              >
-                {command}
-              </pre>
-            )}
+            <pre
+              className={`${styles.copyCommand} rounded-md border border-border bg-transparent p-2 px-4 font-mono dark:bg-black`}
+            >
+              {command}
+            </pre>
           </div>
           <Button
             variant="outline"

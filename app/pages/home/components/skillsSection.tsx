@@ -1,11 +1,21 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import styles from "@/app/styles/home/components/skill.module.css";
 import { SkillSpinningImage } from "@/app/utils/icons";
 import SkillCard from "@/app/components/home/skillCard";
-import { getSkills } from "@/app/queries/getSkills";
+import { getSkills, SkillItem } from "@/app/queries/getSkills";
 
-const SkillsSection = async () => {
-  const skills = await getSkills();
+const SkillsSection = () => {
+  const [skills, setSkills] = useState<SkillItem[]>([]);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      const skillsData = await getSkills();
+      setSkills(skillsData);
+    };
+    fetchSkills();
+  }, []);
 
   return (
     <section className={`${styles.skillSection} ${styles.commonStyleSection}`}>
