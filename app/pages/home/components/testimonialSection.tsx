@@ -2,20 +2,27 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/app/styles/home/components/test.module.css";
 import { TestimonialStack } from "@/components/ui/testimonial-cards";
-import {
-  getTestimonials,
-  TestimonialItem,
-} from "@/app/queries/getTestimonials";
+
+// TODO: Replace with Sanity query
+export interface TestimonialItem {
+  id: string;
+  uid: string | null;
+  testimonial: string;
+  name: string;
+  company: string;
+  image: string;
+}
 
 const TestimonialSection = () => {
   const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      const testimonialsData = await getTestimonials();
-      setTestimonials(testimonialsData);
-    };
-    fetchTestimonials();
+    // TODO: Implement Sanity query to fetch testimonials
+    // const fetchTestimonials = async () => {
+    //   const testimonialsData = await getSanityTestimonials();
+    //   setTestimonials(testimonialsData);
+    // };
+    // fetchTestimonials();
   }, []);
 
   // Don't render if no testimonials

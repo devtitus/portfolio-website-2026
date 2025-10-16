@@ -3,17 +3,25 @@ import React, { useState, useEffect } from "react";
 import styles from "@/app/styles/home/components/skill.module.css";
 import { SkillSpinningImage } from "@/app/utils/icons";
 import SkillCard from "@/app/components/home/skillCard";
-import { getSkills, SkillItem } from "@/app/queries/getSkills";
+
+// TODO: Replace with Sanity query
+export interface SkillItem {
+  id: string;
+  uid: string | null;
+  label: string;
+  iconUrl: string;
+}
 
 const SkillsSection = () => {
   const [skills, setSkills] = useState<SkillItem[]>([]);
 
   useEffect(() => {
-    const fetchSkills = async () => {
-      const skillsData = await getSkills();
-      setSkills(skillsData);
-    };
-    fetchSkills();
+    // TODO: Implement Sanity query to fetch skills
+    // const fetchSkills = async () => {
+    //   const skillsData = await getSanitySkills();
+    //   setSkills(skillsData);
+    // };
+    // fetchSkills();
   }, []);
 
   return (
