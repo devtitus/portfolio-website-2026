@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export interface TestimonialCardProps {
   handleShuffle: () => void;
@@ -17,7 +18,6 @@ export function TestimonialCard({
   handleShuffle,
   testimonial,
   position,
-  id,
   author,
   company,
   image,
@@ -79,13 +79,15 @@ export function TestimonialCard({
         isFront ? "cursor-grab active:cursor-grabbing" : ""
       }`}
     >
-      <img
+      <Image
         src={image}
         alt={`Avatar of ${author}`}
+        width={128}
+        height={128}
         className="pointer-events-none mx-auto h-32 w-32 rounded-full border-2 border-white/20 bg-slate-200 object-cover"
       />
       <span className="text-center text-lg italic text-white/90">
-        "{testimonial}"
+        &ldquo;{testimonial}&rdquo;
       </span>
       <div className="text-center">
         <span className="block text-sm font-medium text-white">{author}</span>

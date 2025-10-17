@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "@/app/styles/components/infiniteMovingCard.module.css";
 
 export const InfiniteMovingCards = ({
@@ -84,7 +85,7 @@ export const InfiniteMovingCards = ({
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
-        {items.map((item, idx) => (
+        {items.map((item) => (
           <li
             className={`${styles.infiniteMovingCard} relative w-fit max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)] px-8 py-6 md:w-fit dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]`}
             key={item.name}
@@ -94,9 +95,11 @@ export const InfiniteMovingCards = ({
               className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 w-fit"
             ></div>
             {item.image && (
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={400}
+                height={300}
                 className={`${styles.infiniteMovingCardImage} relative z-20 w-full rounded-lg object-cover`}
               />
             )}
