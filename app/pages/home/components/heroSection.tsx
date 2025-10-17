@@ -19,7 +19,7 @@ const HeroSection = () => {
       setTimeout(() => {
         setIsCopied(false);
       }, 2000);
-    } catch (err) {
+    } catch {
       // Fallback for older browsers
       const textArea = document.createElement("textarea");
       textArea.value = email;
@@ -63,7 +63,7 @@ const HeroSection = () => {
           {/* Hero Description */}
           <div className={styles.heroDescriptionWrapper}>
             <span className={styles.heroDescriptionText}>
-              Hello, I'm Melwyn Titus
+              Hello, I&apos;m Melwyn Titus
             </span>
             <div className={styles.heroDescriptionSeparator}>
               <div className={styles.separatorShutter}></div>

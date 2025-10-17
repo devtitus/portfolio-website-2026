@@ -3,6 +3,7 @@ import styles from "@/app/styles/footer/footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface FooterProps {
   // Add any props if needed
 }
@@ -22,11 +23,10 @@ const Footer: React.FC<FooterProps> = () => {
             />
           </div>
           <p className={styles.footerDescription}>
-            I'm Melwyn - a full-stack developer, freelancer & problem solver. Thanks for checking out my site!
+            I&apos;m Melwyn - a full-stack developer, freelancer & problem
+            solver. Thanks for checking out my site!
           </p>
-          <p className={styles.footerCopyright}>
-            © 2025 Melwyn Titus
-          </p>
+          <p className={styles.footerCopyright}>© 2025 Melwyn Titus</p>
         </div>
 
         <div className={styles.footerColumns}>

@@ -34,12 +34,12 @@ const ContactSection = () => {
         />
         <h2 className={styles.contactHeading}>
           From Concepts To <span className={styles.contactSpan}>CREATION</span>{" "}
-          Let's Make It <span className={styles.contactSpan}>HAPPEN!</span>
+          Let&apos;s Make It <span className={styles.contactSpan}>HAPPEN!</span>
         </h2>
         <button className={styles.contactButton}>Get in touch</button>
         <div className={styles.contentWrapper}>
           <span className={styles.contentSubHeading}>
-            I'm available for full-time roles & freelance projects.
+            I&apos;m available for full-time roles & freelance projects.
           </span>
           <p className={styles.contentParagraph}>
             I thrive on crafting dynamic web applications, anddelivering
