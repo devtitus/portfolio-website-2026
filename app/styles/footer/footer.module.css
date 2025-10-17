@@ -1,0 +1,123 @@
+.footerContainer {
+  padding: var(--padding-60px) var(--padding-60px) var(--padding-40px)
+    var(--padding-60px);
+  border-top: 0.5px solid var(--glass-border-color);
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 35.3%;
+}
+
+.footerColumns {
+  width: 42.57%;
+  display: flex;
+  gap: var(--gap-180px);
+}
+
+.footerSection {
+  width: 22.12%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-24px);
+  flex: 1;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+}
+
+.footerLogoImage {
+  width: 64px;
+  height: 64px;
+  aspect-ratio: 1/1;
+}
+
+.footerDescription {
+  color: var(--default-text-color);
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  max-width: 300px;
+  opacity: 0.8;
+  margin-bottom: var(--gap-16px);
+}
+
+.footerCopyright {
+  color: var(--nav-text-inactive);
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.footerHeading {
+  color: var(--default-text-color);
+  font-family: var(--font-family-secondary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  margin: 0;
+}
+
+.footerNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-16px);
+}
+
+.footerLink {
+  color: var(--nav-text-inactive);
+  text-decoration: none;
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.footerLink:hover {
+  color: var(--nav-text-hover);
+  text-decoration: none;
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-10px);
+  align-items: flex-start;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-8px) 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.socialLink:hover {
+  opacity: 0.8;
+  transform: none;
+}
+
+.socialText {
+  color: var(--nav-text-inactive);
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  text-decoration: none;
+}
+
+.socialLink:hover .socialText {
+  color: var(--nav-text-hover);
+}

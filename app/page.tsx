@@ -6,6 +6,7 @@ import About from "@/app/pages/about/about";
 import Projects from "@/app/pages/projects/projects";
 import Contact from "@/app/pages/contact/contact";
 import Navbar from "@/app/components/navbar/navbar";
+import Footer from "@/app/components/footer/footer";
 
 const MainPage = () => {
   const router = useRouter();
@@ -53,6 +54,7 @@ const MainPage = () => {
     <main>
       <Navbar setCurrentPage={setCurrentPage} />
       <div className="page-content">{renderPage()}</div>
+      <Footer />
     </main>
   );
 };
