@@ -1,0 +1,117 @@
+.commonStyleSection {
+  height: 100vh;
+  padding-inline: var(--padding-60px);
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.contactSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    #0c0811 4.27%,
+    rgba(0, 0, 0, 0.6) 50%,
+    #0c0811 95.63%
+  );
+  z-index: 1;
+}
+
+.contactSection > * {
+  position: relative;
+  z-index: 2;
+}
+
+.contactSectionWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-56px);
+}
+
+.contactImage {
+  width: 150px;
+  height: 150px;
+}
+
+.contactHeading {
+  width: 574px;
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-family-primary);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px; /* 125% */
+}
+
+.contactSpan {
+  color: #fff;
+  font-family: var(--font-family-primary);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+}
+
+.contactButton {
+  display: block;
+  padding: 12px 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid var(--BG, #0c0811);
+  background: #fff;
+  box-shadow: 4px 4px 0 0 #f6b2e1;
+  color: var(--default-text-color-dark);
+  text-align: center;
+  font-family: "Satoshi Variable";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 155.556% */
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-24px);
+  align-items: center;
+}
+
+.contentSubHeading {
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 42px; /* 131.25% */
+}
+
+.contentParagraph {
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 34px; /* 141.667% */
+  width: 538px;
+}

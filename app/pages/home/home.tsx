@@ -4,6 +4,7 @@ import FobSection from "@/app/pages/home/components/fobSection";
 import ProjectSection from "@/app/pages/home/components/projectSection";
 import SkillsSection from "@/app/pages/home/components/skillsSection";
 import TestimonialSection from "@/app/pages/home/components/testimonialSection";
+import ContactSection from "@/app/pages/home/components/contactSection";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <ProjectSection />
       <SkillsSection />
       <TestimonialSection />
+      <ContactSection />
     </>
   );
 };
