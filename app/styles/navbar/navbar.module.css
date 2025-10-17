@@ -159,7 +159,7 @@
   .mobileContainer {
     width: 100%;
     display: flex;
-    padding: calc(0.25rem + 0.125rem * (100vw - 320px) / (480px - 320px))
+    padding: calc(0.75rem + 0.125rem * (100vw - 320px) / (480px - 320px))
       calc(0.75rem + 0.25rem * (100vw - 320px) / (480px - 320px));
     justify-content: space-between;
     align-items: center;
@@ -194,7 +194,7 @@
   .mobileContainer {
     width: 100%;
     display: flex;
-    padding: calc(0.375rem + 0.125rem * (100vw - 481px) / (768px - 481px))
+    padding: calc(1rem + 0.125rem * (100vw - 481px) / (768px - 481px))
       calc(1rem + 0.25rem * (100vw - 481px) / (768px - 481px));
     justify-content: space-between;
     align-items: center;
