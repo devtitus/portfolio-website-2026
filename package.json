@@ -4,10 +4,11 @@
   "private": true,
   "packageManager": "pnpm@10.14.0",
   "scripts": {
-    "dev": "npm exec next dev --turbopack",
-    "build": "npm exec next build",
-    "start": "npm exec next start",
-    "lint": "npm exec next lint",
+    "preinstall": "pnpm dlx only-allow pnpm",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "sanity:deploy": "sanity deploy",
     "sanity:manage": "sanity manage",
     "sanity:export": "sanity dataset export production backup.tar.gz",
@@ -52,5 +53,11 @@
     "sanity": "^4.10.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }
