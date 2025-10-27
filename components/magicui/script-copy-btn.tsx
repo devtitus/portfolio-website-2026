@@ -35,11 +35,11 @@ export function ScriptCopyBtn({
     <div
       className={cn(
         "mx-auto mt-4 max-w-lg flex items-center justify-center",
-        className
+        className,
       )}
     >
-      <div className="w-full space-y-2">
-        <div className="mb-2 flex items-center justify-between">
+      <div className={`w-full ${styles.copyContainer}`}>
+        <div className="flex items-center justify-between">
           {showMultiplePackageOptions && (
             <div className="relative">
               <div
@@ -85,8 +85,8 @@ export function ScriptCopyBtn({
             </div>
           )}
         </div>
-        <div className="relative flex items-center">
-          <div className="min-w-[300px] grow font-mono">
+        <div className={`mt-0 relative flex items-center`}>
+          <div className="flex-nowrap grow font-mono">
             <pre
               className={`${styles.copyCommand} rounded-md border border-border bg-transparent p-2 px-4 font-mono dark:bg-black`}
             >

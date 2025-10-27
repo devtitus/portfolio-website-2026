@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, memo } from "react";
 import { motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import { cn } from "@/lib/utils";
+import styles from "@/app/styles/components/textRevealCard.module.css";
 
 export const TextRevealCard = ({
   text,
@@ -68,7 +69,7 @@ export const TextRevealCard = ({
       ref={cardRef}
       className={cn(
         "bg-[transparent] border border-none w-[40rem] rounded-lg relative overflow-hidden",
-        className
+        className,
       )}
     >
       {children}
@@ -111,7 +112,9 @@ export const TextRevealCard = ({
         ></motion.div>
 
         <div className=" overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]">
-          <p className="text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#323238]">
+          <p
+            className={`${styles.text} text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#323238]`}
+          >
             {text}
           </p>
           <MemoizedStars />
@@ -129,7 +132,7 @@ export const TextRevealCardTitle = ({
   className?: string;
 }) => {
   return (
-    <h2 className={twMerge("text-white text-lg mb-2", className)}>
+    <h2 className={twMerge(`text-white text-lg ${styles.title}`, className)}>
       {children}
     </h2>
   );
@@ -143,7 +146,9 @@ export const TextRevealCardDescription = ({
   className?: string;
 }) => {
   return (
-    <p className={twMerge("text-[#a9a9a9] text-sm", className)}>{children}</p>
+    <p className={twMerge(`text-[#a9a9a9] text-sm ${styles.text}`, className)}>
+      {children}
+    </p>
   );
 };
 

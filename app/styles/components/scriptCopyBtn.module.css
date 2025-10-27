@@ -53,3 +53,26 @@
   border-radius: var(--border-radius-6px);
   padding: 23px;
 }
+
+/* Mobile Devices & Tablets*/
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+  .copyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 20px;
+  }
+  .packageManagerButton {
+    font-size: 14px;
+    border: 0.25px;
+  }
+  .copyCommand {
+    padding-block: 12px;
+    padding-inline: 16px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+  .copyButton {
+    margin-left: 12px;
+  }
+}

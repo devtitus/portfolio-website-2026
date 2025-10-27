@@ -14,7 +14,7 @@ const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
   {
     ssr: false,
-  }
+  },
 );
 
 const FobSection = () => {
@@ -436,6 +436,7 @@ const FobSection = () => {
                 showMultiplePackageOptions={true}
                 codeLanguage="shell"
                 commandMap={customCommandMap}
+                className={styles.scriptCopyBtn}
               />
               <div
                 className={`${styles.textWrapper} ${styles.fobSecondContentCardTextWrapper}`}
