@@ -247,6 +247,10 @@
     padding: 20px;
     border-radius: 8px;
   }
+  .fobSecondContentCard,
+  .fobThirdContentCard {
+    height: auto;
+  }
   .fobFirstContentCardTextWrapper {
     position: static;
     transform: translateY(0);

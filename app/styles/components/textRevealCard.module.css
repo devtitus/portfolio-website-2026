@@ -7,4 +7,15 @@
     font-size: 16px;
     margin-top: 12px;
   }
+  .textRevealText {
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  .mask {
+    width: 100%;
+  }
+  .textRevealWrapper {
+    height: 100px;
+  }
 }
