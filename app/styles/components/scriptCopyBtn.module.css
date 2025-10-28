@@ -60,19 +60,40 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap: 20px;
+    gap: calc(1.25rem + 0rem * (100vw - 320px) / (1023px - 320px));
+    width: 100%;
   }
   .packageManagerButton {
-    font-size: 14px;
-    border: 0.25px;
+    font-size: calc(0.875rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+    border: calc(0.015625rem + 0.00625rem * (100vw - 320px) / (1023px - 320px));
   }
   .copyCommand {
-    padding-block: 12px;
-    padding-inline: 16px;
-    font-size: 16px;
-    border-radius: 6px;
+    padding-block: calc(0.75rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+    padding-inline: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    font-size: calc(1rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+    border-radius: calc(0.375rem + 0.0625rem * (100vw - 320px) / (1023px - 320px));
   }
   .copyButton {
-    margin-left: 12px;
+    margin-left: calc(0.75rem + 0rem * (100vw - 320px) / (1023px - 320px));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .packageManagerButton {
+    border: calc(0.00625rem + 0.003125rem * (100vw - 1024px) / (1920px - 1024px));
+    padding: calc(0.25rem + 0.0625rem * (100vw - 1024px) / (1920px - 1024px))
+      calc(0.75rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+    font-size: calc(0.875rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  .emailTextWrapper {
+    margin-top: calc(0.75rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  .copyCommand {
+    padding: calc(0.5rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px))
+      calc(0.75rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+    font-size: calc(0.875rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  .copyButton {
+    padding: calc(1.1875rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
   }
 }

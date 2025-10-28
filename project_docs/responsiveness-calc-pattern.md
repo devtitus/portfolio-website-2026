@@ -29,6 +29,9 @@ padding-inline: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
 
 /* Font size scales from 1.5rem at 320px to 2rem at 1023px */
 font-size: calc(1.5rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+
+/* Gap scales from 1rem at 320px to 1.5rem at 1023px */
+gap: calc(1rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
 ```
 
 ### Desktop Range (1024px - 1920px)
@@ -39,6 +42,24 @@ padding-inline: calc(2.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
 
 /* Font size scales from 2rem at 1024px to 2.5rem at 1920px */
 font-size: calc(2rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
+
+/* Height scales from 500px at 1024px to 600px at 1920px */
+height: calc(31.25rem + 1.25rem * (100vw - 1024px) / (1920px - 1024px));
+```
+
+### Gradual Scaling Implementation
+
+To enable gradual scaling instead of static values, adjust the scaling factor from `0rem` to a positive value:
+
+```css
+/* Static (no scaling) */
+font-size: calc(1rem + 0rem * (100vw - 1024px) / (1920px - 1024px));
+
+/* Gradual scaling (scales from 1rem to 1.25rem) */
+font-size: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+
+/* More aggressive scaling (scales from 1rem to 1.5rem) */
+font-size: calc(1rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
 ```
 
 ## Mathematical Breakdown
@@ -96,6 +117,8 @@ The pattern implements linear interpolation:
 3. **Test extremes**: Verify behavior at minimum and maximum viewport widths
 4. **Document scaling**: Comment the intended min/max values in CSS
 5. **Consistent factors**: Use similar scaling ratios across related properties for visual harmony
+6. **Gradual scaling**: Adjust scaling factors from `0rem` to positive values for smooth transitions between breakpoints
+7. **Scaling factor calculation**: `scaling_factor = (target_value - base_value) / range_width * 100` for percentage-based scaling
 
 ## Conversion Examples
 
@@ -131,5 +154,6 @@ When working with this codebase, remember:
 - Values are designed to work across the full viewport range, not just at breakpoints
 - The pattern is applied consistently across typography, spacing, and component sizing
 - Always consider the mathematical relationship when modifying values
+- **IMPORTANT**: Calc expressions should only be applied inside media query breakpoints, not to base CSS styles outside of breakpoints
 
 This approach creates more resilient, adaptable designs that provide better user experiences across the entire spectrum of device sizes.
