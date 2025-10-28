@@ -28,9 +28,9 @@
 - [ ] **Update .gitignore** if needed for new structure
 
 ### 1.3 Move Core App Files
-- [ ] **Move root layout**: `app/layout.tsx` → `app/layout.tsx` (keep in place)
-- [ ] **Move global styles**: `app/globals.css` → `app/globals.css` (keep in place)
-- [ ] **Move page.tsx**: `app/page.tsx` → `app/(home)/page.tsx`
+- [x] **Move root layout**: `app/layout.tsx` → `app/layout.tsx` (keep in place)
+- [x] **Move global styles**: `app/styles/globals.css` → `styles/globals.css`
+- [x] **Move page.tsx**: `app/page.tsx` → `app/(home)/page.tsx`
 - [ ] **Update root layout imports** to reflect new structure
 
 ## Phase 2: Route Migration (2-3 days)
