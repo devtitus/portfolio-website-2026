@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "@/app/styles/home/components/test.module.css";
+import styles from "@/styles/features/home/test.module.css";
 import { TestimonialStack } from "@/components/ui/testimonial-cards";
 import {
   getTestimonials,

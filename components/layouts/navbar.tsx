@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "@/app/styles/navbar/navbar.module.css";
+import styles from "@/styles/layouts/navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

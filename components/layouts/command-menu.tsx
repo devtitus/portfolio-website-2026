@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Command } from "cmdk";
-import styles from "@/app/styles/components/commandMenu.module.css";
+import styles from "@/styles/components/commandMenu.module.css";
 import {
   HomeIcon,
   SearchIcon,

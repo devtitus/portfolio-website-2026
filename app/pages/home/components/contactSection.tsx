@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "@/app/styles/home/components/contact.module.css";
+import styles from "@/styles/features/home/contact.module.css";
 import {
   getSiteSettings,
   type SiteSettings,

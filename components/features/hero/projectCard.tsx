@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/styles/components/projectCards.module.css";
+import styles from "@/styles/components/projectCards.module.css";
 import { LinkIcon } from "@/app/utils/icons";
 
 const projectCards = () => {

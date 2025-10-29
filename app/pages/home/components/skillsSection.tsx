@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "@/app/styles/home/components/skill.module.css";
+import styles from "@/styles/features/home/skill.module.css";
 import { SkillSpinningImage } from "@/app/utils/icons";
 import SkillCard from "@/components/features/hero/skillCard";
 import { getSkills, SkillItem } from "@/app/queries/sanity/getSkills";

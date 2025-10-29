@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
 import { motion } from "motion/react";
 import { HTMLAttributes, useState } from "react";
-import styles from "@/app/styles/components/scriptCopyBtn.module.css";
+import styles from "@/styles/components/scriptCopyBtn.module.css";
 
 interface ScriptCopyBtnProps extends HTMLAttributes<HTMLDivElement> {
   showMultiplePackageOptions?: boolean;

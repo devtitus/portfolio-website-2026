@@ -82,9 +82,9 @@
 - [x] **Move layout styles**: `app/styles/navbar/*`, `app/styles/footer/*` → `styles/layouts/`
 
 ### 4.2 Update Style Imports
-- [ ] **Update all CSS imports** in component files
-- [ ] **Update CSS module references** in TypeScript files
-- [ ] **Verify CSS module loading** after each move
+- [x] **Update all CSS imports** in component files
+- [x] **Update CSS module references** in TypeScript files
+- [x] **Verify CSS module loading** after each move
 
 ### 4.3 Clean Up Duplicate Styles
 - [ ] **Remove duplicate styles** from old locations

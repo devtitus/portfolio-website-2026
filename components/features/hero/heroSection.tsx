@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "@/app/styles/home/components/hero.module.css";
+import styles from "@/styles/features/home/hero.module.css";
 import { AuroraText } from "@/components/ui/magicui/aurora-text";
 import { CopyIcon } from "@/app/utils/icons";
 import Image from "next/image";

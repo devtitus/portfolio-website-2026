@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/styles/home/components/fob.module.css";
+import styles from "@/styles/features/home/fob.module.css";
 import dynamic from "next/dynamic";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { ScriptCopyBtn } from "@/components/ui/magicui/script-copy-btn";

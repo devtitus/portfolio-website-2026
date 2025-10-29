@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "@/app/styles/components/infiniteMovingCard.module.css";
+import styles from "@/styles/components/infiniteMovingCard.module.css";
 
 export const InfiniteMovingCards = ({
   items,

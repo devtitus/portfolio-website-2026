@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/styles/components/skillCard.module.css";
+import styles from "@/styles/components/skillCard.module.css";
 
 interface SkillCardProps {
   skillName: string;
