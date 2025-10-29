@@ -1,16 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import type { Image } from "sanity";
-
-export interface SiteSettings {
-  id: string;
-  contactBackgroundImageUrl: string;
-}
-
-interface SanitySiteSettings {
-  _id: string;
-  contactBackgroundImage: Image;
-}
+import type { SiteSettings, SanitySiteSettings } from "@/lib/types/sanity";
 
 export const getSiteSettings = async (): Promise<SiteSettings | null> => {
   const query = `*[_type == "ctaSettings"][0] {
@@ -34,3 +25,7 @@ export const getSiteSettings = async (): Promise<SiteSettings | null> => {
     return null;
   }
 };
+
+// Re-export types for convenience
+export type { SiteSettings };
+export type { SanitySiteSettings };

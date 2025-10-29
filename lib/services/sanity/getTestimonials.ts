@@ -1,23 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import type { Image } from "sanity";
-
-export interface TestimonialItem {
-  id: string;
-  uid: string | null;
-  testimonial: string;
-  name: string;
-  company: string;
-  image: string;
-}
-
-interface SanityTestimonial {
-  _id: string;
-  testimonial: string;
-  name: string;
-  company: string;
-  avatar: Image;
-}
+import type { TestimonialItem, SanityTestimonial } from "@/lib/types/sanity";
 
 export const getTestimonials = async (): Promise<TestimonialItem[]> => {
   const query = `*[_type == "testimonial"] | order(order asc) {
@@ -44,3 +28,7 @@ export const getTestimonials = async (): Promise<TestimonialItem[]> => {
     return [];
   }
 };
+
+// Re-export types for convenience
+export type { TestimonialItem };
+export type { SanityTestimonial };

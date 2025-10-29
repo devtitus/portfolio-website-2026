@@ -1,19 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import type { Image } from "sanity";
-
-export interface SkillItem {
-  id: string;
-  uid: string | null;
-  label: string;
-  iconUrl: string;
-}
-
-interface SanitySkill {
-  _id: string;
-  label: string;
-  icon: Image;
-}
+import type { SkillItem, SanitySkill } from "@/lib/types/sanity";
 
 export const getSkills = async (): Promise<SkillItem[]> => {
   const query = `*[_type == "skill"] | order(order asc) {
@@ -36,3 +24,7 @@ export const getSkills = async (): Promise<SkillItem[]> => {
     return [];
   }
 };
+
+// Re-export types for convenience
+export type { SkillItem };
+export type { SanitySkill };

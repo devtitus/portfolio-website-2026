@@ -95,13 +95,13 @@
 
 ### 5.1 Consolidate Utilities
 - [x] **Move app utils**: `app/utils/*` → `lib/utils/`
-- [ ] **Move lib files**: `lib/*` → `lib/` (organize properly)
+- [x] **Move lib files**: `lib/*` → `lib/` (organize properly)
 - [x] **Move queries**: `app/queries/*` → `lib/services/`
 
 ### 5.2 Type Definitions
-- [ ] **Create global types**: Move to `lib/types/`
-- [ ] **Update type imports** across codebase
-- [ ] **Verify TypeScript compilation**
+- [x] **Create global types**: Move to `lib/types/`
+- [x] **Update type imports** across codebase
+- [x] **Verify TypeScript compilation**
 
 ### 5.3 Configuration Files
 - [ ] **Move config files** to appropriate `lib/config/` locations
