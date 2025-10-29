@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Home from "@/app/pages/home/home";
-import About from "@/app/pages/about/about";
-import Projects from "@/app/pages/projects/projects";
-import Contact from "@/app/pages/contact/contact";
+import About from "@/app/(routes)/about/page";
+import Projects from "@/app/(routes)/projects/page";
+import Contact from "@/app/(routes)/contact/page";
 import Navbar from "@/app/components/navbar/navbar";
 import Footer from "@/app/components/footer/footer";
 

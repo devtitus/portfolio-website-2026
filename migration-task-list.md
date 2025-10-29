@@ -42,9 +42,9 @@
 - [x] **Home page**: `app/pages/home/home.tsx` → `app/(home)/page.tsx` (already done)
 
 ### 2.2 Migrate Page-Specific Components
-- [ ] **Home components**: Move all from `app/pages/home/components/` → `app/(home)/components/`
-- [ ] **Update component imports** in migrated page files
-- [ ] **Test page routing** after each migration
+- [x] **Home components**: Move all from `app/pages/home/components/` → `app/(home)/components/`
+- [x] **Update component imports** in migrated page files
+- [x] **Test page routing** after each migration
 
 ### 2.3 Update Route-Based Imports
 - [ ] **Update all imports** pointing to old page locations
