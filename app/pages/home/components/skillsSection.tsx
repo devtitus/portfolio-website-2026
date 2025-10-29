@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/features/home/skill.module.css";
-import { SkillSpinningImage } from "@/app/utils/icons";
+import { SkillSpinningImage } from "@/lib/utils/icons";
 import SkillCard from "@/components/features/hero/skillCard";
-import { getSkills, SkillItem } from "@/app/queries/sanity/getSkills";
+import { getSkills, SkillItem } from "@/lib/services/sanity/getSkills";
 
 const SkillsSection = () => {
   const [skills, setSkills] = useState<SkillItem[]>([]);

@@ -8,7 +8,7 @@ import {
   TextRevealCardDescription,
   TextRevealCardTitle,
 } from "@/components/ui/text-reveal-card";
-import { MapPinIcon, MailIcon, TechnologiesIcon } from "@/app/utils/icons";
+import { MapPinIcon, MailIcon, TechnologiesIcon } from "@/lib/utils/icons";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),

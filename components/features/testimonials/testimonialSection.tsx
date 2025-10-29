@@ -5,7 +5,7 @@ import { TestimonialStack } from "@/components/ui/testimonial-cards";
 import {
   getTestimonials,
   TestimonialItem,
-} from "@/app/queries/sanity/getTestimonials";
+} from "@/lib/services/sanity/getTestimonials";
 
 const TestimonialSection = () => {
   const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);

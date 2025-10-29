@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/styles/components/projectCards.module.css";
-import { LinkIcon } from "@/app/utils/icons";
+import { LinkIcon } from "@/lib/utils/icons";
 
 const projectCards = () => {
   return (

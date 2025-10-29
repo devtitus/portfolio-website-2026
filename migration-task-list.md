@@ -94,9 +94,9 @@
 ## Phase 5: Utility & Configuration Migration (1 day)
 
 ### 5.1 Consolidate Utilities
-- [ ] **Move app utils**: `app/utils/*` → `lib/utils/`
+- [x] **Move app utils**: `app/utils/*` → `lib/utils/`
 - [ ] **Move lib files**: `lib/*` → `lib/` (organize properly)
-- [ ] **Move queries**: `app/queries/*` → `lib/services/`
+- [x] **Move queries**: `app/queries/*` → `lib/services/`
 
 ### 5.2 Type Definitions
 - [ ] **Create global types**: Move to `lib/types/`

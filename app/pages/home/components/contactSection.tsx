@@ -3,7 +3,7 @@ import styles from "@/styles/features/home/contact.module.css";
 import {
   getSiteSettings,
   type SiteSettings,
-} from "@/app/queries/sanity/getSiteSettings";
+} from "@/lib/services/sanity/getSiteSettings";
 
 const ContactSection = () => {
   const [ctaSettings, setSiteSettings] = useState<SiteSettings | null>(null);

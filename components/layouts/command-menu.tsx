@@ -14,7 +14,7 @@ import {
   LinkIcon,
   XIcon,
   GithubIcon,
-} from "@/app/utils/icons";
+} from "@/lib/utils/icons";
 
 interface CommandMenuProps {
   isOpen: boolean;

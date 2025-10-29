@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/features/home/hero.module.css";
 import { AuroraText } from "@/components/ui/magicui/aurora-text";
-import { CopyIcon } from "@/app/utils/icons";
+import { CopyIcon } from "@/lib/utils/icons";
 import Image from "next/image";
 import { StarsBackground } from "@/components/ui/stars";
 
