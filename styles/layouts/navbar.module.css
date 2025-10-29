@@ -1,0 +1,293 @@
+.navbarContainer {
+  box-sizing: border-box;
+  display: flex;
+  padding: 40px 60px 5px 60px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Background with transparency */
+  background-color: transparent;
+  /* Backdrop filter - specific order and syntax */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.mobileContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  aspect-ratio: 1/1;
+}
+
+.navItemsContainer {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  padding: var(--padding-6px);
+  align-items: center;
+  gap: var(--gap-8px);
+  border-radius: var(--border-radius-24px);
+  background-color: var(--glass-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--navbar-border-color);
+  isolation: isolate;
+}
+
+.navText {
+  text-decoration: none;
+  font-family: var(--font-family-secondary);
+  font-weight: 400;
+  line-height: normal;
+  font-style: normal;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--nav-text-inactive);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: color, font-weight, text-shadow;
+}
+
+.navItemActive {
+  display: flex;
+  padding: var(--padding-6px) var(--padding-14px);
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-18px);
+  background: var(--glass-color);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--navitem-border-color);
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: background, border, backdrop-filter;
+  transform: translateZ(0);
+}
+
+.navItemActive .navText {
+  color: var(--nav-text-active);
+  font-weight: 400;
+  text-shadow: var(--nav-text-active-shadow), var(--nav-text-active-shadow-2);
+}
+
+.navItem {
+  display: flex;
+  padding: var(--padding-6px) var(--padding-14px);
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: var(--border-radius-18px);
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: background, border, backdrop-filter;
+  transform: translateZ(0);
+}
+
+.navItem:hover .navText,
+.navItemContact:hover .navText {
+  color: var(--nav-text-hover);
+}
+
+.navItemDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.navItemDisabled:hover .navText {
+  color: var(--nav-text-inactive);
+}
+
+.navItemDisabled .navText {
+  transition: none;
+}
+
+.navTextDisabled {
+  cursor: not-allowed;
+}
+
+.navItemContact {
+  display: flex;
+  padding: var(--padding-6px) var(--padding-14px);
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-18px);
+  border: 1px solid transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: background, border, backdrop-filter;
+  transform: translateZ(0);
+}
+
+.commandIconWrapper {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.commandIcon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1/1;
+}
+
+/* Mobile Devices */
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+  .navItemsContainer {
+    display: none;
+  }
+  .navbarContainer {
+    padding: calc(1.25rem + 0.25rem * (100vw - 320px) / (1023px - 320px))
+      calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px))
+      calc(0.5rem + 0.25rem * (100vw - 320px) / (1023px - 320px))
+      calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+  .mobileContainer {
+    width: 100%;
+    display: flex;
+    padding: calc(0.75rem + 0.125rem * (100vw - 320px) / (1023px - 320px))
+      calc(0.75rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .logo {
+    width: calc(2rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+    height: calc(2rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+    aspect-ratio: 1/1;
+  }
+  .commandIcon,
+  .commandIconWrapper {
+    width: calc(1.25rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    height: calc(1.25rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    aspect-ratio: 1/1;
+  }
+}
+
+/* Small Tablets */
+/* @media screen and (min-width: 481px) and (max-width: 767px) {
+  .navItemsContainer {
+    display: none;
+  }
+  .navbarContainer {
+    padding: calc(1.25rem + 0.25rem * (100vw - 481px) / (768px - 481px))
+      calc(1rem + 0.25rem * (100vw - 481px) / (768px - 481px))
+      calc(0.75rem + 0rem * (100vw - 481px) / (768px - 481px))
+      calc(1rem + 0.25rem * (100vw - 481px) / (768px - 481px));
+  }
+  .mobileContainer {
+    width: 100%;
+    display: flex;
+    padding: calc(1rem + 0.125rem * (100vw - 481px) / (768px - 481px))
+      calc(1rem + 0.25rem * (100vw - 481px) / (768px - 481px));
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .logo {
+    width: calc(2.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    height: calc(2.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    aspect-ratio: 1/1;
+  }
+  .commandIcon,
+  .commandIconWrapper {
+    width: calc(1.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    height: calc(1.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    aspect-ratio: 1/1;
+  }
+} */
+
+/* Large Tablets */
+/* @media screen and (min-width: 768px) and (max-width: 1023px) {
+  .navItemsContainer {
+    display: none;
+  }
+  .navbarContainer {
+    padding: calc(1.25rem + 0.25rem * (100vw - 481px) / (768px - 481px))
+      calc(1rem + 0.25rem * (100vw - 481px) / (768px - 481px))
+      calc(0.75rem + 0rem * (100vw - 481px) / (768px - 481px))
+      calc(1rem + 0.25rem * (100vw - 481px) / (768px - 481px));
+  }
+  .mobileContainer {
+    width: 100%;
+    display: flex;
+    padding: calc(0.75rem + 0.125rem * (100vw - 481px) / (768px - 481px))
+      calc(0.75rem + 0.25rem * (100vw - 481px) / (768px - 481px));
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .logo {
+    width: calc(2.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    height: calc(2.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    aspect-ratio: 1/1;
+  }
+  .commandIcon,
+  .commandIconWrapper {
+    width: calc(1.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    height: calc(1.5rem + 0.5rem * (100vw - 481px) / (768px - 481px));
+    aspect-ratio: 1/1;
+  }
+} */
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+  .commandIconWrapper {
+    width: calc(3.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
+    height: calc(3.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+  .commandIconWrapper,
+  .commandIcon {
+    width: calc(1.5rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    height: calc(1.5rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    aspect-ratio: 1/1;
+  }
+  .navbarContainer {
+    padding: calc(1.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px))
+      calc(2.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px))
+      calc(0.375rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  .navList {
+    padding: calc(0.375rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+    gap: calc(0.375rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+    border-radius: calc(
+      1.375rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px)
+    );
+  }
+  .navItemActive {
+    padding: calc(0.25rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px))
+      calc(0.75rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    border-radius: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  .navItem,
+  .navItemContact {
+    padding: calc(0.25rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px))
+      calc(0.75rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    border-radius: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  .navText {
+    font-size: calc(0.875rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+}
