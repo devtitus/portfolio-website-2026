@@ -47,9 +47,9 @@
 - [x] **Test page routing** after each migration
 
 ### 2.3 Update Route-Based Imports
-- [ ] **Update all imports** pointing to old page locations
-- [ ] **Run build test** after each page migration
-- [ ] **Verify navigation** between all routes
+- [x] **Update all imports** pointing to old page locations
+- [x] **Run build test** after each page migration
+- [x] **Verify navigation** between all routes
 
 ## Phase 3: Component Consolidation (2-3 days)
 
