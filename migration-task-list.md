@@ -87,9 +87,9 @@
 - [x] **Verify CSS module loading** after each move
 
 ### 4.3 Clean Up Duplicate Styles
-- [ ] **Remove duplicate styles** from old locations
-- [ ] **Consolidate conflicting styles** with proper precedence
-- [ ] **Test visual consistency** across all pages
+- [x] **Remove duplicate styles** from old locations
+- [x] **Consolidate conflicting styles** with proper precedence
+- [x] **Test visual consistency** across all pages
 
 ## Phase 5: Utility & Configuration Migration (1 day)
 
