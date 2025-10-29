@@ -36,10 +36,10 @@
 ## Phase 2: Route Migration (2-3 days)
 
 ### 2.1 Migrate Page Components
-- [ ] **About page**: `app/pages/about/about.tsx` → `app/(routes)/about/page.tsx`
-- [ ] **Contact page**: `app/pages/contact/contact.tsx` → `app/(routes)/contact/page.tsx`
-- [ ] **Projects page**: `app/pages/projects/projects.tsx` → `app/(routes)/projects/page.tsx`
-- [ ] **Home page**: `app/pages/home/home.tsx` → `app/(home)/page.tsx` (already done)
+- [x] **About page**: `app/pages/about/about.tsx` → `app/(routes)/about/page.tsx`
+- [x] **Contact page**: `app/pages/contact/contact.tsx` → `app/(routes)/contact/page.tsx`
+- [x] **Projects page**: `app/pages/projects/projects.tsx` → `app/(routes)/projects/page.tsx`
+- [x] **Home page**: `app/pages/home/home.tsx` → `app/(home)/page.tsx` (already done)
 
 ### 2.2 Migrate Page-Specific Components
 - [ ] **Home components**: Move all from `app/pages/home/components/` → `app/(home)/components/`
