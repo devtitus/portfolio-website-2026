@@ -3,7 +3,7 @@ import styles from "@/app/styles/navbar/navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import CommandMenu from "@/app/components/command-menu/command-menu";
+import CommandMenu from "@/components/layouts/command-menu";
 
 interface NavbarProps {
   setCurrentPage: (page: string) => void;

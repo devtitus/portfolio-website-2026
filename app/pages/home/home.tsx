@@ -1,10 +1,10 @@
 import React from "react";
-import HeroSection from "@/app/(home)/components/heroSection";
-import FobSection from "@/app/(home)/components/fobSection";
-import ProjectSection from "@/app/(home)/components/projectSection";
-import SkillsSection from "@/app/(home)/components/skillsSection";
-import TestimonialSection from "@/app/(home)/components/testimonialSection";
-import ContactSection from "@/app/(home)/components/contactSection";
+import HeroSection from "@/components/features/hero/heroSection";
+import FobSection from "@/components/features/hero/fobSection";
+import ProjectSection from "@/components/features/projects/projectSection";
+import SkillsSection from "@/components/features/skills/skillsSection";
+import TestimonialSection from "@/components/features/testimonials/testimonialSection";
+import ContactSection from "@/components/features/hero/contactSection";
 
 const Home = () => {
   return (

@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Home from "@/app/(home)/page";
+import Home from "@/app/pages/home/home";
 import About from "@/app/(routes)/about/page";
 import Projects from "@/app/(routes)/projects/page";
 import Contact from "@/app/(routes)/contact/page";
-import Navbar from "@/app/components/navbar/navbar";
-import Footer from "@/app/components/footer/footer";
+import Navbar from "@/components/layouts/navbar";
+import Footer from "@/components/layouts/footer";
 
 const MainPage = () => {
   const router = useRouter();

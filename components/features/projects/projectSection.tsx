@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/app/styles/home/components/project.module.css";
-import ProjectCards from "@/app/components/home/projectCard";
+import ProjectCards from "@/components/features/hero/projectCard";
 
 const ProjectSection = () => {
   return (

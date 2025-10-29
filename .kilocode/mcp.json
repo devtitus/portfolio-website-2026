@@ -18,6 +18,12 @@
         "get_code_connect_map",
         "get_screenshot"
       ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     }
   }
 }
