@@ -220,6 +220,7 @@
 /* Mobile Devices & Tablets*/
 @media screen and (min-width: 320px) and (max-width: 1023px) {
   .commonStyleSection {
+    height: auto;
     margin-bottom: calc(3.75rem + 0rem * (100vw - 320px) / (1023px - 320px));
     padding-inline: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
   }
@@ -232,10 +233,10 @@
     row-gap: calc(1.25rem + 0rem * (100vw - 320px) / (1023px - 320px));
   }
   .fobSectionTitle {
-    font-size: calc(1.25rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+    font-size: calc(1.5rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
   }
   .fobSectionWrapper {
-    gap: calc(1rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+    gap: calc(2rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
   }
   .fobFirstContentCard {
     gap: calc(1rem + 0rem * (100vw - 320px) / (1023px - 320px));

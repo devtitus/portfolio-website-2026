@@ -37,3 +37,47 @@
   column-gap: var(--gap-24px);
   row-gap: var(--gap-24px);
 }
+
+/* Mobile Devices & Tablets*/
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+  .commonStyleSection {
+    height: auto;
+    margin-bottom: calc(60px + 20px * (100vw - 320px) / (1023px - 320px));
+    padding-inline: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .projectSectionTitle {
+    font-size: calc(1.5rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+    margin-top: calc(1.5rem + 1rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .projectSectionWrapper {
+    gap: calc(2rem + .5rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .projectGridContainer {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    column-gap: calc(1.5rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+}
+
+/* Desktop Screens */
+@media screen and (min-width: 1024px) {
+  .commonStyleSection {
+    padding-inline: calc(2.5rem + 1rem * (100vw - 1024px) / (1920px - 1024px));
+    height: auto;
+    margin-bottom: calc(80px + 40px * (100vw - 1024px) / (1920px - 1024px));
+  }
+
+  .projectSectionTitle {
+    margin-top: calc(0.75rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    font-size: calc(1.75rem + .5rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+
+  .projectGridContainer {
+    column-gap: calc(1.25rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    row-gap: calc(1.25rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+}

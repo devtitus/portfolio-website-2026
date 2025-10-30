@@ -22,11 +22,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 25%,
-    rgba(12, 8, 17, 0.4) 70%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0) 25%,
+      rgba(12, 8, 17, 0.4) 70%);
   border-radius: var(--border-radius-12px);
   pointer-events: none;
   z-index: 1;
@@ -97,4 +95,81 @@
   align-items: center;
   border-radius: 6px;
   border: 0.5px solid #d4d4d4;
+}
+
+/* Mobile Devices & Tablets*/
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+  .projectCards {
+    border-radius: calc(0.5rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    padding: calc(0.75rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .projectCardImage {
+    border-radius: calc(0.375rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+    height: calc(12.375rem + 1.125rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .projectCardWrapper::after {
+    opacity: 1;
+  }
+
+  .projectCardInfo {
+    font-size: calc(1.125rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+    top: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    left: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    right: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+  
+  .projectCardHoverInfoWrapper {
+    bottom: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    left: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    right: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+  
+  .projectCardHoverInfo {
+    font-size: calc(1rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+    font-weight: 400;
+  }
+  
+  .projectLinkButton {
+    width: calc(1.75rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    height: calc(1.75rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    padding: calc(0.25rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
+  }
+}
+
+/* Desktop Screens */
+@media screen and (min-width: 1024px) {
+  .projectCards {
+    border-radius: calc(0.625rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+    padding: calc(0.75rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+
+  .projectCardImage {
+    height: 34%;
+    border-radius: calc(0.5rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  
+  .projectCardInfo {
+    font-size: calc(1.125rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+    top: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    left: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    right: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  
+  .projectCardHoverInfoWrapper {
+    bottom: calc(-2.5rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    left: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    right: calc(1rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  
+  .projectCardHoverInfo {
+    font-size: calc(1rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+  
+  .projectLinkButton {
+    width: calc(1.75rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    height: calc(1.75rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+    padding: calc(0.25rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
 }
