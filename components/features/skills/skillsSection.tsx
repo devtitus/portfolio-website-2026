@@ -7,6 +7,7 @@ import { getSkills, SkillItem } from "@/lib/services/sanity/getSkills";
 
 const SkillsSection = () => {
   const [skills, setSkills] = useState<SkillItem[]>([]);
+  const [showAllSkills, setShowAllSkills] = useState(false);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -16,6 +17,11 @@ const SkillsSection = () => {
     fetchSkills();
   }, []);
 
+  // Check if we have more than 10 skills
+  const shouldShowToggle = skills.length > 10;
+  const visibleSkills = shouldShowToggle && !showAllSkills ? skills.slice(0, 10) : skills;
+  const remainingSkillsCount = skills.length - 10;
+
   return (
     <section className={`${styles.skillSection} ${styles.commonStyleSection}`}>
       <div className={styles.skillSectionWrapper}>
@@ -24,7 +30,7 @@ const SkillsSection = () => {
           <h2 className={styles.skillSectionTitle}>My Skills</h2>
         </div>
         <div className={styles.skillBottomWrapper}>
-          {skills.map((skill) => (
+          {visibleSkills.map((skill) => (
             <SkillCard
               key={skill.id}
               skillName={skill.label}
@@ -32,6 +38,15 @@ const SkillsSection = () => {
             />
           ))}
         </div>
+        {shouldShowToggle && (
+          <button
+            className={styles.skillsToggleButton}
+            onClick={() => setShowAllSkills(!showAllSkills)}
+            aria-label={showAllSkills ? "Show less skills" : `Show ${remainingSkillsCount} more skills`}
+          >
+            {showAllSkills ? "Show Less" : `Show More (${remainingSkillsCount})`}
+          </button>
+        )}
       </div>
     </section>
   );
