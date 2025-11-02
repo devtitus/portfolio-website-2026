@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/features/home/skill.module.css";
 import { SkillSpinningImage } from "@/lib/utils/icons";
-import SkillCard from "@/components/features/hero/skillCard";
+import SkillCard from "@/components/features/home/skillCard";
 import { getSkills, SkillItem } from "@/lib/services/sanity/getSkills";
 
 const SkillsSection = () => {

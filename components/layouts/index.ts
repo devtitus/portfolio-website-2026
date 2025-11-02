@@ -1,5 +1,3 @@
-// Layout Components - Structural components
-// Note: Components will be added here as they are moved during migration
-// export { Header } from './header';
-// export { Footer } from './footer';
-// export { Navigation } from './navigation';
+export { default as Navbar } from "@/components/layouts/navbar";
+export { default as Footer } from "@/components/layouts/footer";
+export { default as CommandMenu } from "@/components/layouts/command-menu";

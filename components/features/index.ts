@@ -2,17 +2,17 @@
 // Organized by feature areas for clean imports
 
 // Hero Feature Components
-export { default as HeroSection } from '@/components/features/hero/heroSection';
-export { default as FobSection } from '@/components/features/hero/fobSection';
-export { default as ContactSection } from '@/components/features/hero/contactSection';
-export { default as ProjectCard } from '@/components/features/hero/projectCard';
-export { default as SkillCard } from '@/components/features/hero/skillCard';
+export { default as HeroSection } from '@/components/features/home/heroSection';
+export { default as FobSection } from '@/components/features/home/fobSection';
+export { default as ContactSection } from '@/components/features/home/contactSection';
+export { default as ProjectCard } from '@/components/features/home/projectCard';
+export { default as SkillCard } from '@/components/features/home/skillCard';
 
 // Projects Feature Components
-export { default as ProjectSection } from '@/components/features/projects/projectSection';
+export { default as ProjectSection } from '@/components/features/home/projectSection';
 
 // Skills Feature Components
-export { default as SkillsSection } from '@/components/features/skills/skillsSection';
+export { default as SkillsSection } from '@/components/features/home/skillsSection';
 
 // Testimonials Feature Components
-export { default as TestimonialSection } from '@/components/features/testimonials/testimonialSection';
+export { default as TestimonialSection } from '@/components/features/home/testimonialSection';

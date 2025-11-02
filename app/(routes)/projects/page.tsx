@@ -1,7 +1,7 @@
 import React from "react";
 
-const projects = () => {
+const ProjectsPage = () => {
   return <div>projects</div>;
 };
 
-export default projects;
+export default ProjectsPage;

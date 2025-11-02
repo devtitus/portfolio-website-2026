@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   HeroSection,
@@ -8,17 +9,17 @@ import {
   ContactSection
 } from "@/components/features";
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <>
+    <div className="page-content">
       <HeroSection />
       <FobSection />
       <ProjectSection />
       <SkillsSection />
       <TestimonialSection />
       <ContactSection />
-    </>
+    </div>
   );
 };
 
-export default Home;
+export default HomePage;

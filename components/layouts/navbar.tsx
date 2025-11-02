@@ -1,16 +1,15 @@
+"use client";
 import React, { useState } from "react";
 import styles from "@/styles/layouts/navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import CommandMenu from "@/components/layouts/command-menu";
 
-interface NavbarProps {
-  setCurrentPage: (page: string) => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
+const Navbar: React.FC = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
 
   const handleCommandMenuClick = () => {
@@ -18,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
   };
 
   const handleCommandNavigation = (page: string) => {
-    setCurrentPage(page);
+    router.push(page === "home" ? "/" : `/${page}`);
   };
 
   // Determine active page based on pathname
@@ -32,16 +31,11 @@ const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
 
   const activePage = getActivePage();
 
-  const handleNavClick = (page: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    setCurrentPage(page);
-  };
-
   return (
     <>
       <header className={styles.navbarContainer}>
         <div className={styles.mobileContainer}>
-          <Link href="/" onClick={handleNavClick("home")}>
+          <Link href="/">
             <Image
               src={"/navbar/logo.png"}
               className={styles.logo}
@@ -59,7 +53,6 @@ const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
                 className={
                   activePage === "home" ? styles.navItemActive : styles.navItem
                 }
-                onClick={handleNavClick("home")}
               >
                 <Link
                   href="/"
@@ -73,7 +66,6 @@ const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
                 className={
                   activePage === "about" ? styles.navItemActive : styles.navItem
                 }
-                onClick={handleNavClick("about")}
               >
                 <Link
                   href="/about"
@@ -89,7 +81,6 @@ const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
                     ? styles.navItemActive
                     : styles.navItem
                 }
-                onClick={handleNavClick("projects")}
               >
                 <Link
                   href="/projects"
@@ -115,7 +106,6 @@ const Navbar: React.FC<NavbarProps> = ({ setCurrentPage }) => {
                     ? `${styles.navItemContact} ${styles.navItemActive}`
                     : styles.navItemContact
                 }
-                onClick={handleNavClick("contact")}
               >
                 <div aria-hidden="true" className={styles.navItemBorder} />
                 <Link
