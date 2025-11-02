@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import styles from "@/styles/components/testimonial-cards.module.css"
 
 export interface TestimonialCardProps {
   handleShuffle: () => void;
@@ -75,7 +76,7 @@ export function TestimonialCard({
         damping: 30,
         duration: 0.4,
       }}
-      className={`absolute left-0 top-0 grid h-[450px] w-[350px] select-none place-content-center space-y-6 rounded-2xl border-2 border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur-md ${
+      className={` ${styles.testimonial_cards} absolute left-0 top-0 grid h-[450px] w-[350px] select-none place-content-center space-y-6 rounded-2xl border-2 border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur-md ${
         isFront ? "cursor-grab active:cursor-grabbing" : ""
       }`}
     >
@@ -84,14 +85,14 @@ export function TestimonialCard({
         alt={`Avatar of ${author}`}
         width={128}
         height={128}
-        className="pointer-events-none mx-auto h-32 w-32 rounded-full border-2 border-white/20 bg-slate-200 object-cover"
+        className={`${styles.avatar} pointer-events-none mx-auto h-32 w-32 rounded-full border-2 border-white/20 bg-slate-200 object-cover`}
       />
-      <span className="text-center text-lg italic text-white/90">
+      <span className={`${styles.test_message} text-center text-lg italic text-white/90`}>
         &ldquo;{testimonial}&rdquo;
       </span>
-      <div className="text-center">
-        <span className="block text-sm font-medium text-white">{author}</span>
-        <span className="block text-xs text-white/70">{company}</span>
+      <div className={`${styles.text_wrapper} text-center`}>
+        <span className={`${styles.author} block text-sm font-medium text-white`}>{author}</span>
+        <span className={`${styles.position} block text-xs text-white/70`}>{company}</span>
       </div>
     </motion.div>
   );
