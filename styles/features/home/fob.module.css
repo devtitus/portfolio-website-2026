@@ -293,6 +293,7 @@
   }
 }
 
+/* Laptop and Desktop Screens */
 @media screen and (min-width: 1024px) {
   .commonStyleSection {
     padding-inline: calc(

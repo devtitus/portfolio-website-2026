@@ -28,9 +28,18 @@ const ContactSection = () => {
     >
       <div className={styles.contactSectionWrapper}>
         <div className={styles.contentWrapper}>
-          <h2 className={styles.contactHeading}>
-            Let's work <span className={styles.contactSpan}>together</span>
-          </h2>
+          <div className={styles.titleTextWrapper}>
+            <img src="" alt="" className={styles.contactLogo} />
+            <span className={styles.contactHeading}>
+              From Concept To <span className={styles.contactSpan}>CREATION</span>
+            </span>
+            <span className={styles.contactHeading}>
+              Let's Make It <span className={styles.contactSpan}>HAPPEN!</span>
+            </span>
+          </div>
+          <button className={styles.contactButton}>
+            Get In Touch
+          </button>
           <p className={styles.contentSubHeading}>
             Ready to bring your ideas to life?
           </p>
@@ -38,9 +47,6 @@ const ContactSection = () => {
             I'm always excited to collaborate on innovative projects and help turn your vision into reality.
           </p>
         </div>
-        <button className={styles.contactButton}>
-          Get In Touch
-        </button>
       </div>
     </section>
   );
