@@ -45,9 +45,47 @@ interface SanityTestimonial {
   avatar: Image;
 }
 
+// Experience Types
+export interface ExperienceItem {
+  id: string;
+  title: string;
+  company: string;
+  location?: string;
+  startDate: string;
+  endDate?: string;
+  isCurrent: boolean;
+  description?: string;
+}
+
+export interface SanityExperience {
+  _id: string;
+  title: string;
+  company: string;
+  location?: string;
+  startDate: string;
+  endDate?: string;
+  isCurrent: boolean;
+  description?: string;
+}
+
+// Education Types
+export interface EducationItem {
+  id: string;
+  degree: string;
+  university: string;
+  startDate?: string;
+  endDate?: string;
+  details?: string;
+}
+
+export interface SanityEducation {
+  _id: string;
+  degree: string;
+  university: string;
+  startDate?: string;
+  endDate?: string;
+  details?: string;
+}
+
 // Re-export all types for convenience
-export type {
-  SanitySiteSettings,
-  SanitySkill,
-  SanityTestimonial,
-};
+export type { SanitySiteSettings, SanitySkill, SanityTestimonial };

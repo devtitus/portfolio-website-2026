@@ -1,0 +1,180 @@
+.commonStyleSection {
+  padding-inline: var(--padding-60px);
+}
+
+.aboutHeroSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--page-bg) 10%,
+    rgba(0, 0, 0, 0.1) 42%,
+    var(--page-bg) 82%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.aboutHeroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/home/spinImage.png'); /* Using existing background image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.profileImageContainer {
+  flex-shrink: 0;
+  width: 550px;
+  height: 550px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 212, 212, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 2px 2px 12px 2px rgba(246, 178, 225, 1);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.heroContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 599px;
+}
+
+.heroTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.heroSubheading {
+  color: #a6a6a6;
+  font-family: var(--font-family-secondary);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+.heroTitle {
+  color: var(--default-text-color);
+  font-family: var(--font-family-primary);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+.bioCard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 212, 212, 0.5);
+  border-radius: 12px;
+  padding: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.bioText {
+  color: #ffffff;
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.625em;
+  margin: 0 0 16px 0;
+}
+
+.bioText:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile Devices & Tablets */
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+  .commonStyleSection {
+    padding-inline: calc(1rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .aboutHeroSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 0;
+    min-height: auto;
+  }
+
+  .heroContainer {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .profileImageContainer {
+    width: calc(200px + 150px * (100vw - 320px) / (1023px - 320px));
+    height: calc(200px + 150px * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .heroContent {
+    max-width: 100%;
+  }
+
+  .heroTitle {
+    font-size: calc(2rem + 1rem * (100vw - 320px) / (1023px - 320px));
+    line-height: calc(2.5rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .heroSubheading {
+    font-size: calc(1.125rem + 0.375rem * (100vw - 320px) / (1023px - 320px));
+  }
+
+  .bioText {
+    font-size: calc(0.875rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+  }
+}
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+  .commonStyleSection {
+    padding-inline: calc(2.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+
+  .heroTitle {
+    font-size: calc(3rem + 0.75rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+
+  .heroSubheading {
+    font-size: calc(1.5rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+
+  .bioText {
+    font-size: calc(1rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
+  }
+}
