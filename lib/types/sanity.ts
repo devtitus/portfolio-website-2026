@@ -91,25 +91,31 @@ export interface SanityEducation {
 export interface ProjectItem {
   id: string;
   title: string;
+  tagline?: string;
   slug: string;
   mainImage: string;
   description: string;
   projectLink?: string;
   codeLink?: string;
+  designLink?: string;
   tags?: string[];
   technologies?: SkillItem[];
+  detailedDescription?: any[]; // Typed as any[] for Portable Text blocks
 }
 
 export interface SanityProject {
   _id: string;
   title: string;
+  tagline?: string;
   slug: { current: string };
   mainImage: Image;
   description: string;
   projectLink?: string;
   codeLink?: string;
+  designLink?: string;
   tags?: string[];
   technologies?: SanitySkill[];
+  detailedDescription?: any[];
 }
 
 // Re-export all types for convenience

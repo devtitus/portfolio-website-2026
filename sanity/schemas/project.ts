@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, defineArrayMember } from "sanity";
 
 export default defineType({
   name: "project",
@@ -10,6 +10,12 @@ export default defineType({
       title: "Title",
       type: "string",
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "tagline",
+      title: "Tagline",
+      type: "string",
+      description: "Short subtitle appearing below the main title",
     }),
     defineField({
       name: "slug",
@@ -30,18 +36,24 @@ export default defineType({
     }),
     defineField({
       name: "description",
-      title: "Description",
+      title: "Short Description",
       type: "text",
       rows: 3,
+      description: "Used for the project card preview",
     }),
     defineField({
       name: "projectLink",
-      title: "Project Link",
+      title: "Project Link (Live)",
       type: "url",
     }),
     defineField({
       name: "codeLink",
-      title: "Code Link",
+      title: "Code Link (GitHub)",
+      type: "url",
+    }),
+    defineField({
+      name: "designLink",
+      title: "Design Link (Figma)",
       type: "url",
     }),
     defineField({
@@ -56,11 +68,19 @@ export default defineType({
       type: "array",
       of: [{ type: "reference", to: { type: "skill" } }],
     }),
+    defineField({
+      name: "detailedDescription",
+      title: "Detailed Content",
+      type: "array",
+      of: [defineArrayMember({ type: "block" })],
+      description: "Full project details displayed in the modal",
+    }),
   ],
   preview: {
     select: {
       title: "title",
       media: "mainImage",
+      subtitle: "tagline",
     },
   },
 });
