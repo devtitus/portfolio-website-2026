@@ -87,5 +87,30 @@ export interface SanityEducation {
   details?: string;
 }
 
+// Project Types
+export interface ProjectItem {
+  id: string;
+  title: string;
+  slug: string;
+  mainImage: string;
+  description: string;
+  projectLink?: string;
+  codeLink?: string;
+  tags?: string[];
+  technologies?: SkillItem[];
+}
+
+export interface SanityProject {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  mainImage: Image;
+  description: string;
+  projectLink?: string;
+  codeLink?: string;
+  tags?: string[];
+  technologies?: SanitySkill[];
+}
+
 // Re-export all types for convenience
 export type { SanitySiteSettings, SanitySkill, SanityTestimonial };

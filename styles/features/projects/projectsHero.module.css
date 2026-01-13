@@ -1,0 +1,53 @@
+.projectsHero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px var(--padding-60px) 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 6vw, 7rem);
+  line-height: 0.9;
+  font-weight: 500; /* Medium weight like 'Creative Architect' */
+  color: var(--foreground);
+  margin-bottom: 30px;
+  font-family: var(--font-family-secondary); /* Excon */
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Gradient text effect similar to About page */
+.highlight {
+  background: linear-gradient(90deg, #ff9a8b 0%, #ff6a88 55%, #ff99ac 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+}
+
+/* Decorative background elements */
+.projectsHero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 106, 136, 0.08) 0%,
+    rgba(255, 106, 136, 0) 70%
+  );
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
