@@ -6,7 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import CommandMenu from "@/components/layouts/command-menu";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -119,22 +118,19 @@ const Navbar: React.FC = () => {
               </li>
             </ul>
           </nav>
-          <div className="flex items-center gap-4">
-            <button
-              className={styles.commandIconWrapper}
-              aria-label="Command menu (⌘K)"
-              onClick={handleCommandMenuClick}
-            >
-              <Image
-                src={"/navbar/command.svg"}
-                width={24}
-                height={24}
-                alt="Command menu"
-                className={styles.commandIcon}
-              />
-            </button>
-            <ModeToggle />
-          </div>
+          <button
+            className={styles.commandIconWrapper}
+            aria-label="Command menu (⌘K)"
+            onClick={handleCommandMenuClick}
+          >
+            <Image
+              src={"/navbar/command.svg"}
+              width={24}
+              height={24}
+              alt="Command menu"
+              className={styles.commandIcon}
+            />
+          </button>
         </div>
       </header>
       <CommandMenu

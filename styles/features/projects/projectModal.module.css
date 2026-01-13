@@ -1,9 +1,11 @@
 .modalContent {
-  /* Use background color variable with opacity for glass effect */
-  background: hsl(var(--background) / 0.9);
+  /* Use background color variable with opacity for glass effect matching strict design */
+  background: var(
+    --card
+  ); /* Using the rgba value directly defined in globals */
   backdrop-filter: blur(20px);
-  border: 1px solid hsl(var(--border) / 0.5);
-  color: hsl(var(--foreground));
+  border: 1px solid var(--glass-border-color);
+  color: var(--foreground);
   max-width: 90vw;
   width: 1000px;
   height: 85vh;
@@ -13,6 +15,7 @@
   flex-direction: column;
   padding: 0;
   border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Strong shadow for depth */
 }
 
 .scrollArea {
@@ -62,7 +65,7 @@
   font-family: var(--font-family-secondary);
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.1;
-  color: hsl(var(--foreground));
+  color: var(--foreground);
 }
 
 .actions {
@@ -74,18 +77,19 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid hsl(var(--border) / 0.5);
-  background: hsl(var(--secondary) / 0.1);
+  border: 1px solid var(--glass-border-color);
+  background: var(--muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: hsl(var(--foreground));
+  color: var(--foreground);
   transition: all 0.2s ease;
 }
 
 .actionBtn:hover {
-  background: hsl(var(--secondary) / 0.2);
+  background: var(--primary); /* Bright blue on hover */
   transform: translateY(-2px);
+  border-color: var(--primary);
 }
 
 .imageSection {
@@ -95,7 +99,7 @@
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 40px;
-  border: 1px solid hsl(var(--border));
+  border: 1px solid var(--glass-border-color);
 }
 
 .projectImage {
@@ -119,13 +123,13 @@
 .richText {
   font-size: 1.125rem;
   line-height: 1.8;
-  color: hsl(var(--foreground));
+  color: var(--skill-text-color); /* Slightly muted text */
 }
 
 .richText h2,
 .richText h3 {
   font-family: var(--font-family-secondary);
-  color: hsl(var(--foreground));
+  color: var(--foreground);
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
@@ -142,8 +146,8 @@
 }
 
 .statCard {
-  background: hsl(var(--card));
-  border: 1px solid hsl(var(--border) / 0.5);
+  background: var(--glass-color); /* Subtler glass for inner cards */
+  border: 1px solid var(--glass-border-color);
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 16px;
@@ -166,8 +170,9 @@
 .pill {
   font-size: 0.875rem;
   padding: 4px 12px;
-  background: hsl(var(--muted));
-  color: hsl(var(--foreground));
+  background: var(--muted);
+  color: var(--foreground);
+  border: 1px solid var(--glass-border-color);
   border-radius: 100px;
   white-space: nowrap;
 }

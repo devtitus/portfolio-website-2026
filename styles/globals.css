@@ -158,130 +158,64 @@
 
 @layer base {
   :root {
-    /* Base - Light Mode (Soft White/Purple Tint) */
-    --background: 260 20% 98%;
-    --foreground: 260 20% 10%;
+    /* Base - Dark Mode (Deep Charcoal/Black) matching the image */
+    --background: 260 20% 8%; /* HSL for Tailwind */
+    --foreground: 0 0% 100%;
 
-    /* Card - Light Mode */
-    --card: 0 0% 100%;
-    --card-foreground: 260 20% 10%;
+    /* Card - Glass Dark */
+    --card: 260 20% 10%;
+    --card-foreground: 0 0% 100%;
 
-    /* Popover - Light Mode */
-    --popover: 0 0% 100%;
-    --popover-foreground: 260 20% 10%;
+    /* Popover */
+    --popover: 260 20% 8%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Primary - Purple (Triadic 1) */
-    --primary: 270 60% 40%;
-    --primary-foreground: 0 0% 98%;
+    /* Primary - Bright Azure Blue */
+    --primary: 212 100% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Teal (Triadic 2) */
-    --secondary: 180 50% 40%;
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary - Muted Blue/Gray */
+    --secondary: 260 10% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Accent - Amber (Triadic 3) */
-    --accent: 35 90% 40%;
-    --accent-foreground: 0 0% 98%;
+    /* Accent - Gold/Yellow Glow */
+    --accent: 48 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
     /* Muted */
-    --muted: 260 10% 90%;
-    --muted-foreground: 260 10% 40%;
+    --muted: 260 10% 20%;
+    --muted-foreground: 260 5% 65%;
 
     /* Destructive */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    /* Border */
-    --border: 260 10% 90%;
-    --input: 260 10% 90%;
-    --ring: 270 60% 40%;
+    /* Border - Subtle White */
+    --border: 0 0% 100%; /* used with opacity modifier usually */
+    --input: 260 20% 15%;
+    --ring: 212 100% 55%;
 
     /* Radius */
-    --radius: 0.5rem;
-
-    /* Legacy/Custom Mappings for Light Mode */
-    --page-bg: hsl(var(--background));
-    --default-text-color: hsl(var(--foreground));
-    --default-text-color-dark: hsl(var(--foreground));
-    --skill-text-color: hsl(var(--muted-foreground));
-    --default-violet-color: hsl(var(--primary));
+    --radius: 1rem;
+    --page-bg: #08080a;
+    --default-text-color: #ffffff;
+    --default-text-color-dark: #08080a;
+    --skill-text-color: #a1a1aa;
+    --default-violet-color: #1a85ff;
     --monochrome-gradient-text-color: linear-gradient(
-      189deg,
-      hsl(var(--foreground)) 6.79%,
-      hsl(var(--muted-foreground)) 105.17%
+      180deg,
+      #ffffff 0%,
+      #a1a1aa 100%
     );
-    --hero-separator-border-color: hsl(var(--border));
-    --copy-button-text-color: hsl(var(--muted-foreground));
-    --glass-color: rgba(255, 255, 255, 0.6);
-    --glass-border-color: rgba(0, 0, 0, 0.1);
+    --hero-separator-border-color: rgba(255, 255, 255, 0.08);
+    --copy-button-text-color: #a1a1aa;
+    --glass-color: rgba(255, 255, 255, 0.03);
+    --glass-border-color: rgba(255, 255, 255, 0.08);
 
-    /* Nav Specifics Light */
-    --nav-text-active: hsl(var(--primary));
-    --nav-text-inactive: hsl(var(--muted-foreground));
-    --navbar-border-color: rgba(0, 0, 0, 0.1);
-    --command-menu-icon-color: hsl(var(--muted-foreground));
-    --command-menu-icon-color-hover: hsl(var(--primary));
-  }
-
-  .dark {
-    /* Base - Dark Mode (Deep Violet/Black) */
-    --background: 260 20% 8%;
-    --foreground: 260 10% 98%;
-
-    /* Card - Dark Mode */
-    --card: 260 20% 10%;
-    --card-foreground: 260 10% 98%;
-
-    /* Popover - Dark Mode */
-    --popover: 260 20% 10%;
-    --popover-foreground: 260 10% 98%;
-
-    /* Primary - Purple (Vibrant) */
-    --primary: 270 50% 60%;
-    --primary-foreground: 260 20% 10%;
-
-    /* Secondary - Teal (Vibrant) */
-    --secondary: 180 50% 60%;
-    --secondary-foreground: 260 20% 10%;
-
-    /* Accent - Amber (Vibrant) */
-    --accent: 35 90% 60%;
-    --accent-foreground: 260 20% 10%;
-
-    /* Muted */
-    --muted: 260 20% 15%;
-    --muted-foreground: 260 10% 65%;
-
-    /* Destructive */
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    /* Border */
-    --border: 260 20% 15%;
-    --input: 260 20% 15%;
-    --ring: 270 50% 60%;
-
-    /* Legacy/Custom Mappings for Dark Mode */
-    --page-bg: #0c0811; /* Keep exact original for now, or match --background */
-    /* --page-bg: hsl(var(--background)); */
-
-    --default-text-color: hsl(var(--foreground));
-    --default-text-color-dark: #0c0811;
-    --skill-text-color: #b6b6b6;
-    --default-violet-color: #f6b2e1;
-    --monochrome-gradient-text-color: linear-gradient(
-      189deg,
-      #fff 6.79%,
-      rgba(153, 153, 153, 0.9) 105.17%
-    );
-    --hero-separator-border-color: rgba(255, 255, 255, 0.4);
-    --copy-button-text-color: rgba(255, 255, 255, 0.6);
-    --glass-color: rgba(255, 255, 255, 0.06);
-    --glass-border-color: rgba(255, 255, 255, 0.1);
-
-    /* Nav Specifics Dark */
+    /* Nav Specifics */
     --nav-text-active: #ffffff;
     --nav-text-inactive: rgba(255, 255, 255, 0.6);
-    --navbar-border-color: rgba(255, 255, 255, 0.1);
+    --navbar-border-color: rgba(255, 255, 255, 0.05);
     --command-menu-icon-color: rgba(255, 255, 255, 0.5);
     --command-menu-icon-color-hover: #ffffff;
   }
