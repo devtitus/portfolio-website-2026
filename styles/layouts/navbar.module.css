@@ -138,6 +138,8 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  display: flex; /* Ensure it behaves nicely */
+  align-items: center;
 }
 
 .commandIcon {

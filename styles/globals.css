@@ -156,57 +156,156 @@
   font-display: swap;
 }
 
+@layer base {
+  :root {
+    /* Base - Light Mode (Soft White/Purple Tint) */
+    --background: 260 20% 98%;
+    --foreground: 260 20% 10%;
+
+    /* Card - Light Mode */
+    --card: 0 0% 100%;
+    --card-foreground: 260 20% 10%;
+
+    /* Popover - Light Mode */
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 20% 10%;
+
+    /* Primary - Purple (Triadic 1) */
+    --primary: 270 60% 40%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Secondary - Teal (Triadic 2) */
+    --secondary: 180 50% 40%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Accent - Amber (Triadic 3) */
+    --accent: 35 90% 40%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Muted */
+    --muted: 260 10% 90%;
+    --muted-foreground: 260 10% 40%;
+
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border */
+    --border: 260 10% 90%;
+    --input: 260 10% 90%;
+    --ring: 270 60% 40%;
+
+    /* Radius */
+    --radius: 0.5rem;
+
+    /* Legacy/Custom Mappings for Light Mode */
+    --page-bg: hsl(var(--background));
+    --default-text-color: hsl(var(--foreground));
+    --default-text-color-dark: hsl(var(--foreground));
+    --skill-text-color: hsl(var(--muted-foreground));
+    --default-violet-color: hsl(var(--primary));
+    --monochrome-gradient-text-color: linear-gradient(
+      189deg,
+      hsl(var(--foreground)) 6.79%,
+      hsl(var(--muted-foreground)) 105.17%
+    );
+    --hero-separator-border-color: hsl(var(--border));
+    --copy-button-text-color: hsl(var(--muted-foreground));
+    --glass-color: rgba(255, 255, 255, 0.6);
+    --glass-border-color: rgba(0, 0, 0, 0.1);
+
+    /* Nav Specifics Light */
+    --nav-text-active: hsl(var(--primary));
+    --nav-text-inactive: hsl(var(--muted-foreground));
+    --navbar-border-color: rgba(0, 0, 0, 0.1);
+    --command-menu-icon-color: hsl(var(--muted-foreground));
+    --command-menu-icon-color-hover: hsl(var(--primary));
+  }
+
+  .dark {
+    /* Base - Dark Mode (Deep Violet/Black) */
+    --background: 260 20% 8%;
+    --foreground: 260 10% 98%;
+
+    /* Card - Dark Mode */
+    --card: 260 20% 10%;
+    --card-foreground: 260 10% 98%;
+
+    /* Popover - Dark Mode */
+    --popover: 260 20% 10%;
+    --popover-foreground: 260 10% 98%;
+
+    /* Primary - Purple (Vibrant) */
+    --primary: 270 50% 60%;
+    --primary-foreground: 260 20% 10%;
+
+    /* Secondary - Teal (Vibrant) */
+    --secondary: 180 50% 60%;
+    --secondary-foreground: 260 20% 10%;
+
+    /* Accent - Amber (Vibrant) */
+    --accent: 35 90% 60%;
+    --accent-foreground: 260 20% 10%;
+
+    /* Muted */
+    --muted: 260 20% 15%;
+    --muted-foreground: 260 10% 65%;
+
+    /* Destructive */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border */
+    --border: 260 20% 15%;
+    --input: 260 20% 15%;
+    --ring: 270 50% 60%;
+
+    /* Legacy/Custom Mappings for Dark Mode */
+    --page-bg: #0c0811; /* Keep exact original for now, or match --background */
+    /* --page-bg: hsl(var(--background)); */
+
+    --default-text-color: hsl(var(--foreground));
+    --default-text-color-dark: #0c0811;
+    --skill-text-color: #b6b6b6;
+    --default-violet-color: #f6b2e1;
+    --monochrome-gradient-text-color: linear-gradient(
+      189deg,
+      #fff 6.79%,
+      rgba(153, 153, 153, 0.9) 105.17%
+    );
+    --hero-separator-border-color: rgba(255, 255, 255, 0.4);
+    --copy-button-text-color: rgba(255, 255, 255, 0.6);
+    --glass-color: rgba(255, 255, 255, 0.06);
+    --glass-border-color: rgba(255, 255, 255, 0.1);
+
+    /* Nav Specifics Dark */
+    --nav-text-active: #ffffff;
+    --nav-text-inactive: rgba(255, 255, 255, 0.6);
+    --navbar-border-color: rgba(255, 255, 255, 0.1);
+    --command-menu-icon-color: rgba(255, 255, 255, 0.5);
+    --command-menu-icon-color-hover: #ffffff;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 :root {
-  /* Colors */
-  --glass-color: rgba(255, 255, 255, 0.06);
-  --page-bg: #0c0811;
-  --default-text-color: #ffffff;
-  --default-text-color-dark: #0c0811;
-  --skill-text-color: #b6b6b6;
-  --default-violet-color: #f6b2e1;
-  --monochrome-gradient-text-color: linear-gradient(
-    189deg,
-    #fff 6.79%,
-    rgba(153, 153, 153, 0.9) 105.17%
-  );
-  --hero-separator-border-color: rgba(255, 255, 255, 0.4);
-  --copy-button-text-color: rgba(255, 255, 255, 0.6);
-  --command-menu-icon-color: rgba(255, 255, 255, 0.1);
-
-  /* Hover Colors */
-  --esc-key-hover-color: rgba(255, 255, 255, 0.8);
-  --nav-text-hover: rgba(255, 255, 255, 0.8);
-  --cmdk-text-hover: rgba(255, 255, 255, 0.7);
-  --cmdk-glass-color: rgba(255, 255, 255, 0.06);
-  --command-menu-icon-color-hover: rgba(255, 255, 255, 0.9);
-  --fob-card-on-hover: color-mix(
-    in oklab,
-    var(--glass-border-color) 6%,
-    transparent
-  );
-
-  /* Navigation Text Colors */
-  --nav-text-active: #ffffff;
-  --nav-text-inactive: rgba(255, 255, 255, 0.6);
-  --nav-text-active-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-  --nav-text-active-shadow-2: 0 0 24px rgba(255, 255, 255, 0.4);
-  --testimonial-text-color: #c9c9c9;
-
-  /* Border Colors */
-  --glass-border-color: #ffffff1a;
-  --esc-key-border-color: #ffffff1a;
-  --contact-button-border-color: #ffffff1a;
-  --navitem-border-color: #ffffff1a;
-  --navbar-border-color: #ffffff1a;
-  --copy-button-border-color: #ffffff1a;
-
-  /* Scrollbar Colors */
+  /* Legacy Vars kept for reference but should be migrated */
   --scrollbar-thumb-color: rgba(255, 255, 255, 0.3);
   --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.5);
   --scrollbar-track-color: rgba(255, 255, 255, 0.05);
 
   /* Border Radius */
   --border-radius-4px: 4px;
+
   --border-radius-6px: 6px;
   --border-radius-8px: 8px;
   --border-radius-12px: 12px;
@@ -250,10 +349,12 @@
   --gap-60px: 60px;
 
   /* Font */
-  --font-family-primary: "Excon", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  --font-family-secondary: "Satoshi", system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-primary:
+    "Excon", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-family-secondary:
+    "Satoshi", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 html,
