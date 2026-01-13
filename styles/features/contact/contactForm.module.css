@@ -1,0 +1,119 @@
+.formSection {
+  position: relative;
+  padding: 60px var(--padding-60px) 100px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .formSection {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+/* Left Content */
+.leftContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.textGroup {
+  max-width: 600px;
+}
+
+.tagline {
+  font-family: var(--font-family-secondary); /* Excon */
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 12px;
+}
+
+.description {
+  font-family: var(--font-family-body);
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+.visualPlaceholder {
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  /* In reality, this might contain an image or 3D element */
+}
+
+/* Right - Form Card */
+.formCard {
+  flex: 1;
+  max-width: 600px;
+  width: 100%;
+  min-height: 500px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.label {
+  font-family: var(--font-family-secondary); /* Excon */
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--foreground);
+}
+
+.submitButton {
+  align-self: flex-start;
+  margin-top: 8px;
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-family: var(--font-family-body);
+  font-size: 1.125rem;
+  font-weight: 500;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 4px 4px 0px 0px #f6b2e1; /* Pink shadow from design */
+}
+
+.submitButton:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #f6b2e1;
+}
+
+.submitButton:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0px 0px #f6b2e1;
+}
