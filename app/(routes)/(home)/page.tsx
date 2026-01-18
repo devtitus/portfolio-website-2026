@@ -2,6 +2,7 @@
 import React from "react";
 import {
   HeroSection,
+  FrameHeroSection,
   FobSection,
   ProjectSection,
   SkillsSection,
@@ -11,14 +12,16 @@ import {
 
 const HomePage = () => {
   return (
-    <div className="page-content">
-      <HeroSection />
-      <FobSection />
-      <ProjectSection />
-      <SkillsSection />
-      <TestimonialSection />
-      <ContactSection />
-    </div>
+    <>
+      <FrameHeroSection />
+      <div className="page-content">
+        <FobSection />
+        <ProjectSection />
+        <SkillsSection />
+        <TestimonialSection />
+        <ContactSection />
+      </div>
+    </>
   );
 };
 

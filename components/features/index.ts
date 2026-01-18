@@ -3,7 +3,9 @@
 
 // Hero Feature Components
 export { default as HeroSection } from '@/components/features/home/heroSection';
+export { default as FrameHeroSection } from '@/components/features/home/frameHeroSection';
 export { default as FobSection } from '@/components/features/home/fobSection';
+
 export { default as ContactSection } from '@/components/features/home/contactSection';
 export { default as ProjectCard } from '@/components/features/home/projectCard';
 export { default as SkillCard } from '@/components/features/home/skillCard';
