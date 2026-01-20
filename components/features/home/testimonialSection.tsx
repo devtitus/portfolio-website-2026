@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/features/home/test.module.css";
 import { TestimonialStack } from "@/components/ui/testimonial-cards";
+import { SectionHeader } from "@/components/ui";
 import {
   getTestimonials,
   TestimonialItem,
@@ -28,12 +29,14 @@ const TestimonialSection = () => {
       className={`${styles.testimonialSection} ${styles.commonStyleSection}`}
     >
       <div className={styles.testimonialSectionWrapper}>
-        <div className={styles.testimonialSectionTitleWrapper}>
-          <h2 className={styles.testimonialSectionTitle}>Testimonials</h2>
-          <p className={styles.testimonialSectionDescription}>
-            💡 Drag the front card to the left to shuffle through testimonials
-          </p>
-        </div>
+        <SectionHeader 
+          title="Testimonials" 
+          subtitle="What people say about working with me"
+          align="center"
+        />
+        <p className={styles.testimonialSectionDescription}>
+          💡 Drag the front card to the left to shuffle through testimonials
+        </p>
         <div
           className={`${styles.testimonialSectionStackWrapper} flex flex-col items-center justify-center`}
         >

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/styles/features/home/project.module.css";
-import ProjectCards from "@/components/features/home/projectCard";
+import ProjectCard from "@/components/features/home/projectCard";
+import { SectionHeader, PrimaryButton } from "@/components/ui";
 
 const ProjectSection = () => {
   return (
@@ -8,13 +9,20 @@ const ProjectSection = () => {
       className={`${styles.projectSection} ${styles.commonStyleSection}`}
     >
       <div className={styles.projectSectionWrapper}>
-        <h2 className={styles.projectSectionTitle}>Projects</h2>
+        <SectionHeader 
+          title="Featured Projects" 
+          subtitle="A showcase of my recent work"
+          align="center"
+        />
         <div className={styles.projectGridContainer}>
-          <ProjectCards />
-          <ProjectCards />
-          <ProjectCards />
-          <ProjectCards />
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
         </div>
+        <PrimaryButton variant="outline" size="md" className="mt-8">
+          View All Projects
+        </PrimaryButton>
       </div>
     </section>
   );

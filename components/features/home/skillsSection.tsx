@@ -4,6 +4,7 @@ import styles from "@/styles/features/home/skill.module.css";
 import { SkillSpinningImage } from "@/lib/utils/icons";
 import SkillCard from "@/components/features/home/skillCard";
 import { getSkills, SkillItem } from "@/lib/services/sanity/getSkills";
+import { SectionHeader, GlassButton } from "@/components/ui";
 
 const SkillsSection = () => {
   const [skills, setSkills] = useState<SkillItem[]>([]);
@@ -27,7 +28,11 @@ const SkillsSection = () => {
       <div className={styles.skillSectionWrapper}>
         <div className={styles.skillTopWrapper}>
           <SkillSpinningImage className={styles.skillSpinningImage} />
-          <h2 className={styles.skillSectionTitle}>My Skills</h2>
+          <SectionHeader 
+            title="My Skills" 
+            subtitle="Technologies and tools I work with"
+            align="center"
+          />
         </div>
         <div className={styles.skillBottomWrapper}>
           {visibleSkills.map((skill) => (
@@ -39,13 +44,12 @@ const SkillsSection = () => {
           ))}
         </div>
         {shouldShowToggle && (
-          <button
-            className={styles.skillsToggleButton}
+          <GlassButton
             onClick={() => setShowAllSkills(!showAllSkills)}
-            aria-label={showAllSkills ? "Show less skills" : `Show ${remainingSkillsCount} more skills`}
+            className={styles.skillsToggleButton}
           >
             {showAllSkills ? "Show Less" : `Show More (${remainingSkillsCount})`}
-          </button>
+          </GlassButton>
         )}
       </div>
     </section>

@@ -1,27 +1,61 @@
 .footerContainer {
-  padding: var(--padding-60px) var(--padding-60px) var(--padding-40px)
-    var(--padding-60px);
-  border-top: 0.5px solid var(--glass-border-color);
+  padding: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px) clamp(30px, 4vw, 40px);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(0, 87, 224, 0.2);
+  position: relative;
+}
+
+/* Subtle top glow */
+.footerContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 87, 224, 0.4) 50%,
+    transparent 100%
+  );
 }
 
 .footerContent {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 35.3%;
+  gap: clamp(2rem, 10vw, 8rem);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .footerColumns {
-  width: 42.57%;
   display: flex;
-  gap: var(--gap-180px);
+  gap: clamp(2rem, 8vw, 6rem);
+  flex: 1;
 }
 
 .footerSection {
-  width: 22.12%;
   display: flex;
   flex-direction: column;
-  gap: var(--gap-24px);
+  gap: clamp(16px, 2vw, 24px);
   flex: 1;
 }
 
@@ -30,95 +64,91 @@
   align-items: center;
 }
 
+/* Logo with blue glow */
 .footerLogoImage {
   width: 64px;
   height: 64px;
   aspect-ratio: 1/1;
+  filter: drop-shadow(0 0 20px rgba(0, 87, 224, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.footerLogoImage:hover {
+  filter: drop-shadow(0 0 30px rgba(0, 87, 224, 0.5));
 }
 
 .footerDescription {
-  color: var(--default-text-color);
+  color: rgba(255, 255, 255, 0.75);
   font-family: var(--font-family-secondary);
-  font-size: 16px;
+  font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 400;
-  line-height: 26px;
-  max-width: 300px;
-  opacity: 0.8;
-  margin-bottom: var(--gap-16px);
+  line-height: 1.6;
+  max-width: 320px;
+  margin-bottom: 16px;
 }
 
 .footerCopyright {
-  color: var(--nav-text-inactive);
+  color: rgba(255, 255, 255, 0.5);
   font-family: var(--font-family-secondary);
-  font-size: 16px;
+  font-size: clamp(13px, 1.4vw, 15px);
   font-weight: 400;
-  line-height: 26px;
+  line-height: 1.6;
   margin: 0;
-  opacity: 0.8;
 }
 
 .footerHeading {
-  color: var(--default-text-color);
+  color: rgba(255, 255, 255, 0.95);
   font-family: var(--font-family-secondary);
-  font-size: 18px;
+  font-size: clamp(16px, 1.8vw, 18px);
   font-weight: 600;
-  line-height: 28px;
+  line-height: 1.5;
   margin: 0;
+  letter-spacing: 0.02em;
 }
 
 .footerNav {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-16px);
+  gap: 12px;
 }
 
+/* Premium link styling */
 .footerLink {
-  color: var(--nav-text-inactive);
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
   font-family: var(--font-family-secondary);
-  font-size: 16px;
+  font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 400;
-  line-height: 26px;
-  transition: all 0.3s ease;
+  line-height: 1.6;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: fit-content;
+  position: relative;
+}
+
+.footerLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #0057E0, transparent);
+  transition: width 0.3s ease;
 }
 
 .footerLink:hover {
-  color: var(--nav-text-hover);
-  text-decoration: none;
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateX(4px);
+}
+
+.footerLink:hover::after {
+  width: 100%;
 }
 
 .socialLinks {
   display: flex;
-  flex-direction: column;
-  gap: var(--gap-10px);
+  gap: 12px;
   align-items: flex-start;
-}
-
-.socialLink {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  width: fit-content;
-}
-
-.socialLink:hover {
-  opacity: 0.8;
-  transform: none;
-}
-
-.socialText {
-  color: var(--nav-text-inactive);
-  font-family: var(--font-family-secondary);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
-  text-decoration: none;
-}
-
-.socialLink:hover .socialText {
-  color: var(--nav-text-hover);
 }
 
 /* Mobile Devices To Tablet Devices */

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/features/home/contact.module.css";
+import { PrimaryButton } from "@/components/ui";
 import {
   getSiteSettings,
   type SiteSettings,
@@ -42,7 +43,6 @@ const ContactSection = ({
       <div className={styles.contactSectionWrapper}>
         <div className={styles.contentWrapper}>
           <div className={styles.titleTextWrapper}>
-            <img src="" alt="" className={styles.contactLogo} />
             {headingHtml || (
               <>
                 <span className={styles.contactHeading}>
@@ -56,9 +56,15 @@ const ContactSection = ({
               </>
             )}
           </div>
-          <button className={styles.contactButton}>
+          
+          <PrimaryButton 
+            variant="solid" 
+            size="lg"
+            className="mt-6"
+          >
             {ctaText || "Get In Touch"}
-          </button>
+          </PrimaryButton>
+          
           <p className={styles.contentSubHeading}>
             {subHeading || "Ready to bring your ideas to life?"}
           </p>

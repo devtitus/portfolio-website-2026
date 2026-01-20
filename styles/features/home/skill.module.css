@@ -1,6 +1,7 @@
 .commonStyleSection {
-  height: 100vh;
+  min-height: 100vh;
   padding-inline: var(--padding-60px);
+  padding-block: 80px;
 }
 
 .skillSection {
@@ -9,6 +10,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
 }
 
 .skillSectionWrapper {
@@ -17,21 +19,39 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--gap-40px);
+  gap: clamp(2rem, 5vw, 3rem);
+  animation: fadeInUp 0.8s ease-out;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Premium spinning image with blue glow */
 .skillSpinningImage {
-  width: 340px;
-  height: 340px;
+  width: clamp(240px, 30vw, 340px);
+  height: clamp(240px, 30vw, 340px);
   aspect-ratio: 1/1;
   animation: spin 20s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(0, 87, 224, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.skillSpinningImage:hover {
+  filter: drop-shadow(0 0 60px rgba(0, 87, 224, 0.5));
 }
 
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -41,50 +61,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gap-20px);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.skillSectionTitle {
-  color: #fff;
-  text-align: center;
-  font-family: var(--font-family-primary);
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
+/* Premium grid layout */
 .skillBottomWrapper {
-  width: 87.27%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--gap-16px);
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding: 0 1rem;
 }
 
+/* GlassButton styling override */
 .skillsToggleButton {
-  padding: var(--gap-12px) var(--gap-24px);
-  background-color: var(--page-bg);
-  backdrop-filter: blur(8px);
-  border: 1px solid #ffffff1a;
-  box-shadow: inset 0 -12px 40px -20px #ffffff1f;
-  color: #ebe8e8;
-  border-radius: 8px;
-  font-family: var(--font-family-secondary);
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: normal;
-  letter-spacing: 0.5px;
-}
-
-.skillsToggleButton:hover {
-  background-color: var(--page-bg);
-  color: #fff;
-  box-shadow: inset 0 -12px 50px -20px #ffffff1f;
+  margin-top: 1rem;
 }
 
 /* Mobile Devices & Tablets*/
