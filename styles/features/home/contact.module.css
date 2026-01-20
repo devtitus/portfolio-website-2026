@@ -1,6 +1,6 @@
 .commonStyleSection {
-  min-height: 100vh;
-  padding-inline: var(--padding-60px);
+  min-height: 100dvh;
+  padding-inline: var(--container-padding, clamp(16px, 4vw, 60px));
 }
 
 .contactSection {
@@ -41,8 +41,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
+  width: min(600px, 90vw);
+  height: min(600px, 90vw);
   background: radial-gradient(
     circle,
     rgba(0, 87, 224, 0.15) 0%,
@@ -65,6 +65,17 @@
   }
 }
 
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .contactSection::after,
+  .contactSectionWrapper {
+    animation: none;
+  }
+  .contactSection::after {
+    opacity: 0.8;
+  }
+}
+
 .contactSection>* {
   position: relative;
   z-index: 2;
@@ -72,12 +83,14 @@
 
 .contactSectionWrapper {
   width: 100%;
+  max-width: var(--container-max, 1400px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(2rem, 5vw, 3.5rem);
+  gap: var(--space-lg, clamp(2rem, 5vw, 3.5rem));
   animation: fadeInUp 0.8s ease-out;
+  padding-block: clamp(60px, 10vh, 100px);
 }
 
 @keyframes fadeInUp {
@@ -92,11 +105,11 @@
 }
 
 .contactHeading {
-  max-width: 900px;
+  max-width: min(900px, 90vw);
   color: #fff;
   text-align: center;
   font-family: var(--font-family-primary);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: var(--text-4xl, clamp(2rem, 5vw, 3.5rem));
   font-style: normal;
   font-weight: 500;
   line-height: 1.2;
@@ -117,13 +130,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs, 0.5rem);
 }
 
 .contentWrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-24px);
+  gap: var(--space-md, 1.5rem);
   align-items: center;
 }
 
@@ -131,7 +144,7 @@
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
   font-family: var(--font-family-secondary);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: var(--text-xl, clamp(1.25rem, 3vw, 1.75rem));
   font-style: normal;
   font-weight: 500;
   line-height: 1.4;
@@ -142,93 +155,52 @@
   color: rgba(255, 255, 255, 0.75);
   text-align: center;
   font-family: var(--font-family-secondary);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: var(--text-base, clamp(1rem, 2vw, 1.25rem));
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
-  max-width: 600px;
+  max-width: min(600px, 90vw);
   letter-spacing: 0.01em;
 }
 
-/* Mobile Devices & Tablets*/
-@media screen and (min-width: 320px) and (max-width: 1023px) {
-  .commonStyleSection {
-    padding-inline: calc(1rem + .25rem * (100vw - 320px) / (1023px - 320px));
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Mobile (< 640px) */
+@media screen and (max-width: 639px) {
+  .contactSectionWrapper {
+    padding-block: 60px;
+    gap: var(--space-md);
   }
 
   .contactHeading {
-    font-size: calc(1.25rem + .5rem * (100vw - 320px) / (1023px - 320px));
-    line-height: calc(2.25rem + .5rem * (100vw - 320px) / (1023px - 320px));
-  }
-
-  .contactSpan {
-    font-size: calc(1.375rem + 0.375rem * (100vw - 320px) / (1023px - 320px));
-    line-height: calc(1.375rem + 0.375rem * (100vw - 320px) / (1023px - 320px));
+    font-size: var(--text-2xl);
   }
 
   .contentSubHeading {
-    font-size: calc(1.125rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
-  }
-
-  .contentWrapper {
-    width: 100%;
-    gap: calc(0.75rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
+    font-size: var(--text-lg);
   }
 
   .contentParagraph {
-    font-size: calc(1rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
-    width: 100%;
-    line-height: calc(1.375rem + 0.25rem * (100vw - 320px) / (1023px - 320px));
-  }
-
-  .contactSectionWrapper {
-    gap: calc(3.75rem + 1.25rem * (100vw - 320px) / (1023px - 320px));
-  }
-
-  .contactLogo {
-    width: calc(6.25rem + 1.25rem * (100vw - 320px) / (1023px - 320px));
-    height: calc(6.25rem + 1.25rem * (100vw - 320px) / (1023px - 320px));
-    margin-bottom: calc(1.5rem + 0.5rem * (100vw - 320px) / (1023px - 320px));
-  }
-
-  .contactButton {
-    padding: calc(0.5rem + 0.25rem * (100vw - 320px) / (1023px - 320px)) calc(1.125rem + 0.375rem * (100vw - 320px) / (1023px - 320px));
-    font-size: calc(1rem + 0.125rem * (100vw - 320px) / (1023px - 320px));
-    border-radius: 4px;
+    font-size: var(--text-sm);
   }
 }
 
-/* Laptop and Desktop Screens */
-@media screen and (min-width: 1024px) {
+/* Tablet (640px - 1023px) */
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+  .contactSectionWrapper {
+    padding-block: 80px;
+  }
+
   .contactHeading {
-    font-size: calc(1.75rem + .5rem * (100vw - 1024px) / (1920px - 1024px));
+    font-size: var(--text-3xl);
   }
+}
 
-  .contactSpan {
-    font-size: calc(1.75rem + .5rem * (100vw - 1024px) / (1920px - 1024px));
-  }
-
-  .contentSubHeading {
-    font-size: calc(1.25rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
-  }
-
-  .contentParagraph {
-    font-size: calc(1rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
-    line-height: calc(1.5rem + 0.25rem * (100vw - 1024px) / (1920px - 1024px));
-  }
-
-  .contentWrapper {
-    gap: calc(1rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
-  }
-
-  .contactButton {
-    padding: calc(0.625rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px)) calc(1.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
-    font-size: calc(1rem + 0.125rem * (100vw - 1024px) / (1920px - 1024px));
-  }
-
-  .contactLogo {
-    width: calc(7.5rem + 1.25rem * (100vw - 1024px) / (1920px - 1024px));
-    height: calc(7.5rem + 1.25rem * (100vw - 1024px) / (1920px - 1024px));
-    margin-bottom: calc(1.5rem + 0.5rem * (100vw - 1024px) / (1920px - 1024px));
+/* Desktop (1024px+) */
+@media screen and (min-width: 1024px) {
+  .contactSectionWrapper {
+    padding-block: 100px;
   }
 }

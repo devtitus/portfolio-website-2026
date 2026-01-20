@@ -38,8 +38,21 @@
     position: sticky;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+    min-height: 600px; /* Fallback minimum */
     overflow: hidden;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .frameHeroSection::before,
+    .heroTitle,
+    .heroDescriptionText,
+    .scrollIndicator,
+    .scrollIndicator::after {
+        animation: none !important;
+        opacity: 1 !important;
+    }
 }
 
 .canvas {
@@ -210,22 +223,65 @@
     }
 }
 
-/* Mobile Responsiveness */
-@media screen and (max-width: 1023px) {
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Mobile (< 640px) */
+@media screen and (max-width: 639px) {
+    .stickyContainer {
+        height: 100dvh;
+        min-height: 500px;
+    }
+    
     .heroTitle {
-        font-size: clamp(28px, 8vw, 48px);
+        font-size: clamp(24px, 8vw, 36px);
+        padding-inline: 16px;
+        text-align: center;
+    }
+    
+    .auraText {
+        font-size: clamp(24px, 8vw, 36px);
+    }
+    
+    .heroDescriptionText {
+        font-size: clamp(14px, 4vw, 18px);
+        padding-inline: 16px;
+        text-align: center;
+    }
+    
+    .overlayContent {
+        justify-content: center;
+        padding-bottom: 80px;
+    }
+    
+    .canvas {
+        object-position: center;
+        filter: brightness(0.5) contrast(1.15);
+    }
+    
+    /* Hide scroll indicator on mobile */
+    .scrollIndicator {
+        display: none;
+    }
+}
+
+/* Tablet (640px - 1023px) */
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+    .heroTitle {
+        font-size: clamp(32px, 6vw, 48px);
         text-shadow: 
             0 2px 8px rgba(0, 0, 0, 0.4),
             0 0 30px rgba(0, 87, 224, 0.15);
     }
     
     .auraText {
-        font-size: clamp(28px, 8vw, 48px);
+        font-size: clamp(32px, 6vw, 48px);
     }
     
     .heroDescriptionText {
-        font-size: clamp(16px, 4vw, 20px);
-        padding-inline: 20px;
+        font-size: clamp(16px, 3vw, 20px);
+        padding-inline: 40px;
     }
 
     .canvas {
