@@ -105,15 +105,15 @@
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-  box-shadow: 4px 4px 0px 0px #f6b2e1; /* Pink shadow from design */
+  box-shadow: 4px 4px 0px 0px #0057E0; /* Blue shadow from theme */
 }
 
 .submitButton:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px 0px #f6b2e1;
+  box-shadow: 6px 6px 0px 0px #0057E0;
 }
 
 .submitButton:active {
   transform: translate(0, 0);
-  box-shadow: 2px 2px 0px 0px #f6b2e1;
+  box-shadow: 2px 2px 0px 0px #0057E0;
 }

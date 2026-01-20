@@ -56,7 +56,7 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
-  box-shadow: 2px 2px 12px 2px rgba(246, 178, 225, 1);
+  box-shadow: 2px 2px 12px 2px rgba(0, 87, 224, 1);
 }
 
 .profileImage {

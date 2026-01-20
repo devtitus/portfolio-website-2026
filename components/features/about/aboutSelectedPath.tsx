@@ -134,7 +134,7 @@ export const AboutSelectedPath: React.FC<AboutSelectedPathProps> = ({
         </div>
 
         {/* Card 3: Toolkit */}
-        <div className="bg-gradient-to-br from-[#FF9A8B] via-[#FF6A88] to-[#FF99AC] p-8 rounded-3xl flex flex-col min-h-[400px] text-white overflow-hidden relative">
+        <div className="bg-gradient-to-br from-[#0057E0] via-[#2b7fff] to-[#0057E0] p-8 rounded-3xl flex flex-col min-h-[400px] text-white overflow-hidden relative">
           {/* Decorative circles */}
           <div className="absolute top-[-20%] right-[-20%] w-[300px] h-[300px] bg-white opacity-10 rounded-full blur-3xl"></div>
 

@@ -171,7 +171,7 @@
     --popover-foreground: 0 0% 100%;
 
     /* Primary - Bright Azure Blue */
-    --primary: 212 100% 55%;
+    --primary: 217 100% 44%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Muted Blue/Gray */
@@ -193,7 +193,7 @@
     /* Border - Subtle White */
     --border: 0 0% 100%; /* used with opacity modifier usually */
     --input: 260 20% 15%;
-    --ring: 212 100% 55%;
+    --ring: 217 100% 44%;
 
     /* Radius */
     --radius: 1rem;
@@ -201,7 +201,7 @@
     --default-text-color: #ffffff;
     --default-text-color-dark: #08080a;
     --skill-text-color: #a1a1aa;
-    --default-violet-color: #1a85ff;
+    --default-violet-color: #0057E0;
     --monochrome-gradient-text-color: linear-gradient(
       180deg,
       #ffffff 0%,

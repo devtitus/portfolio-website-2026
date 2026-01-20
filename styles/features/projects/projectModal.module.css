@@ -39,7 +39,7 @@
 }
 
 .scrollArea::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
+  background: var(--primary);
 }
 
 .header {

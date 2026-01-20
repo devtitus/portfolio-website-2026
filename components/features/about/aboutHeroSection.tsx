@@ -31,7 +31,7 @@ const AboutHeroSection: React.FC = () => {
                 style={{
                   fontStyle: "italic",
                   background:
-                    "linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)",
+                    "linear-gradient(90deg, #0057E0 0%, #2b7fff 55%, #0057E0 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}

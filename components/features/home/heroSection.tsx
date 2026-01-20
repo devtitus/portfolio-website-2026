@@ -52,7 +52,7 @@ const HeroSection = () => {
             <span className={styles.heroTitleLine}>
               into seamless{" "}
               <AuroraText
-                colors={["#F6B2E1", "#F3F4F6", "#F6B2E1", "#F6B2E1"]}
+                colors={["#0057E0", "#F3F4F6", "#0057E0", "#0057E0"]}
                 speed={1.5}
                 className={styles.auraText}
               >

@@ -38,7 +38,7 @@
 }
 
 .copyCommand::selection {
-  background-color: var(--default-violet-color);
+  background-color: #0057E0;
   color: var(--default-text-color-dark);
 }
 
