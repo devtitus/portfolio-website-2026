@@ -37,6 +37,7 @@ const ContactSection = ({
         "min-h-dvh px-[clamp(16px,4vw,60px)] relative",
         "flex flex-col justify-center items-center overflow-hidden",
         "bg-cover bg-center bg-no-repeat",
+        "scroll-mt-20", // Navbar clearance
         // Glassmorphic overlay
         "before:content-[''] before:absolute before:inset-0",
         "before:bg-gradient-to-b before:from-black/85 before:via-black/70 before:to-black/85",

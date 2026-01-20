@@ -176,15 +176,18 @@ const FrameHeroSection = () => {
                     "after:backdrop-blur-[0.5px] after:pointer-events-none"
                 )}>
                     <div className="pointer-events-auto w-full h-full flex flex-col justify-center items-center relative z-[11]">
-                        <div className="flex flex-col items-start gap-12 z-10 relative pl-4 md:pl-20 w-full max-w-[1920px] mx-auto"> 
+                        <div className={cn(
+                            "flex flex-col items-start gap-12 z-10 relative pl-4 md:pl-20 w-full max-w-[1920px] mx-auto",
+                            "max-sm:items-center max-sm:pl-0 max-sm:px-4 max-sm:gap-8"
+                        )}> 
                             {/* Hero Heading */}
                             <h1 className={cn(
                                 "flex flex-col text-white text-left font-primary",
                                 "text-[clamp(36px,5vw,64px)] font-semibold leading-[1.15] tracking-tight",
-                                "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] shadow-[0_0_40px_rgba(0,87,224,0.2)]",
+                                "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
                                 "animate-fade-in-up motion-reduce:animate-none",
-                                "max-lg:text-[clamp(32px,6vw,48px)]",
-                                "max-sm:text-[clamp(24px,8vw,36px)] max-sm:text-center max-sm:px-4"
+                                "max-lg:text-[clamp(28px,5vw,48px)]",
+                                "max-sm:text-[clamp(22px,6vw,32px)] max-sm:text-center"
                             )}>
                                 <span className="inline-block">
                                     I help founders turn ideas{" "}
@@ -194,14 +197,19 @@ const FrameHeroSection = () => {
                                     <AuroraText
                                         colors={["#0057E0", "#F3F4F6", "#0057E0", "#0057E0"]}
                                         speed={1.5}
-                                        className="font-primary text-[clamp(36px,5vw,64px)] font-bold capitalize max-lg:text-[clamp(32px,6vw,48px)] max-sm:text-[clamp(24px,8vw,36px)]"
+                                        className={cn(
+                                            "font-primary font-bold capitalize",
+                                            "text-[clamp(36px,5vw,64px)]",
+                                            "max-lg:text-[clamp(28px,5vw,48px)]",
+                                            "max-sm:text-[clamp(22px,6vw,32px)]"
+                                        )}
                                     >
                                         Digital Experiences
                                     </AuroraText>
                                 </span>
                             </h1>
 
-                            {/* Hero Description */}
+                            {/* Hero Description - hidden on mobile */}
                             <div className="flex flex-row items-center gap-3 max-lg:hidden">
                                 <span className={cn(
                                     "text-left font-secondary text-[clamp(18px,2vw,24px)] font-normal",
@@ -230,13 +238,24 @@ const FrameHeroSection = () => {
                             </div>
 
                             {/* Hero Buttons */}
-                            <div className="flex items-center gap-10 max-lg:flex-col-reverse max-lg:gap-7">
-                                <button className="group relative flex justify-center items-center px-8 py-4 bg-white text-[#08080a] text-lg font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_0_1px_rgba(0,87,224,0.3),0_8px_24px_rgba(0,87,224,0.2)] hover:shadow-[0_0_0_1px_rgba(0,87,224,0.5),0_12px_32px_rgba(0,87,224,0.3)]">
+                            <div className={cn(
+                                "flex items-center gap-10",
+                                "max-lg:flex-col-reverse max-lg:gap-7",
+                                "max-sm:flex-col max-sm:gap-5 max-sm:w-full"
+                            )}>
+                                <button className={cn(
+                                    "group relative flex justify-center items-center",
+                                    "px-8 py-4 bg-white text-[#08080a] text-lg font-semibold rounded-lg",
+                                    "overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+                                    "shadow-[0_0_0_1px_rgba(0,87,224,0.3),0_8px_24px_rgba(0,87,224,0.2)]",
+                                    "hover:shadow-[0_0_0_1px_rgba(0,87,224,0.5),0_12px_32px_rgba(0,87,224,0.3)]",
+                                    "max-sm:px-6 max-sm:py-3 max-sm:text-base max-sm:w-full max-sm:max-w-[280px]"
+                                )}>
                                     <div className="absolute inset-0 bg-gradient-to-r from-[#0057E0]/10 via-transparent to-[#0057E0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     <span className="relative z-10 tracking-wide">Let's Connect</span>
                                     <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0057E0] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                                 </button>
-                                <div className="flex flex-row items-center gap-3 group">
+                                <div className="flex flex-row items-center gap-3 group max-sm:hidden">
                                     <button
                                         className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-110 active:scale-95"
                                         onClick={handleCopyEmail}
