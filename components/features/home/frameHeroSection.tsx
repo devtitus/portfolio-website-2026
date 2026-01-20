@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "@/styles/features/home/frameHero.module.css";
+import { cn } from "@/lib/utils";
 import { AuroraText } from "@/components/ui/magicui/aurora-text";
 import { CopyIcon } from "@/lib/utils/icons";
 import Image from "next/image";
@@ -137,23 +137,64 @@ const FrameHeroSection = () => {
     };
 
     return (
-         <div ref={sectionRef} className={styles.frameHeroSection} style={{ height: "500vh" }}>
-            <div className={styles.stickyContainer}>
-                <canvas ref={canvasRef} className={styles.canvas} />
-                <div className={styles.overlay}>
-                <div className={styles.overlayContent}>
+         <div 
+            ref={sectionRef} 
+            className={cn(
+                "relative w-full",
+                "bg-gradient-to-b from-black via-[#0a0a0f] to-black",
+                // Ambient background glow
+                "before:content-[''] before:absolute before:-top-1/2 before:-left-1/4",
+                "before:w-[150%] before:h-[200%]",
+                "before:bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,transparent_50%)]",
+                "before:animate-ambient-pulse before:pointer-events-none before:z-0",
+                "motion-reduce:before:animate-none"
+            )} 
+            style={{ height: "500vh" }}
+        >
+            <div className={cn(
+                "sticky top-0 w-full h-dvh min-h-[600px] overflow-hidden",
+                "max-sm:h-dvh max-sm:min-h-[500px]"
+            )}>
+                {/* Canvas */}
+                <canvas 
+                    ref={canvasRef} 
+                    className={cn(
+                        "absolute top-0 left-0 w-full h-full object-cover z-[1]",
+                        "brightness-[0.7] contrast-[1.1] transition-[filter] duration-300",
+                        "max-lg:brightness-[0.6] max-lg:contrast-[1.15]",
+                        "max-sm:brightness-[0.5]"
+                    )} 
+                />
+                
+                {/* Overlay */}
+                <div className={cn(
+                    "absolute top-0 left-0 w-full h-full z-10",
+                    "flex flex-col justify-center items-center pointer-events-none",
+                    "bg-gradient-to-br from-black/40 via-black/20 to-brand-blue/10",
+                    // Glassmorphic backdrop
+                    "after:content-[''] after:absolute after:inset-0",
+                    "after:backdrop-blur-[0.5px] after:pointer-events-none"
+                )}>
+                    <div className="pointer-events-auto w-full h-full flex flex-col justify-center items-center relative z-[11]">
                         <div className="flex flex-col items-start gap-12 z-10 relative pl-4 md:pl-20 w-full max-w-[1920px] mx-auto"> 
                             {/* Hero Heading */}
-                            <h1 className={styles.heroTitle}>
-                                <span className={styles.heroTitleLine}>
+                            <h1 className={cn(
+                                "flex flex-col text-white text-left font-primary",
+                                "text-[clamp(36px,5vw,64px)] font-semibold leading-[1.15] tracking-tight",
+                                "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] shadow-[0_0_40px_rgba(0,87,224,0.2)]",
+                                "animate-fade-in-up motion-reduce:animate-none",
+                                "max-lg:text-[clamp(32px,6vw,48px)]",
+                                "max-sm:text-[clamp(24px,8vw,36px)] max-sm:text-center max-sm:px-4"
+                            )}>
+                                <span className="inline-block">
                                     I help founders turn ideas{" "}
                                 </span>
-                                <span className={styles.heroTitleLine}>
+                                <span className="inline-block">
                                     into seamless{" "}
                                     <AuroraText
                                         colors={["#0057E0", "#F3F4F6", "#0057E0", "#0057E0"]}
                                         speed={1.5}
-                                        className={styles.auraText}
+                                        className="font-primary text-[clamp(36px,5vw,64px)] font-bold capitalize max-lg:text-[clamp(32px,6vw,48px)] max-sm:text-[clamp(24px,8vw,36px)]"
                                     >
                                         Digital Experiences
                                     </AuroraText>
@@ -162,7 +203,11 @@ const FrameHeroSection = () => {
 
                             {/* Hero Description */}
                             <div className="flex flex-row items-center gap-3 max-lg:hidden">
-                                <span className={styles.heroDescriptionText}>
+                                <span className={cn(
+                                    "text-left font-secondary text-[clamp(18px,2vw,24px)] font-normal",
+                                    "text-white/85 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]",
+                                    "animate-fade-in-up motion-reduce:animate-none"
+                                )} style={{ animationDelay: '0.2s' }}>
                                     Hello, I&apos;m Melwyn Titus
                                 </span>
                                 <div className="w-[80px] h-[40px] rounded-[40px] flex items-center justify-center border border-white/20 relative overflow-hidden group cursor-pointer backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-all duration-300">
@@ -175,7 +220,11 @@ const FrameHeroSection = () => {
                                         className="w-8 h-8 origin-[70%_70%] animate-wave z-[5] drop-shadow-lg"
                                     />
                                 </div>
-                                <span className={styles.heroDescriptionText}>
+                                <span className={cn(
+                                    "text-left font-secondary text-[clamp(18px,2vw,24px)] font-normal",
+                                    "text-white/85 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]",
+                                    "animate-fade-in-up motion-reduce:animate-none"
+                                )} style={{ animationDelay: '0.2s' }}>
                                     a Full stack Developer
                                 </span>
                             </div>
@@ -202,13 +251,28 @@ const FrameHeroSection = () => {
                             </div>
                         </div>
                     </div>
-                 </div>
-                 <div className={styles.scrollIndicator}>
+                </div>
+                
+                {/* Scroll Indicator */}
+                <div className={cn(
+                    "absolute bottom-10 left-1/2 -translate-x-1/2 z-20",
+                    "text-white/60 text-xs uppercase tracking-[3px] font-medium",
+                    "flex flex-col items-center gap-3 animate-pulse-glow",
+                    "motion-reduce:animate-none",
+                    // Line after
+                    "after:content-[''] after:w-px after:h-[30px]",
+                    "after:bg-gradient-to-b after:from-brand-blue/80 after:to-transparent",
+                    "after:animate-scroll-line",
+                    "motion-reduce:after:animate-none",
+                    // Hide on mobile
+                    "max-sm:hidden"
+                )}>
                     Scroll to animate
-                 </div>
+                </div>
             </div>
         </div>
     );
 };
 
 export default FrameHeroSection;
+

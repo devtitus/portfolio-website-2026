@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/styles/features/home/fob.module.css";
+import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { ScriptCopyBtn } from "@/components/ui/magicui/script-copy-btn";
@@ -404,59 +404,102 @@ const FobSection = () => {
     },
   ];
   return (
-    <section className={`${styles.fobSection} ${styles.commonStyleSection}`}>
-      <div className={styles.fobSectionWrapper}>
-        <h2 className={styles.fobSectionTitle}>Focusing on the Best</h2>
-        <div className={styles.fobSectionContent}>
-          {/* Column 1 */}
-          <div className={styles.fobFirstContentCard}>
-            <div className={styles.fobFirstContentCardImage}>
+    <section className={cn(
+      "min-h-dvh px-[clamp(16px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+      "flex flex-col justify-center items-center overflow-hidden",
+      "max-sm:min-h-auto max-sm:py-[60px]",
+      "max-lg:min-h-auto max-lg:py-[80px]"
+    )}>
+      <div className={cn(
+        "w-full flex flex-col justify-center gap-fluid-lg",
+        "animate-fade-in-up motion-reduce:animate-none"
+      )}>
+        <h2 className={cn(
+          "text-white text-center font-primary text-fluid-3xl font-medium",
+          "leading-tight tracking-tight"
+        )}>
+          Focusing on the Best
+        </h2>
+        
+        {/* Bento Grid */}
+        <div className={cn(
+          "grid gap-fluid-md",
+          "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+          "lg:grid-rows-2 lg:h-[clamp(360px,40vh,500px)]",
+          "xl:h-[clamp(450px,45vh,550px)]"
+        )}>
+          {/* Column 1 - Globe Card */}
+          <div className={cn(
+            "lg:row-span-2 rounded-2xl p-fluid-md",
+            "bg-glass-bg border border-glass-border backdrop-blur-xl",
+            "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
+            "transition-all duration-300 hover:-translate-y-0.5",
+            "flex flex-col gap-fluid-md overflow-hidden relative",
+            "max-sm:min-h-[400px] sm:max-lg:col-span-2",
+            "group"
+          )}>
+            <div className="flex-1 relative shadow-blue-glow">
               <World data={sampleArcs} globeConfig={globeConfig} />
             </div>
-            <div
-              className={`${styles.textWrapper} ${styles.fobFirstContentCardTextWrapper}`}
-            >
-              <h3 className={styles.fobFirstContentCardTitle}>
-                <span className={styles.fobFirstContentCardTitleIcon}>
-                  <MapPinIcon className={`${styles.titleIcon}`} />
-                </span>
+            <div className={cn(
+              "flex flex-col gap-2",
+              "lg:absolute lg:bottom-6 lg:left-6 lg:right-6",
+              "lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0",
+              "transition-all duration-300",
+              "max-lg:static max-lg:opacity-100 max-lg:translate-y-0"
+            )}>
+              <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
+                <MapPinIcon className="w-6 h-6 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
                 Remote
               </h3>
-              <p className={styles.fobFirstContentCardDescription}>
+              <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
                 I have worked with multiple technologies and frameworks to build
                 scalable and efficient applications.
               </p>
             </div>
           </div>
-          {/* Column 2 */}
-          <div className={styles.fobSecondContentCardWrapper}>
-            {/* Bento 2 */}
-            <div className={styles.fobSecondContentCard}>
+          
+          {/* Column 2 Wrapper */}
+          <div className={cn(
+            "lg:row-span-2 flex flex-col gap-fluid-md",
+            "max-sm:contents sm:max-lg:col-span-2 sm:max-lg:grid sm:max-lg:grid-cols-2"
+          )}>
+            {/* Bento 2 - Email */}
+            <div className={cn(
+              "lg:h-[40%] rounded-2xl p-fluid-md",
+              "bg-glass-bg border border-glass-border backdrop-blur-xl",
+              "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
+              "transition-all duration-300 hover:-translate-y-0.5",
+              "flex flex-col gap-3",
+              "sm:max-lg:h-full"
+            )}>
               <ScriptCopyBtn
                 showMultiplePackageOptions={true}
                 codeLanguage="shell"
                 commandMap={customCommandMap}
-                className={styles.scriptCopyBtn}
+                className="mt-0"
               />
-              <div
-                className={`${styles.textWrapper} ${styles.fobSecondContentCardTextWrapper}`}
-              >
-                <h3 className={styles.fobSecondContentCardTitle}>
-                  <span className={styles.fobFirstContentCardTitleIcon}>
-                    <MailIcon
-                      className={`${styles.titleIcon} ${styles.mailIcon}`}
-                    />
-                  </span>
+              <div className="flex flex-col gap-2 max-lg:mt-4 lg:hidden">
+                <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
+                  <MailIcon className="w-7 h-7 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
                   Email
                 </h3>
-                <p className={styles.fobSecondContentCardDescription}>
+                <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
                   I have worked with multiple technologies and frameworks to
                   build scalable and efficient applications.
                 </p>
               </div>
             </div>
-            {/* Bento 3 */}
-            <div className={styles.fobThirdContentCard}>
+            
+            {/* Bento 3 - Text Reveal */}
+            <div className={cn(
+              "lg:h-[60%] rounded-2xl p-fluid-md",
+              "bg-glass-bg border border-glass-border backdrop-blur-xl",
+              "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
+              "transition-all duration-300 hover:-translate-y-0.5",
+              "flex items-center",
+              "sm:max-lg:h-full"
+            )}>
               <TextRevealCard
                 text="You know the business"
                 revealText="I know the chemistry"
@@ -471,11 +514,18 @@ const FobSection = () => {
               </TextRevealCard>
             </div>
           </div>
-          {/* Column 3 */}
-          <div className={styles.fobFourthContentCard}>
-            <div
-              className={`${styles.fobFourthContentCardImage} ${styles.infiniteMarqueeCardWrapper}`}
-            >
+          
+          {/* Column 3 - Technologies */}
+          <div className={cn(
+            "lg:row-span-2 rounded-2xl p-fluid-md",
+            "bg-glass-bg border border-glass-border backdrop-blur-xl",
+            "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
+            "transition-all duration-300 hover:-translate-y-0.5",
+            "flex flex-col gap-fluid-md overflow-hidden relative",
+            "max-sm:min-h-[350px] sm:max-lg:col-span-2",
+            "group"
+          )}>
+            <div className="flex flex-col gap-fluid-sm flex-1">
               <InfiniteMovingCards
                 items={testimonials}
                 direction="right"
@@ -497,16 +547,18 @@ const FobSection = () => {
                 speed="slow"
               />
             </div>
-            <div
-              className={`${styles.textWrapper} ${styles.fobFourthContentCardTextWrapper}`}
-            >
-              <h3 className={styles.fobFourthContentCardTitle}>
-                <span className={styles.fobFirstContentCardTitleIcon}>
-                  <TechnologiesIcon className={`${styles.titleIcon}`} />
-                </span>
+            <div className={cn(
+              "flex flex-col gap-2 z-10",
+              "lg:absolute lg:bottom-6 lg:left-6 lg:right-6",
+              "lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0",
+              "transition-all duration-300",
+              "max-lg:static max-lg:opacity-100 max-lg:translate-y-0"
+            )}>
+              <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
+                <TechnologiesIcon className="w-6 h-6 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
                 Technologies
               </h3>
-              <p className={styles.fobFourthContentCardDescription}>
+              <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
                 I have worked with multiple technologies and frameworks to build
                 scalable and efficient applications.
               </p>
