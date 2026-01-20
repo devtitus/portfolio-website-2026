@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/styles/layouts/footer.module.css";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { IconButton } from "@/components/ui";
@@ -25,56 +25,152 @@ const InstagramIcon = () => (
 
 const Footer: React.FC = () => {
   return (
-    <footer className={styles.footerContainer}>
-      <div className={styles.footerContent}>
-        <div className={styles.footerSection}>
-          <div className={styles.footerLogo}>
+    <footer className={cn(
+      "relative px-[clamp(40px,5vw,60px)] py-[clamp(40px,5vw,60px)] pb-[clamp(30px,4vw,40px)]",
+      "bg-gradient-to-b from-black/60 to-black/80",
+      "backdrop-blur-xl border-t border-brand-blue/20",
+      // Top glow
+      "before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-px",
+      "before:bg-gradient-to-r before:from-transparent before:via-brand-blue/40 before:to-transparent",
+      // Mobile
+      "max-lg:px-4 max-lg:py-8 max-lg:pb-6"
+    )}>
+      <div className={cn(
+        "flex justify-between items-start gap-[clamp(2rem,10vw,8rem)]",
+        "animate-fade-in-up motion-reduce:animate-none",
+        "max-lg:flex-col"
+      )}>
+        <div className={cn(
+          "flex flex-col gap-[clamp(16px,2vw,24px)] flex-1",
+          "max-lg:w-full"
+        )}>
+          <div className="flex items-center">
             <Image
               src={"/navbar/logo.png"}
               width={64}
               height={64}
               alt="Logo"
-              className={styles.footerLogoImage}
+              className={cn(
+                "w-16 h-16 aspect-square",
+                "drop-shadow-[0_0_20px_rgba(0,87,224,0.3)]",
+                "transition-[filter] duration-300",
+                "hover:drop-shadow-[0_0_30px_rgba(0,87,224,0.5)]"
+              )}
             />
           </div>
-          <p className={styles.footerDescription}>
+          <p className={cn(
+            "text-white/75 font-secondary text-fluid-base font-normal leading-relaxed",
+            "max-w-[320px] mb-4",
+            "max-lg:max-w-full max-lg:m-0"
+          )}>
             I&apos;m Melwyn - a full-stack developer, freelancer & problem
             solver. Thanks for checking out my site!
           </p>
-          <p className={styles.footerCopyright}>© 2025 Melwyn Titus</p>
+          <p className="text-white/50 font-secondary text-fluid-sm font-normal leading-relaxed m-0">
+            © 2025 Melwyn Titus
+          </p>
         </div>
 
-        <div className={styles.footerColumns}>
-          <div className={styles.footerSection}>
-            <h3 className={styles.footerHeading}>General</h3>
-            <nav className={styles.footerNav}>
-              <Link href="/" className={styles.footerLink}>
+        <div className={cn(
+          "flex gap-[clamp(2rem,8vw,6rem)] flex-1",
+          "max-lg:w-full max-lg:mt-10 max-lg:mb-6"
+        )}>
+          <div className={cn(
+            "flex flex-col gap-[clamp(16px,2vw,24px)] flex-1",
+            "max-lg:w-full max-lg:gap-5"
+          )}>
+            <h3 className="text-white/95 font-secondary text-fluid-lg font-semibold leading-normal m-0 tracking-[0.02em]">
+              General
+            </h3>
+            <nav className="flex flex-col gap-3">
+              <Link 
+                href="/" 
+                className={cn(
+                  "relative w-fit text-white/65 font-secondary text-fluid-base font-normal leading-relaxed",
+                  "transition-all duration-300",
+                  // Underline effect
+                  "after:content-[''] after:absolute after:bottom-[-2px] after:left-0",
+                  "after:w-0 after:h-px after:bg-gradient-to-r after:from-brand-blue after:to-transparent",
+                  "after:transition-[width] after:duration-300",
+                  "hover:text-white/95 hover:translate-x-1 hover:after:w-full"
+                )}
+              >
                 Home
               </Link>
-              <Link href="/about" className={styles.footerLink}>
+              <Link 
+                href="/about" 
+                className={cn(
+                  "relative w-fit text-white/65 font-secondary text-fluid-base font-normal leading-relaxed",
+                  "transition-all duration-300",
+                  "after:content-[''] after:absolute after:bottom-[-2px] after:left-0",
+                  "after:w-0 after:h-px after:bg-gradient-to-r after:from-brand-blue after:to-transparent",
+                  "after:transition-[width] after:duration-300",
+                  "hover:text-white/95 hover:translate-x-1 hover:after:w-full"
+                )}
+              >
                 About
               </Link>
-              <Link href="/projects" className={styles.footerLink}>
+              <Link 
+                href="/projects" 
+                className={cn(
+                  "relative w-fit text-white/65 font-secondary text-fluid-base font-normal leading-relaxed",
+                  "transition-all duration-300",
+                  "after:content-[''] after:absolute after:bottom-[-2px] after:left-0",
+                  "after:w-0 after:h-px after:bg-gradient-to-r after:from-brand-blue after:to-transparent",
+                  "after:transition-[width] after:duration-300",
+                  "hover:text-white/95 hover:translate-x-1 hover:after:w-full"
+                )}
+              >
                 Projects
               </Link>
             </nav>
           </div>
 
-          <div className={styles.footerSection}>
-            <h3 className={styles.footerHeading}>More</h3>
-            <nav className={styles.footerNav}>
-              <Link href="/contact" className={styles.footerLink}>
+          <div className={cn(
+            "flex flex-col gap-[clamp(16px,2vw,24px)] flex-1",
+            "max-lg:w-full max-lg:gap-5"
+          )}>
+            <h3 className="text-white/95 font-secondary text-fluid-lg font-semibold leading-normal m-0 tracking-[0.02em]">
+              More
+            </h3>
+            <nav className="flex flex-col gap-3">
+              <Link 
+                href="/contact" 
+                className={cn(
+                  "relative w-fit text-white/65 font-secondary text-fluid-base font-normal leading-relaxed",
+                  "transition-all duration-300",
+                  "after:content-[''] after:absolute after:bottom-[-2px] after:left-0",
+                  "after:w-0 after:h-px after:bg-gradient-to-r after:from-brand-blue after:to-transparent",
+                  "after:transition-[width] after:duration-300",
+                  "hover:text-white/95 hover:translate-x-1 hover:after:w-full"
+                )}
+              >
                 Contact
               </Link>
-              <Link href="/links" className={styles.footerLink}>
+              <Link 
+                href="/links" 
+                className={cn(
+                  "relative w-fit text-white/65 font-secondary text-fluid-base font-normal leading-relaxed",
+                  "transition-all duration-300",
+                  "after:content-[''] after:absolute after:bottom-[-2px] after:left-0",
+                  "after:w-0 after:h-px after:bg-gradient-to-r after:from-brand-blue after:to-transparent",
+                  "after:transition-[width] after:duration-300",
+                  "hover:text-white/95 hover:translate-x-1 hover:after:w-full"
+                )}
+              >
                 Links
               </Link>
             </nav>
           </div>
 
-          <div className={styles.footerSection}>
-            <h3 className={styles.footerHeading}>Social</h3>
-            <div className={styles.socialLinks}>
+          <div className={cn(
+            "flex flex-col gap-[clamp(16px,2vw,24px)] flex-1",
+            "max-lg:w-full max-lg:gap-5"
+          )}>
+            <h3 className="text-white/95 font-secondary text-fluid-lg font-semibold leading-normal m-0 tracking-[0.02em]">
+              Social
+            </h3>
+            <div className="flex gap-3 items-start">
               <IconButton
                 icon={<LinkedInIcon />}
                 tooltip="LinkedIn"

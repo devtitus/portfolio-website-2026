@@ -33,7 +33,7 @@ const TestimonialSection = () => {
       "max-lg:min-h-auto max-lg:py-[80px]"
     )}>
       <div className={cn(
-        "w-full max-w-[1400px] flex flex-row justify-center items-start",
+        "w-full max-w-[1400px] flex flex-row justify-between items-start",
         "gap-fluid-lg animate-fade-in-up motion-reduce:animate-none",
         "max-lg:flex-col max-lg:items-center"
       )}>
@@ -42,13 +42,6 @@ const TestimonialSection = () => {
           subtitle="What people say about working with me"
           align="center"
         />
-        
-        <p className={cn(
-          "text-white/70 font-secondary text-fluid-sm font-normal leading-relaxed",
-          "text-center mb-fluid-sm"
-        )}>
-          💡 Drag the front card to the left to shuffle through testimonials
-        </p>
         
         <div className={cn(
           "flex flex-col gap-fluid-md items-start w-1/2 pl-fluid-lg",

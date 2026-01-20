@@ -100,6 +100,11 @@ export default {
 				'2xl': '16px',
 			},
 
+			// Backdrop Saturate
+			backdropSaturate: {
+				180: '180%',
+			},
+
 			// Custom Animations
 			animation: {
 				aurora: "aurora 8s ease-in-out infinite alternate",
@@ -109,6 +114,7 @@ export default {
 				'spin-slow': 'spin 20s linear infinite',
 				'scroll-line': 'scrollLine 2s ease-in-out infinite',
 				'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+				'pulse-gentle-glow': 'pulseGentleGlow 3s ease-in-out infinite',
 			},
 			keyframes: {
 				aurora: {
@@ -160,6 +166,10 @@ export default {
 				pulseGlow: {
 					'0%, 100%': { opacity: '0.6' },
 					'50%': { opacity: '1' },
+				},
+				pulseGentleGlow: {
+					'0%, 100%': { opacity: '0.3' },
+					'50%': { opacity: '0.6' },
 				},
 			},
 

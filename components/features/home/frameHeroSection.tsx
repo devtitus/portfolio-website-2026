@@ -159,7 +159,7 @@ const FrameHeroSection = () => {
                 <canvas 
                     ref={canvasRef} 
                     className={cn(
-                        "absolute top-0 left-0 w-full h-full object-cover z-[1]",
+                        "absolute top-0 left-0 w-full h-full object-contain aspect-[16/9] z-[1] mt-[85px]",
                         "brightness-[0.7] contrast-[1.1] transition-[filter] duration-300",
                         "max-lg:brightness-[0.6] max-lg:contrast-[1.15]",
                         "max-sm:brightness-[0.5]"
@@ -177,13 +177,13 @@ const FrameHeroSection = () => {
                 )}>
                     <div className="pointer-events-auto w-full h-full flex flex-col justify-center items-center relative z-[11]">
                         <div className={cn(
-                            "flex flex-col items-start gap-12 z-10 relative pl-4 md:pl-20 w-full max-w-[1920px] mx-auto",
+                            "flex flex-col items-start gap-4 z-10 relative pl-4 md:pl-20 w-full max-w-[1920px] mx-auto",
                             "max-sm:items-center max-sm:pl-0 max-sm:px-4 max-sm:gap-8"
                         )}> 
                             {/* Hero Heading */}
                             <h1 className={cn(
                                 "flex flex-col text-white text-left font-primary",
-                                "text-[clamp(36px,5vw,64px)] font-semibold leading-[1.15] tracking-tight",
+                                "text-[clamp(18px,5vw,38px)] font-semibold leading-[1.4] tracking-tight",
                                 "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
                                 "animate-fade-in-up motion-reduce:animate-none",
                                 "max-lg:text-[clamp(28px,5vw,48px)]",
@@ -199,7 +199,7 @@ const FrameHeroSection = () => {
                                         speed={1.5}
                                         className={cn(
                                             "font-primary font-bold capitalize",
-                                            "text-[clamp(36px,5vw,64px)]",
+                                            "text-[clamp(18px,5vw,38px)]",
                                             "max-lg:text-[clamp(28px,5vw,48px)]",
                                             "max-sm:text-[clamp(22px,6vw,32px)]"
                                         )}
@@ -212,7 +212,7 @@ const FrameHeroSection = () => {
                             {/* Hero Description - hidden on mobile */}
                             <div className="flex flex-row items-center gap-3 max-lg:hidden">
                                 <span className={cn(
-                                    "text-left font-secondary text-[clamp(18px,2vw,24px)] font-normal",
+                                    "text-left font-secondary text-[clamp(16px,2vw,18px)] font-normal",
                                     "text-white/85 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]",
                                     "animate-fade-in-up motion-reduce:animate-none"
                                 )} style={{ animationDelay: '0.2s' }}>
@@ -229,7 +229,7 @@ const FrameHeroSection = () => {
                                     />
                                 </div>
                                 <span className={cn(
-                                    "text-left font-secondary text-[clamp(18px,2vw,24px)] font-normal",
+                                    "text-left font-secondary text-[clamp(16px,2vw,18px)] font-normal",
                                     "text-white/85 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]",
                                     "animate-fade-in-up motion-reduce:animate-none"
                                 )} style={{ animationDelay: '0.2s' }}>
@@ -239,13 +239,13 @@ const FrameHeroSection = () => {
 
                             {/* Hero Buttons */}
                             <div className={cn(
-                                "flex items-center gap-10",
+                                "flex items-center gap-10 mt-8",
                                 "max-lg:flex-col-reverse max-lg:gap-7",
                                 "max-sm:flex-col max-sm:gap-5 max-sm:w-full"
                             )}>
                                 <button className={cn(
                                     "group relative flex justify-center items-center",
-                                    "px-8 py-4 bg-white text-[#08080a] text-lg font-semibold rounded-lg",
+                                    "px-6 py-3 bg-white text-[#08080a] text-base font-normal rounded-[8px]",
                                     "overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
                                     "shadow-[0_0_0_1px_rgba(0,87,224,0.3),0_8px_24px_rgba(0,87,224,0.2)]",
                                     "hover:shadow-[0_0_0_1px_rgba(0,87,224,0.5),0_12px_32px_rgba(0,87,224,0.3)]",
@@ -263,7 +263,7 @@ const FrameHeroSection = () => {
                                     >
                                         <CopyIcon className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
                                     </button>
-                                    <span className="text-white/70 text-base font-medium tracking-wide w-[196px] group-hover:text-white/90 transition-colors">
+                                    <span className="text-white/80 text-base font-normal tracking-wide w-[196px] group-hover:text-white/90 transition-colors">
                                         {isCopied ? "Copied!" : email}
                                     </span>
                                 </div>
@@ -275,7 +275,7 @@ const FrameHeroSection = () => {
                 {/* Scroll Indicator */}
                 <div className={cn(
                     "absolute bottom-10 left-1/2 -translate-x-1/2 z-20",
-                    "text-white/60 text-xs uppercase tracking-[3px] font-medium",
+                    "text-white/60 text-xs uppercase tracking-[4px] font-normal",
                     "flex flex-col items-center gap-3 animate-pulse-glow",
                     "motion-reduce:animate-none",
                     // Line after
