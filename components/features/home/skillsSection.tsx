@@ -38,14 +38,17 @@ const SkillsSection = () => {
       )}>
         {/* Top Section with spinning image and header */}
         <div className="flex flex-col items-center gap-fluid-md">
-          <SkillSpinningImage className={cn(
-            "aspect-square animate-spin-slow motion-reduce:animate-none",
-            "shadow-blue-glow hover:shadow-blue-glow-lg transition-shadow duration-300",
+          <div className={cn(
+            "animate-spin-slow motion-reduce:animate-none",
             "w-[clamp(180px,25vw,340px)] h-[clamp(180px,25vw,340px)]",
             "max-sm:w-[clamp(180px,50vw,250px)] max-sm:h-[clamp(180px,50vw,250px)]",
             "sm:max-lg:w-[clamp(220px,30vw,280px)] sm:max-lg:h-[clamp(220px,30vw,280px)]",
             "lg:w-[clamp(280px,25vw,340px)] lg:h-[clamp(280px,25vw,340px)]"
-          )} />
+          )}>
+            <SkillSpinningImage className={cn(
+              "aspect-square w-full h-full",
+            )} />
+          </div>
           <SectionHeader 
             title="My Skills" 
             subtitle="Technologies and tools I work with"
