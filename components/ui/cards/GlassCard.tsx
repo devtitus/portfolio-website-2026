@@ -25,7 +25,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
   return (
     <div
       className={`
-        relative rounded-2xl
+        relative rounded-3xl
         bg-[rgba(255,255,255,0.04)]
         backdrop-blur-md
         border border-[rgba(255,255,255,0.08)]

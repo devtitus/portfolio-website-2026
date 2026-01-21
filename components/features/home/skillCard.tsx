@@ -8,22 +8,24 @@ interface SkillCardProps {
 
 const SkillCard = ({ skillName, skillIcon }: SkillCardProps) => {
   return (
-    <GlassCard 
-      hover 
-      glow 
+    <GlassCard
+      hover
+      glow
       padding="md"
       className="group flex flex-col items-center justify-center gap-3 min-w-[140px] transition-all duration-300"
     >
-      <div className="relative w-12 h-12 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(0,87,224,0.5)]">
-        <img 
-          src={skillIcon} 
-          alt={`${skillName} icon`}
-          className="w-full h-full object-contain"
-        />
+      <div className="flex flex-col items-center justify-center gap-[clamp(4px,1vw,12px)]">
+        <div className="relative w-12 h-12 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(0,87,224,0.5)]">
+          <img
+            src={skillIcon}
+            alt={`${skillName} icon`}
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <span className="text-white/80 text-[clamp(12px,1.5vw,16px)] font-medium text-center group-hover:text-white transition-colors duration-300">
+          {skillName}
+        </span>
       </div>
-      <span className="text-white/80 text-sm font-medium text-center group-hover:text-white transition-colors duration-300">
-        {skillName}
-      </span>
     </GlassCard>
   );
 };

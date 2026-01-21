@@ -26,7 +26,7 @@ const GlassButton: React.FC<GlassButtonProps> = ({
       disabled={disabled}
       className={`
         group relative inline-flex items-center justify-center gap-2
-        px-6 py-3 rounded-lg
+        px-6 py-4 rounded-sm
         bg-[rgba(255,255,255,0.05)] backdrop-blur-sm
         border border-[rgba(255,255,255,0.1)]
         text-white font-medium text-sm
@@ -42,7 +42,7 @@ const GlassButton: React.FC<GlassButtonProps> = ({
     >
       {/* Blue gradient overlay on hover */}
       <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[rgba(0,87,224,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      
+
       {/* Content */}
       {icon && iconPosition === 'left' && (
         <span className="relative z-10 transition-transform group-hover:scale-110">
