@@ -374,3 +374,21 @@ body::-webkit-scrollbar-track {
     transform: translate(calc(-50% - 0.5rem));
   }
 }
+
+/* Testimonial Carousel Animation */
+@keyframes scroll-testimonials {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-33.333%));
+  }
+}
+
+.animate-scroll-testimonials {
+  animation: scroll-testimonials linear infinite;
+}
+
+.animate-scroll-testimonials.paused {
+  animation-play-state: paused;
+}

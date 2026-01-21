@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { TestimonialStack } from "@/components/ui/testimonial-cards";
+import { TestimonialCarousel } from "@/components/ui/testimonial-carousel";
 import { SectionHeader } from "@/components/ui";
 import {
   getTestimonials,
@@ -26,30 +26,23 @@ const TestimonialSection = () => {
 
   return (
     <section className={cn(
-      "min-h-dvh px-[clamp(16px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+      "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
       "flex flex-col justify-center items-center overflow-hidden",
       "scroll-mt-20", // Navbar clearance
       "max-sm:min-h-auto max-sm:py-[60px]",
       "max-lg:min-h-auto max-lg:py-[80px]"
     )}>
       <div className={cn(
-        "w-full max-w-[1400px] flex flex-row justify-between items-start",
-        "gap-fluid-lg animate-fade-in-up motion-reduce:animate-none",
-        "max-lg:flex-col max-lg:items-center"
+        "w-full max-w-[1400px] flex flex-col items-center",
+        "gap-12 animate-fade-in-up motion-reduce:animate-none"
       )}>
-        <SectionHeader 
-          title="Testimonials" 
+        <SectionHeader
+          title="Testimonials"
           subtitle="What people say about working with me"
           align="center"
         />
-        
-        <div className={cn(
-          "flex flex-col gap-fluid-md items-start w-1/2 pl-fluid-lg",
-          "max-lg:w-full max-lg:pl-0 max-lg:items-center",
-          "max-sm:pl-0"
-        )}>
-          <TestimonialStack testimonials={testimonials} />
-        </div>
+
+        <TestimonialCarousel testimonials={testimonials} />
       </div>
     </section>
   );
