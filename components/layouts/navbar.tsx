@@ -46,8 +46,8 @@ const Navbar: React.FC = () => {
     <>
       <header className={cn(
         "fixed top-0 left-0 right-0 w-full z-[1000]",
-        "px-[clamp(40px,5vw,60px)] py-[clamp(10px,1vw,18px)]",
-        "flex justify-between items-center",
+        "px-[clamp(24px,4vw,60px)] py-[clamp(10px,1vw,18px)]",
+        "flex justify-between items-center justify-center",
         "bg-gradient-to-b from-black/80 to-black/40",
         "backdrop-blur-xl backdrop-saturate-180",
         "border-b border-white/20",
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
         // Mobile
         "max-lg:px-4 max-lg:py-3 max-lg:bg-black/90 max-lg:backdrop-blur-2xl"
       )}>
-        <div className="w-full flex flex-row items-center justify-between gap-6">
+        <div className="w-full flex flex-row items-center justify-between gap-6 max-w-[1400px]">
           <Link href="/">
             <Image
               src={"/navbar/logo.png"}

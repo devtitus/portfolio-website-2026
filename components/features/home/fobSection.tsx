@@ -9,6 +9,7 @@ import {
   TextRevealCardTitle,
 } from "@/components/ui/text-reveal-card";
 import { MapPinIcon, MailIcon, TechnologiesIcon } from "@/lib/utils/icons";
+import { SectionHeader } from "@/components/ui";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -405,22 +406,21 @@ const FobSection = () => {
   ];
   return (
     <section className={cn(
-      "min-h-dvh px-[clamp(18px,5vw,60px)] py-[clamp(60px,10vh,100px)]",
+      "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
       "flex flex-col justify-center items-center overflow-hidden",
       "scroll-mt-20", // Navbar clearance
       "max-sm:min-h-auto max-sm:py-[60px]",
       "max-lg:min-h-auto max-lg:py-[80px]"
     )}>
       <div className={cn(
-        "w-full flex flex-col justify-center gap-fluid-lg",
-        "animate-fade-in-up motion-reduce:animate-none"
+        "w-full flex flex-col justify-center gap-fluid-md",
+        "animate-fade-in-up motion-reduce:animate-none max-w-[1400px]"
       )}>
-        <h2 className={cn(
-          "text-white text-center font-primary text-[clamp(20px,2.75vw,38px)] font-medium",
-          "leading-tight tracking-tight"
-        )}>
-          What I Bring to the Table
-        </h2>
+        <SectionHeader 
+          title="What I bring to the table" 
+          subtitle="A showcase of my recent work"
+          align="center"
+        />
         
         {/* Bento Grid */}
         <div className={cn(

@@ -26,7 +26,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div
       className={`
-        flex flex-col gap-3 mb-12
+        flex flex-col gap-1 mb-6
         ${alignmentStyles[align]}
         ${className}
       `}
@@ -41,7 +41,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {/* Title */}
       <h2
         className={`
-          text-4xl md:text-5xl lg:text-6xl font-semibold
+          text-[clamp(20px,2.75vw,38px)] font-semibold
           ${gradient 
             ? 'bg-gradient-to-r from-white via-[#0057E0] to-white bg-clip-text text-transparent' 
             : 'text-white'
@@ -55,7 +55,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       {/* Subtitle */}
       {subtitle && (
-        <p className="text-lg md:text-xl text-white/70 max-w-2xl animate-[fadeInUp_0.8s_ease-out_0.1s] opacity-0 [animation-fill-mode:forwards]">
+        <p className="text-[clamp(16px,1.75vw,20px)] text-white/70 max-w-2xl animate-[fadeInUp_0.8s_ease-out_0.1s] opacity-0 [animation-fill-mode:forwards]">
           {subtitle}
         </p>
       )}

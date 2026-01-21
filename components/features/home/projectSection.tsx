@@ -6,7 +6,7 @@ import { SectionHeader, PrimaryButton } from "@/components/ui";
 const ProjectSection = () => {
   return (
     <section className={cn(
-      "min-h-dvh px-[clamp(16px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+      "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
       "flex flex-col justify-center items-center overflow-hidden",
       "scroll-mt-20", // Navbar clearance
       "max-sm:min-h-auto max-sm:py-[60px]",
@@ -25,7 +25,7 @@ const ProjectSection = () => {
         {/* Project Grid */}
         <div className={cn(
           "w-full grid gap-fluid-md",
-          "grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"
+          "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
         )}>
           <ProjectCard />
           <ProjectCard />
@@ -33,7 +33,7 @@ const ProjectSection = () => {
           <ProjectCard />
         </div>
         
-        <PrimaryButton variant="outline" size="md" className="mt-8">
+        <PrimaryButton variant="outline" size="md" className="mt-6">
           View All Projects
         </PrimaryButton>
       </div>

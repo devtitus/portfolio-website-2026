@@ -177,8 +177,8 @@ const FrameHeroSection = () => {
                 )}>
                     <div className="pointer-events-auto w-full h-full flex flex-col justify-center items-center relative z-[11]">
                         <div className={cn(
-                            "flex flex-col items-start gap-4 z-10 relative pl-4 md:pl-20 w-full max-w-[1920px] mx-auto",
-                            "max-sm:items-center max-sm:pl-0 max-sm:px-4 max-sm:gap-8"
+                            "flex flex-col items-start gap-4 z-10 relative pl-4 md:pl-[clamp(24px,4vw,60px)] xl:pl-0 w-full max-w-[1920px] mx-auto",
+                            "max-sm:items-center max-sm:pl-0 max-sm:px-4 max-sm:gap-8 max-w-[1400px]"
                         )}> 
                             {/* Hero Heading */}
                             <h1 className={cn(
