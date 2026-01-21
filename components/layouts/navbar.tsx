@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
     <>
       <header className={cn(
         "fixed top-0 left-0 right-0 w-full z-[1000]",
-        "px-[clamp(40px,5vw,60px)] py-[clamp(16px,1.5vw,24px)]",
+        "px-[clamp(40px,5vw,60px)] py-[clamp(10px,1vw,18px)]",
         "flex justify-between items-center",
         "bg-gradient-to-b from-black/80 to-black/40",
         "backdrop-blur-xl backdrop-saturate-180",

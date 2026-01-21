@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
 import { motion } from "motion/react";
 import { HTMLAttributes, useState } from "react";
-import styles from "@/styles/components/scriptCopyBtn.module.css";
 
 interface ScriptCopyBtnProps extends HTMLAttributes<HTMLDivElement> {
   showMultiplePackageOptions?: boolean;
@@ -33,31 +32,38 @@ export function ScriptCopyBtn({
 
   return (
     <div className={cn("flex items-center justify-center", className)}>
-      <div className={`w-full ${styles.copyContainer}`}>
+      <div className={cn(
+        "w-full",
+        "max-lg:flex max-lg:flex-col max-lg:items-start max-lg:gap-5"
+      )}>
         <div className="flex items-center justify-between">
           {showMultiplePackageOptions && (
             <div className="relative">
-              <div
-                className={`${styles.packageManagerWrapper} inline-flex overflow-hidden rounded-md border border-border text-xs`}
-              >
+              <div className={cn(
+                "inline-flex overflow-hidden rounded",
+                "border border-white/[0.12] text-xs"
+              )}>
                 {packageManagers.map((pm, index) => (
                   <div
                     key={pm}
-                    className={`${styles.packageManager} flex items-center`}
+                    className="flex items-center "
                   >
                     {index > 0 && (
                       <div className="h-4 w-px bg-border" aria-hidden="true" />
                     )}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className={`${
-                        styles.packageManagerButton
-                      } relative rounded-none bg-background px-2 py-1 hover:bg-background ${
+                    <div
+                      className={cn(
+                        "relative bg-background px-2 py-1 hover:bg-background",
+                        "font-primary font-normal capitalize tracking-[0.1em]",
+                        "text-white/65 border-none",
+                        // Responsive font size
+                        "text-[clamp(12px,1.5vw,14px)]",
+                        // Responsive padding
+                        "px-[clamp(8px,1.5vw,12px)] py-[clamp(6px,0.5vw,8px)]",
                         packageManager === pm
                           ? "text-primary"
                           : "text-muted-foreground"
-                      }`}
+                      )}
                       onClick={() => setPackageManager(pm)}
                     >
                       {pm}
@@ -73,42 +79,56 @@ export function ScriptCopyBtn({
                           }}
                         />
                       )}
-                    </Button>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           )}
         </div>
-        <div
-          className={`${styles.emailTextWrapper} mt-0 relative flex items-center`}
-        >
-          <div className="flex-nowrap grow font-mono">
-            <pre
-              className={`${styles.copyCommand} rounded-md border border-border bg-transparent p-2 px-4 font-mono dark:bg-black`}
-            >
+        <div className={cn(
+          "relative flex items-center",
+          "lg:mt-[clamp(22px,1vw,26px)]"
+        )}>
+          <div className="flex-nowrap grow">
+            <pre className={cn(
+              "rounded-sm border border-white/[0.12] bg-transparent dark:bg-black",
+              "font-primary font-normal tracking-[0.1em] text-white/70",
+              "overflow-hidden",
+              "shadow-[inset_0_-20px_80px_-20px_rgba(255,255,255,0.12)]",
+              // Responsive padding and font size
+              "p-[clamp(8px,1vw,12px)] px-[clamp(12px,1.5vw,16px)]",
+              "text-[clamp(13px,1.25vw,14px)]",
+              // Selection styling
+              "selection:bg-brand-blue selection:text-white"
+            )}>
               {command}
             </pre>
           </div>
           <Button
             variant="outline"
             size="icon"
-            className={`${styles.copyButton} relative ml-2 rounded-md`}
+            className={cn(
+              "relative ml-2 rounded-sm",
+              "border-[0.5px] border-white/[0.12]",
+              // Responsive padding
+              "p-[clamp(19px,2vw,23px)]"
+            )}
             onClick={copyToClipboard}
             aria-label={copied ? "Copied" : "Copy to clipboard"}
           >
             <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
             <Copy
-              className={`${styles.Icon} h-4 w-4 transition-all duration-300 ${
+              className={cn(
+                "w-5 h-5 aspect-square transition-all duration-300",
                 copied ? "scale-0" : "scale-100"
-              }`}
+              )}
             />
             <Check
-              className={`${
-                styles.Icon
-              } absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
+              className={cn(
+                "absolute inset-0 m-auto w-5 h-5 aspect-square transition-all duration-300",
                 copied ? "scale-100" : "scale-0"
-              }`}
+              )}
             />
           </Button>
         </div>

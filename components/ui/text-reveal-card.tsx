@@ -68,14 +68,14 @@ export const TextRevealCard = ({
       onTouchMove={touchMoveHandler}
       ref={cardRef}
       className={cn(
-        "bg-[transparent] border border-none w-[40rem] rounded-lg relative overflow-hidden",
+        "bg-[transparent] border border-none w-full h-full rounded-lg relative overflow-hidden flex flex-col justify-between",
         className
       )}
     >
       {children}
 
       <div
-        className={`${styles.textRevealWrapper} h-40  relative flex items-center overflow-hidden`}
+        className={`${styles.textRevealWrapper} h-40 relative flex items-center overflow-hidden`}
       >
         <motion.div
           style={{
@@ -136,7 +136,7 @@ export const TextRevealCardTitle = ({
   className?: string;
 }) => {
   return (
-    <h2 className={twMerge(`text-white text-lg ${styles.title}`, className)}>
+    <h2 className={twMerge(`text-white text-lg mt-3 ${styles.title}`, className)}>
       {children}
     </h2>
   );

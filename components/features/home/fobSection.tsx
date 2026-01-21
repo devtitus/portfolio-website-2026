@@ -405,7 +405,7 @@ const FobSection = () => {
   ];
   return (
     <section className={cn(
-      "min-h-dvh px-[clamp(16px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+      "min-h-dvh px-[clamp(18px,5vw,60px)] py-[clamp(60px,10vh,100px)]",
       "flex flex-col justify-center items-center overflow-hidden",
       "scroll-mt-20", // Navbar clearance
       "max-sm:min-h-auto max-sm:py-[60px]",
@@ -416,46 +416,46 @@ const FobSection = () => {
         "animate-fade-in-up motion-reduce:animate-none"
       )}>
         <h2 className={cn(
-          "text-white text-center font-primary text-fluid-3xl font-medium",
+          "text-white text-center font-primary text-[clamp(20px,2.75vw,38px)] font-medium",
           "leading-tight tracking-tight"
         )}>
-          Focusing on the Best
+          What I Bring to the Table
         </h2>
         
         {/* Bento Grid */}
         <div className={cn(
-          "grid gap-fluid-md",
+          "grid gap-6",
           "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
           "lg:grid-rows-2 lg:h-[clamp(360px,40vh,500px)]",
           "xl:h-[clamp(450px,45vh,550px)]"
         )}>
           {/* Column 1 - Globe Card */}
           <div className={cn(
-            "lg:row-span-2 rounded-2xl p-fluid-md",
-            "bg-glass-bg border border-glass-border backdrop-blur-xl",
-            "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
-            "transition-all duration-300 hover:-translate-y-0.5",
-            "flex flex-col gap-fluid-md overflow-hidden relative",
+            "lg:row-span-2 rounded-2xl p-4",
+            "bg-white/[0.03] border border-white/[0.12] backdrop-blur-2xl backdrop-saturate-150",
+            "shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_48px_rgba(0,87,224,0.2)]",
+            "hover:bg-white/[0.06] hover:border-brand-blue/40",
+            "transition-all duration-300 hover:-translate-y-1",
+            "flex flex-col gap-6 overflow-hidden relative",
             "max-sm:min-h-[400px] sm:max-lg:col-span-2",
             "group"
           )}>
-            <div className="flex-1 relative shadow-blue-glow">
+            <div className="flex-1 relative">
               <World data={sampleArcs} globeConfig={globeConfig} />
             </div>
             <div className={cn(
-              "flex flex-col gap-2",
+              "flex flex-col gap-1",
               "lg:absolute lg:bottom-6 lg:left-6 lg:right-6",
               "lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0",
               "transition-all duration-300",
               "max-lg:static max-lg:opacity-100 max-lg:translate-y-0"
             )}>
-              <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
+              <h3 className="text-white/95 font-primary text-fluid-md font-semibold leading-tight inline-flex items-center gap-2">
                 <MapPinIcon className="w-6 h-6 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
-                Remote
+                Available Worldwide
               </h3>
-              <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
-                I have worked with multiple technologies and frameworks to build
-                scalable and efficient applications.
+              <p className="text-white/75 font-secondary text-fluid-sm font-normal leading-tight">
+                Remote-first developer ready to collaborate across time zones. Building digital solutions from anywhere in the world.
               </p>
             </div>
           </div>
@@ -467,10 +467,11 @@ const FobSection = () => {
           )}>
             {/* Bento 2 - Email */}
             <div className={cn(
-              "lg:h-[40%] rounded-2xl p-fluid-md",
-              "bg-glass-bg border border-glass-border backdrop-blur-xl",
-              "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
-              "transition-all duration-300 hover:-translate-y-0.5",
+              "lg:h-[40%] rounded-2xl p-4",
+              "bg-white/[0.03] border border-white/[0.12] backdrop-blur-2xl backdrop-saturate-150",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_48px_rgba(0,87,224,0.2)]",
+              "hover:bg-white/[0.06] hover:border-brand-blue/40",
+              "transition-all duration-300 hover:-translate-y-1",
               "flex flex-col gap-3",
               "sm:max-lg:h-full"
             )}>
@@ -483,46 +484,43 @@ const FobSection = () => {
               <div className="flex flex-col gap-2 max-lg:mt-4 lg:hidden">
                 <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
                   <MailIcon className="w-7 h-7 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
-                  Email
+                  Get in Touch
                 </h3>
                 <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
-                  I have worked with multiple technologies and frameworks to
-                  build scalable and efficient applications.
+                  Drop me an email and I'll get back to you within 24 hours. Let's discuss your next project.
                 </p>
               </div>
             </div>
             
             {/* Bento 3 - Text Reveal */}
             <div className={cn(
-              "lg:h-[60%] rounded-2xl p-fluid-md",
-              "bg-glass-bg border border-glass-border backdrop-blur-xl",
-              "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
-              "transition-all duration-300 hover:-translate-y-0.5",
-              "flex items-center",
+              "lg:h-[60%] rounded-2xl p-4",
+              "bg-white/[0.03] border border-white/[0.12] backdrop-blur-2xl backdrop-saturate-150",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_48px_rgba(0,87,224,0.2)]",
+              "hover:bg-white/[0.06] hover:border-brand-blue/40",
+              "transition-all duration-300 hover:-translate-y-1",
+              "flex items-start",
               "sm:max-lg:h-full"
             )}>
               <TextRevealCard
-                text="You know the business"
-                revealText="I know the chemistry"
+                text="Ideas into Reality"
+                revealText="Code with Purpose"
               >
                 <TextRevealCardTitle>
-                  Sometimes, you just need to see it.
+                  Hover to reveal my approach.
                 </TextRevealCardTitle>
-                <TextRevealCardDescription>
-                  This is a text reveal card. Hover over the card to reveal the
-                  hidden text.
-                </TextRevealCardDescription>
               </TextRevealCard>
             </div>
           </div>
           
           {/* Column 3 - Technologies */}
           <div className={cn(
-            "lg:row-span-2 rounded-2xl p-fluid-md",
-            "bg-glass-bg border border-glass-border backdrop-blur-xl",
-            "shadow-glass hover:shadow-glass-hover hover:border-brand-blue/30",
-            "transition-all duration-300 hover:-translate-y-0.5",
-            "flex flex-col gap-fluid-md overflow-hidden relative",
+            "lg:row-span-2 rounded-2xl p-4",
+            "bg-white/[0.03] border border-white/[0.12] backdrop-blur-2xl backdrop-saturate-150",
+            "shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_48px_rgba(0,87,224,0.2)]",
+            "hover:bg-white/[0.06] hover:border-brand-blue/40",
+            "transition-all duration-300 hover:-translate-y-1",
+            "flex flex-col gap-6 overflow-hidden relative",
             "max-sm:min-h-[350px] sm:max-lg:col-span-2",
             "group"
           )}>
@@ -555,13 +553,12 @@ const FobSection = () => {
               "transition-all duration-300",
               "max-lg:static max-lg:opacity-100 max-lg:translate-y-0"
             )}>
-              <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
+              <h3 className="text-white/95 font-primary text-fluid-md font-semibold leading-tight inline-flex items-center gap-2">
                 <TechnologiesIcon className="w-6 h-6 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
-                Technologies
+                Tech Stack
               </h3>
-              <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
-                I have worked with multiple technologies and frameworks to build
-                scalable and efficient applications.
+              <p className="text-white/75 font-secondary text-fluid-sm font-normal leading-tight">
+                Modern tools and frameworks I use to build fast, scalable, and beautiful web applications.
               </p>
             </div>
           </div>
@@ -579,23 +576,43 @@ const customCommandMap = {
 
 const testimonials = [
   {
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    name: "Charles Dickens",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    name: "React",
   },
   {
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    name: "William Shakespeare",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    name: "Next.js",
   },
   {
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    name: "Edgar Allan Poe",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    name: "TypeScript",
   },
   {
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    name: "Jane Austen",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+    name: "Tailwind CSS",
   },
   {
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    name: "Herman Melville",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    name: "Node.js",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    name: "Python",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    name: "MongoDB",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    name: "PostgreSQL",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    name: "Git",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    name: "Docker",
   },
 ];
