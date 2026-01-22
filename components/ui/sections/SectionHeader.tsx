@@ -41,9 +41,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {/* Title */}
       <h2
         className={`
-          text-[clamp(20px,2.75vw,38px)] font-semibold
-          ${gradient 
-            ? 'bg-gradient-to-r from-white via-[#0057E0] to-white bg-clip-text text-transparent' 
+          text-[clamp(24px,2.75vw,38px)] font-semibold
+          ${gradient
+            ? 'bg-gradient-to-r from-white via-[#0057E0] to-white bg-clip-text text-transparent'
             : 'text-white'
           }
           animate-[fadeInUp_0.8s_ease-out]

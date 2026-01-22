@@ -64,7 +64,7 @@ const ContactSection = ({
         "max-lg:py-[80px]"
       )}>
         <div className={cn(
-          "flex flex-col gap-fluid-md items-center"
+          "flex flex-col gap-[clamp(26px,2vw,32px)] items-center"
         )}>
           <div className="flex flex-col items-center gap-fluid-xs">
             {headingHtml || (
@@ -73,7 +73,7 @@ const ContactSection = ({
                   "max-w-[min(900px,90vw)] text-white text-center",
                   "font-primary font-medium leading-tight tracking-tight",
                   "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
-                  "text-[clamp(24px,3.2vw,48px)]"
+                  "text-[clamp(26px,3.2vw,48px)]"
                 )}>
                   From Concept To{" "}
                   <span className={cn(
@@ -85,7 +85,7 @@ const ContactSection = ({
                   "max-w-[min(900px,90vw)] text-white text-center",
                   "font-primary font-medium leading-tight tracking-tight",
                   "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
-                  "text-[clamp(24px,3.2vw,48px)]"
+                  "text-[clamp(26px,3.2vw,48px)]"
                 )}>
                   Let's Make It{" "}
                   <span className={cn(
@@ -107,7 +107,7 @@ const ContactSection = ({
 
           <p className={cn(
             "text-white/90 text-center font-secondary",
-            "text-[clamp(20px,1.5vw,22px)] font-medium leading-relaxed tracking-tight",
+            "text-[clamp(18px,1.5vw,22px)] font-medium leading-relaxed tracking-tight",
           )}>
             {subHeading || "Ready to bring your ideas to life?"}
           </p>

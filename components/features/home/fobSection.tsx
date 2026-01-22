@@ -416,12 +416,12 @@ const FobSection = () => {
         "w-full flex flex-col justify-center gap-fluid-md",
         "animate-fade-in-up motion-reduce:animate-none max-w-[1400px]"
       )}>
-        <SectionHeader 
-          title="What I bring to the table" 
+        <SectionHeader
+          title="What I bring to the table"
           subtitle="A showcase of my recent work"
           align="center"
         />
-        
+
         {/* Bento Grid */}
         <div className={cn(
           "grid gap-6",
@@ -450,16 +450,16 @@ const FobSection = () => {
               "transition-all duration-300",
               "max-lg:static max-lg:opacity-100 max-lg:translate-y-0"
             )}>
-              <h3 className="text-white/95 font-primary text-fluid-md font-semibold leading-tight inline-flex items-center gap-2">
+              <h3 className="text-white/95 font-primary text-[clamp(18px,1.25vw,20px)] font-semibold leading-tight inline-flex items-center gap-2">
                 <MapPinIcon className="w-6 h-6 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
                 Available Worldwide
               </h3>
-              <p className="text-white/75 font-secondary text-fluid-sm font-normal leading-tight">
+              <p className="text-white/75 font-secondary text-[clamp(16px,1vw,18px)] font-normal leading-tight">
                 Remote-first developer ready to collaborate across time zones. Building digital solutions from anywhere in the world.
               </p>
             </div>
           </div>
-          
+
           {/* Column 2 Wrapper */}
           <div className={cn(
             "lg:row-span-2 flex flex-col gap-fluid-md",
@@ -482,16 +482,16 @@ const FobSection = () => {
                 className="mt-0"
               />
               <div className="flex flex-col gap-2 max-lg:mt-4 lg:hidden">
-                <h3 className="text-white/95 font-primary text-fluid-xl font-semibold leading-tight inline-flex items-center gap-2">
+                <h3 className="text-white/95 font-primary text-[clamp(18px,1.25vw,20px)] font-semibold leading-tight inline-flex items-center gap-2">
                   <MailIcon className="w-7 h-7 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
                   Get in Touch
                 </h3>
-                <p className="text-white/75 font-secondary text-fluid-base font-normal leading-relaxed">
+                <p className="text-white/75 font-secondary text-[clamp(16px,1vw,18px)] font-normal leading-relaxed">
                   Drop me an email and I'll get back to you within 24 hours. Let's discuss your next project.
                 </p>
               </div>
             </div>
-            
+
             {/* Bento 3 - Text Reveal */}
             <div className={cn(
               "lg:h-[60%] rounded-2xl p-4",
@@ -512,7 +512,7 @@ const FobSection = () => {
               </TextRevealCard>
             </div>
           </div>
-          
+
           {/* Column 3 - Technologies */}
           <div className={cn(
             "lg:row-span-2 rounded-2xl p-4",
@@ -553,11 +553,11 @@ const FobSection = () => {
               "transition-all duration-300",
               "max-lg:static max-lg:opacity-100 max-lg:translate-y-0"
             )}>
-              <h3 className="text-white/95 font-primary text-fluid-md font-semibold leading-tight inline-flex items-center gap-2">
+              <h3 className="text-white/95 font-primary text-[clamp(18px,1.25vw,20px)] font-semibold leading-tight inline-flex items-center gap-2">
                 <TechnologiesIcon className="w-6 h-6 text-brand-blue drop-shadow-[0_0_8px_rgba(0,87,224,0.4)]" />
                 Tech Stack
               </h3>
-              <p className="text-white/75 font-secondary text-fluid-sm font-normal leading-tight">
+              <p className="text-white/75 font-secondary text-[clamp(16px,1vw,18px)] font-normal leading-tight">
                 Modern tools and frameworks I use to build fast, scalable, and beautiful web applications.
               </p>
             </div>

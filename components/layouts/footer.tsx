@@ -36,13 +36,14 @@ const Footer: React.FC = () => {
       "max-lg:px-4 max-lg:py-8 max-lg:pb-6"
     )}>
       <div className={cn(
-        "flex justify-center items-start gap-[clamp(2rem,10vw,8rem)]",
+        "flex justify-center items-start gap-[clamp(14px,1vw,24px)]",
         "animate-fade-in-up motion-reduce:animate-none",
-        "max-lg:flex-col w-full max-w-[1400px]"
+        "max-lg:flex-col w-full max-w-[1400px]",
+        "max-sm:flex-col-reverse"
       )}>
         <div className={cn(
           "flex flex-col gap-[clamp(16px,2vw,24px)] flex-1",
-          "max-lg:w-full"
+          "max-lg:w-full max-sm:items-center"
         )}>
           <div className="flex items-center">
             <Image
@@ -61,7 +62,7 @@ const Footer: React.FC = () => {
           <p className={cn(
             "text-white/75 font-secondary text-[clamp(16px,1.25vw,18px)] font-normal leading-relaxed",
             "max-w-[320px] mb-4",
-            "max-lg:max-w-full max-lg:m-0"
+            "max-lg:max-w-full max-lg:m-0 max-sm:text-center"
           )}>
             I&apos;m Melwyn - a full-stack developer, freelancer & problem
             solver. Thanks for checking out my site!
@@ -73,16 +74,18 @@ const Footer: React.FC = () => {
 
         <div className={cn(
           "flex gap-[clamp(2rem,8vw,6rem)] flex-1",
-          "max-lg:w-full max-lg:mt-10 max-lg:mb-6"
+          "max-lg:w-full max-lg:mt-6 max-lg:mb-6",
+          "max-sm:grid max-sm:grid-cols-3 max-sm:gap-[clamp(2rem,8vw,6rem)]"
         )}>
           <div className={cn(
             "flex flex-col gap-[clamp(12px,2vw,16px)] flex-1",
-            "max-lg:w-full max-lg:gap-4"
+            "max-lg:w-full max-lg:gap-4",
+            "max-sm:items-center"
           )}>
             <h3 className="text-white/95 font-secondary text-[clamp(16px,1.5vw,18px)] font-medium leading-normal m-0 tracking-[0.02em]">
               General
             </h3>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-3 max-sm:items-center">
               <Link
                 href="/"
                 className={cn(
@@ -128,12 +131,13 @@ const Footer: React.FC = () => {
 
           <div className={cn(
             "flex flex-col gap-[clamp(12px,2vw,16px)] flex-1",
-            "max-lg:w-full max-lg:gap-4"
+            "max-lg:w-full max-lg:gap-4",
+            "max-sm:items-center"
           )}>
             <h3 className="text-white/95 font-secondary text-[clamp(16px,1.5vw,18px)] font-medium leading-normal m-0 tracking-[0.02em]">
               More
             </h3>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-3 max-sm:items-center">
               <Link
                 href="/contact"
                 className={cn(
@@ -165,12 +169,12 @@ const Footer: React.FC = () => {
 
           <div className={cn(
             "flex flex-col gap-[clamp(12px,2vw,16px)] flex-1",
-            "max-lg:w-full max-lg:gap-4"
+            "max-lg:w-full max-lg:gap-4 max-sm:items-center"
           )}>
             <h3 className="text-white/95 font-secondary text-[clamp(16px,1.5vw,18px)] font-medium leading-normal m-0 tracking-[0.02em]">
               Social
             </h3>
-            <div className="flex gap-3 items-start">
+            <div className="flex gap-3 items-start max-sm:flex-col">
               <IconButton
                 icon={<LinkedInIcon />}
                 tooltip="LinkedIn"

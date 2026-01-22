@@ -164,7 +164,7 @@ const FrameHeroSection = () => {
                 <canvas
                     ref={canvasRef}
                     className={cn(
-                        "absolute top-0 left-0 w-full h-full object-contain aspect-[16/9] z-[1] mt-[62px] lg:mt-[70px]",
+                        "absolute top-0 left-0 w-full h-full object-contain aspect-[16/9] z-[1] mt-[64px] lg:mt-[70px]",
                         "brightness-[0.7] contrast-[1.1] transition-[filter] duration-300",
                         "max-lg:brightness-[0.6] max-lg:contrast-[1.15]",
                         "max-sm:brightness-[0.5]"
@@ -188,11 +188,11 @@ const FrameHeroSection = () => {
                             {/* Hero Heading */}
                             <h1 className={cn(
                                 "flex flex-col text-white text-left font-primary",
-                                "text-[clamp(18px,3.25vw,44px)] font-semibold leading-[1.4] tracking-tight",
+                                "text-[clamp(20px,3.25vw,44px)] font-semibold leading-[1.4] tracking-tight",
                                 "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
                                 "animate-fade-in-up motion-reduce:animate-none",
-                                "max-lg:text-[clamp(28px,5vw,48px)]",
-                                "max-sm:text-[clamp(22px,6vw,32px)] max-sm:text-center"
+                                "max-lg:text-[clamp(20px,3.25vw,44px)]",
+                                "max-sm:text-[clamp(28px,6vw,32px)] max-sm:text-center"
                             )}>
                                 <span className="inline-block">
                                     I help founders turn ideas{" "}
@@ -204,9 +204,9 @@ const FrameHeroSection = () => {
                                         speed={1.5}
                                         className={cn(
                                             "font-primary font-bold capitalize",
-                                            "text-[clamp(18px,3.25vw,44px)]",
-                                            "max-lg:text-[clamp(28px,5vw,48px)]",
-                                            "max-sm:text-[clamp(22px,6vw,32px)]"
+                                            "text-[clamp(20px,3.25vw,44px)]",
+                                            "max-lg:text-[clamp(20px,3.25vw,44px)]",
+                                            "max-sm:text-[clamp(30px,6vw,32px)]"
                                         )}
                                     >
                                         Digital Experiences
@@ -215,7 +215,7 @@ const FrameHeroSection = () => {
                             </h1>
 
                             {/* Hero Description - hidden on mobile */}
-                            <div className="flex flex-row items-center gap-3 max-lg:hidden">
+                            <div className="flex flex-row items-center gap-3 max-sm:flex max-sm:flex-col">
                                 <span className={cn(
                                     "text-left font-secondary text-[clamp(16px,1.5vw,20px)] font-normal",
                                     "text-white/85 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]",

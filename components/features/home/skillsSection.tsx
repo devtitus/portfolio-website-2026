@@ -58,7 +58,7 @@ const SkillsSection = () => {
 
         {/* Skills Grid */}
         <div className={cn(
-          "w-full max-w-[1200px] grid gap-fluid-md",
+          "w-full max-w-[1400px] grid gap-fluid-md",
           "grid-cols-2 xs:grid-cols-2 sm:grid-cols-4 lg:grid-cols-[repeat(auto-fit,minmax(140px,1fr))]",
           "max-sm:gap-fluid-sm"
         )}>
