@@ -269,6 +269,18 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
+@media (max-width: 640px) {
+  .commandFooter {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .navigationControls {
+    display: none; /* Hide complex controls on mobile to save space */
+  }
+}
+
 .socialIcons {
   display: flex;
   gap: 16px;

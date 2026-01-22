@@ -71,7 +71,7 @@ const ContactSection = ({
               <>
                 <span className={cn(
                   "max-w-[min(900px,90vw)] text-white text-center",
-                  "font-primary text-fluid-4xl font-medium leading-tight tracking-tight",
+                  "font-primary font-medium leading-tight tracking-tight",
                   "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
                   "text-[clamp(24px,3.2vw,48px)]"
                 )}>
@@ -83,7 +83,7 @@ const ContactSection = ({
                 </span>
                 <span className={cn(
                   "max-w-[min(900px,90vw)] text-white text-center",
-                  "font-primary text-fluid-4xl font-medium leading-tight tracking-tight",
+                  "font-primary font-medium leading-tight tracking-tight",
                   "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
                   "text-[clamp(24px,3.2vw,48px)]"
                 )}>

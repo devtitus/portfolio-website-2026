@@ -45,21 +45,22 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 w-full z-[1000]",
-        "px-[clamp(24px,4vw,60px)] py-[clamp(10px,1vw,18px)]",
-        "flex justify-between items-center justify-center",
+        "fixed top-0 left-0 w-full z-[1000] overflow-hidden inline-flex justify-center",
         "bg-gradient-to-b from-black/80 to-black/40",
         "backdrop-blur-xl backdrop-saturate-180",
         "border-b border-white/20",
         "transition-all duration-[400ms] ease-out",
-        // Top glow
-        "before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-px",
-        "before:bg-gradient-to-r before:from-transparent before:via-brand-blue/30 before:to-transparent",
-        "before:opacity-60",
-        // Mobile
-        "max-lg:px-4 max-lg:py-3 max-lg:bg-black/90 max-lg:backdrop-blur-2xl"
+        "max-lg:bg-black/90 max-lg:backdrop-blur-2xl"
       )}>
-        <div className="w-full flex flex-row items-center justify-between gap-6 max-w-[1400px]">
+        {/* Top glow */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-blue/30 to-transparent opacity-60" />
+
+        <div className={cn(
+          "w-full max-w-[1400px]",
+          "px-[clamp(16px,4vw,60px)] py-[clamp(10px,1vw,18px)] 2xl:px-0",
+          "max-lg:px-4 max-lg:py-3",
+          "flex flex-row items-center justify-between"
+        )}>
           <Link href="/">
             <Image
               src={"/navbar/logo.png"}
@@ -88,7 +89,7 @@ const Navbar: React.FC = () => {
             )}>
               {NAV_ITEMS.map((item) => {
                 const active = isActive(item.href);
-                
+
                 return (
                   <li key={item.id}>
                     <Link
@@ -97,7 +98,7 @@ const Navbar: React.FC = () => {
                       aria-current={active ? "page" : undefined}
                       aria-disabled={item.disabled}
                       className={cn(
-                        "group flex items-center justify-center px-3 py-1.5 rounded-[8px]",
+                        "group flex items-center justify-center px-3 py-[6px] rounded-[8px]",
                         "relative isolate transition-all",
                         active ? [
                           "bg-gradient-to-br from-brand-blue/10 to-brand-blue/10",
@@ -123,7 +124,7 @@ const Navbar: React.FC = () => {
                       <span className={cn(
                         "font-secondary font-medium text-sm leading-normal whitespace-nowrap",
                         "transition-all duration-300 tracking-[0.01em] relative z-10",
-                        active 
+                        active
                           ? "text-white/95 font-semibold drop-shadow-[0_0_20px_rgba(0,87,224,0.3)]"
                           : "text-white/65 group-hover:text-white/90 group-hover:-translate-y-px"
                       )}>

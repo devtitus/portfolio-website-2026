@@ -60,51 +60,51 @@ const FrameHeroSection = () => {
             canvas.height = window.innerHeight;
             // Draw current frame immediately after resize
             const scrollPos = window.scrollY;
-             updateFrame(scrollPos);
+            updateFrame(scrollPos);
         };
-        
+
         const updateFrame = (scrollY: number) => {
-             const sectionHeight = sectionRef.current?.offsetHeight || 0;
-             const windowHeight = window.innerHeight;
-             // The scrollable distance is sectionHeight - windowHeight
-             const maxScroll = sectionHeight - windowHeight;
-             
-             if (maxScroll <= 0) return;
+            const sectionHeight = sectionRef.current?.offsetHeight || 0;
+            const windowHeight = window.innerHeight;
+            // The scrollable distance is sectionHeight - windowHeight
+            const maxScroll = sectionHeight - windowHeight;
 
-             const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
-             const frameIndex = Math.min(
-                 Math.floor(progress * (frameCount - 1)),
-                 frameCount - 1
-             );
+            if (maxScroll <= 0) return;
 
-             const img = images[frameIndex];
-             
-             // Draw image 'cover' style
-             if (img) {
-                 const hRatio = canvas.width / img.width;
-                 const vRatio = canvas.height / img.height;
-                 const ratio = Math.max(hRatio, vRatio);
-                 const centerShift_x = (canvas.width - img.width * ratio) / 2;
-                 const centerShift_y = (canvas.height - img.height * ratio) / 2;
-                 
-                 context.clearRect(0, 0, canvas.width, canvas.height);
-                 context.drawImage(
-                     img,
-                     0,
-                     0,
-                     img.width,
-                     img.height,
-                     centerShift_x,
-                     centerShift_y,
-                     img.width * ratio,
-                     img.height * ratio
-                 );
-             }
+            const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+            const frameIndex = Math.min(
+                Math.floor(progress * (frameCount - 1)),
+                frameCount - 1
+            );
+
+            const img = images[frameIndex];
+
+            // Draw image 'cover' style
+            if (img) {
+                const hRatio = canvas.width / img.width;
+                const vRatio = canvas.height / img.height;
+                const ratio = Math.max(hRatio, vRatio);
+                const centerShift_x = (canvas.width - img.width * ratio) / 2;
+                const centerShift_y = (canvas.height - img.height * ratio) / 2;
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(
+                    img,
+                    0,
+                    0,
+                    img.width,
+                    img.height,
+                    centerShift_x,
+                    centerShift_y,
+                    img.width * ratio,
+                    img.height * ratio
+                );
+            }
         };
 
         window.addEventListener("resize", updateSize);
         window.addEventListener("scroll", () => updateFrame(window.scrollY));
-        
+
         updateSize(); // Initial draw
 
         return () => {
@@ -123,49 +123,54 @@ const FrameHeroSection = () => {
             }, 2000);
         } catch {
             // Fallback for older browsers
-             const textArea = document.createElement("textarea");
-             textArea.value = email;
-             document.body.appendChild(textArea);
-             textArea.select();
-             document.execCommand("copy");
-             document.body.removeChild(textArea);
-             setIsCopied(true);
-             setTimeout(() => {
+            const textArea = document.createElement("textarea");
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            setIsCopied(true);
+            setTimeout(() => {
                 setIsCopied(false);
-             }, 2000);
+            }, 2000);
         }
     };
 
     return (
-         <div 
-            ref={sectionRef} 
+        <div
+            ref={sectionRef}
             className={cn(
                 "relative w-full",
-                "bg-gradient-to-b from-black via-[#0a0a0f] to-black",
-                // Ambient background glow
-                "before:content-[''] before:absolute before:-top-1/2 before:-left-1/4",
-                "before:w-[150%] before:h-[200%]",
-                "before:bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,transparent_50%)]",
-                "before:animate-ambient-pulse before:pointer-events-none before:z-0",
-                "motion-reduce:before:animate-none"
-            )} 
+                "bg-gradient-to-b from-black via-[#0a0a0f] to-black"
+            )}
             style={{ height: "500vh" }}
         >
+            {/* Ambient background glow wrapper */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className={cn(
+                    "absolute -top-1/2 -left-1/4",
+                    "w-[150%] h-[200%]",
+                    "bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,transparent_50%)]",
+                    "animate-ambient-pulse z-0",
+                    "motion-reduce:animate-none"
+                )} />
+            </div>
+
             <div className={cn(
                 "sticky top-0 w-full h-dvh min-h-[600px] overflow-hidden",
                 "max-sm:h-dvh max-sm:min-h-[500px]"
             )}>
                 {/* Canvas */}
-                <canvas 
-                    ref={canvasRef} 
+                <canvas
+                    ref={canvasRef}
                     className={cn(
-                        "absolute top-0 left-0 w-full h-full object-contain aspect-[16/9] z-[1] mt-[73px]",
+                        "absolute top-0 left-0 w-full h-full object-contain aspect-[16/9] z-[1] mt-[62px] lg:mt-[70px]",
                         "brightness-[0.7] contrast-[1.1] transition-[filter] duration-300",
                         "max-lg:brightness-[0.6] max-lg:contrast-[1.15]",
                         "max-sm:brightness-[0.5]"
-                    )} 
+                    )}
                 />
-                
+
                 {/* Overlay */}
                 <div className={cn(
                     "absolute top-0 left-0 w-full h-full z-10",
@@ -177,9 +182,9 @@ const FrameHeroSection = () => {
                 )}>
                     <div className="pointer-events-auto w-full h-full flex flex-col justify-center items-center relative z-[11]">
                         <div className={cn(
-                            "flex flex-col items-start gap-4 z-10 relative pl-4 md:pl-[clamp(24px,4vw,60px)] xl:pl-0 w-full max-w-[1920px] mx-auto",
+                            "flex flex-col items-start gap-4 z-10 relative pl-4 md:pl-[clamp(24px,4vw,60px)] 2xl:pl-0 w-full max-w-[1920px] mx-auto",
                             "max-sm:items-center max-sm:pl-0 max-sm:px-4 max-sm:gap-8 max-w-[1400px]"
-                        )}> 
+                        )}>
                             {/* Hero Heading */}
                             <h1 className={cn(
                                 "flex flex-col text-white text-left font-primary",
@@ -271,7 +276,7 @@ const FrameHeroSection = () => {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Scroll Indicator */}
                 <div className={cn(
                     "absolute bottom-10 left-1/2 -translate-x-1/2 z-20",

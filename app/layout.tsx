@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning={true}
       >
         {children}

@@ -49,8 +49,8 @@ const SkillsSection = () => {
               "aspect-square w-full h-full",
             )} />
           </div>
-          <SectionHeader 
-            title="My Skills" 
+          <SectionHeader
+            title="My Skills"
             subtitle="Technologies and tools I work with"
             align="center"
           />
@@ -59,7 +59,7 @@ const SkillsSection = () => {
         {/* Skills Grid */}
         <div className={cn(
           "w-full max-w-[1200px] grid gap-fluid-md",
-          "grid-cols-3 sm:grid-cols-4 lg:grid-cols-[repeat(auto-fit,minmax(140px,1fr))]",
+          "grid-cols-2 xs:grid-cols-2 sm:grid-cols-4 lg:grid-cols-[repeat(auto-fit,minmax(140px,1fr))]",
           "max-sm:gap-fluid-sm"
         )}>
           {visibleSkills.map((skill) => (
