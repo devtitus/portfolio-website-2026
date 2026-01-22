@@ -1,0 +1,17 @@
+{
+    "mcpServers": {
+        "context7": {
+            "url": "https://mcp.context7.com/mcp",
+            "headers": {
+                "CONTEXT7_API_KEY": "ctx7sk-d12cfbae-358a-4269-a00c-dacc1c61876d"
+            }
+        },
+        "basic-memory": {
+            "command": "uvx",
+            "args": [
+                "basic-memory",
+                "mcp"
+            ]
+        }
+    }
+}
