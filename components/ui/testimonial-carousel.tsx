@@ -66,13 +66,13 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                             alt={`Avatar of ${testimonial.name}`}
                             width={64}
                             height={64}
-                            className="w-16 h-16 rounded-full border-2 border-white/20 object-cover"
+                            className="w-18 h-18 rounded-full border-2 border-white/20 object-cover"
                         />
 
                         {/* Quote */}
                         <p className={cn(
                             "text-center italic text-white/90 font-secondary flex items-center",
-                            "text-[clamp(14px,1.5vw,16px)] leading-relaxed",
+                            "text-[clamp(16px,1.5vw,18px)] leading-relaxed",
                             "line-clamp-4 px-2"
                         )}>
                             &ldquo;{testimonial.testimonial}&rdquo;
@@ -80,10 +80,10 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
 
                         {/* Author Info */}
                         <div className="text-center space-y-1">
-                            <h4 className="text-white font-medium font-secondary text-[clamp(14px,1.5vw,16px)]">
+                            <h4 className="text-white font-medium font-secondary text-[clamp(16px,1.5vw,18px)]">
                                 {testimonial.name}
                             </h4>
-                            <p className="text-white/70 text-[clamp(12px,1.25vw,14px)]">
+                            <p className="text-white/70 text-[clamp(14px,1.25vw,16px)]">
                                 {testimonial.company}
                             </p>
                         </div>

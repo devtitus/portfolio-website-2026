@@ -73,7 +73,7 @@ const ContactSection = ({
                   "max-w-[min(900px,90vw)] text-white text-center",
                   "font-primary text-fluid-4xl font-medium leading-tight tracking-tight",
                   "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
-                  "max-sm:text-fluid-2xl max-lg:text-fluid-3xl"
+                  "text-[clamp(24px,3.2vw,48px)]"
                 )}>
                   From Concept To{" "}
                   <span className={cn(
@@ -85,7 +85,7 @@ const ContactSection = ({
                   "max-w-[min(900px,90vw)] text-white text-center",
                   "font-primary text-fluid-4xl font-medium leading-tight tracking-tight",
                   "drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
-                  "max-sm:text-fluid-2xl max-lg:text-fluid-3xl"
+                  "text-[clamp(24px,3.2vw,48px)]"
                 )}>
                   Let's Make It{" "}
                   <span className={cn(
@@ -96,28 +96,26 @@ const ContactSection = ({
               </>
             )}
           </div>
-          
-          <PrimaryButton 
-            variant="solid" 
-            size="lg"
-            className="mt-6"
+
+          <PrimaryButton
+            variant="solid"
+            size="md"
+            className="mt-3"
           >
             {ctaText || "Get In Touch"}
           </PrimaryButton>
-          
+
           <p className={cn(
             "text-white/90 text-center font-secondary",
-            "text-fluid-xl font-medium leading-relaxed tracking-tight",
-            "max-sm:text-fluid-lg"
+            "text-[clamp(20px,1.5vw,22px)] font-medium leading-relaxed tracking-tight",
           )}>
             {subHeading || "Ready to bring your ideas to life?"}
           </p>
-          
+
           <p className={cn(
             "text-white/75 text-center font-secondary",
-            "text-fluid-base font-normal leading-relaxed",
-            "max-w-[min(600px,90vw)] tracking-wide",
-            "max-sm:text-fluid-sm"
+            "text-[clamp(16px,1.7vw,18px)] font-normal leading-relaxed tracking-wide",
+            "max-w-[min(600px,90vw)] tracking-wide"
           )}>
             {paragraph ||
               "I'm always excited to collaborate on innovative projects and help turn your vision into reality."}
