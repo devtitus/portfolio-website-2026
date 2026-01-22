@@ -26,7 +26,7 @@ const InstagramIcon = () => (
 const Footer: React.FC = () => {
   return (
     <footer className={cn(
-      "relative px-[clamp(40px,5vw,60px)] py-[clamp(40px,5vw,60px)] pb-[clamp(30px,4vw,40px)]",
+      "relative px-[clamp(16px,4vw,60px)] py-[clamp(40px,5vw,60px)] pb-[clamp(30px,4vw,40px)] flex flex-col items-center",
       "bg-gradient-to-b from-black/60 to-black/80",
       "backdrop-blur-xl border-t border-brand-blue/20",
       // Top glow
@@ -36,9 +36,9 @@ const Footer: React.FC = () => {
       "max-lg:px-4 max-lg:py-8 max-lg:pb-6"
     )}>
       <div className={cn(
-        "flex justify-between items-start gap-[clamp(2rem,10vw,8rem)]",
+        "flex justify-center items-start gap-[clamp(2rem,10vw,8rem)]",
         "animate-fade-in-up motion-reduce:animate-none",
-        "max-lg:flex-col"
+        "max-lg:flex-col w-full max-w-[1400px]"
       )}>
         <div className={cn(
           "flex flex-col gap-[clamp(16px,2vw,24px)] flex-1",
