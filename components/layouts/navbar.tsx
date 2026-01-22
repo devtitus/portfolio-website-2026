@@ -90,47 +90,45 @@ const Navbar: React.FC = () => {
                 const active = isActive(item.href);
                 
                 return (
-                  <li 
-                    key={item.id}
-                    className={cn(
-                      active ? [
-                        "flex items-center justify-center px-3 py-1.5 rounded-[8px]",
-                        "bg-gradient-to-br from-brand-blue/10 to-brand-blue/10",
-                        "border border-brand-blue/20 backdrop-blur-xl",
-                        "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_rgba(0,87,224,0.2),0_0_0_1px_rgba(0,87,224,0.3)]",
-                        "relative transition-all duration-400",
-                        // Animated glow
-                        "before:content-[''] before:absolute before:inset-[-1px] before:rounded-xl before:z-[-1]",
-                        "before:bg-gradient-to-br before:from-brand-blue/40 before:via-transparent before:to-brand-blue/20",
-                        "before:opacity-50 before:blur-[8px] before:animate-pulse-gentle-glow",
-                      ] : [
-                        "flex items-center justify-center px-3 py-1.5 rounded-[8px]",
-                        "border border-transparent cursor-pointer",
-                        "relative transition-all duration-300",
-                        // Hover background
-                        "before:content-[''] before:absolute before:inset-0 before:rounded-[8px]",
-                        "before:bg-white/10 before:opacity-0 before:transition-opacity before:duration-300",
-                        "hover:before:opacity-100",
-                        "active:scale-[0.98]"
-                      ],
-                      item.disabled && "opacity-40 cursor-not-allowed"
-                    )}
-                  >
+                  <li key={item.id}>
                     <Link
                       href={item.href}
                       onClick={item.disabled ? (e) => e.preventDefault() : undefined}
                       aria-current={active ? "page" : undefined}
                       aria-disabled={item.disabled}
                       className={cn(
-                        "font-secondary font-medium text-sm leading-normal whitespace-nowrap",
-                        "transition-all duration-300 tracking-[0.01em]",
-                        active 
-                          ? "text-white/95 font-semibold drop-shadow-[0_0_20px_rgba(0,87,224,0.3)]"
-                          : "text-white/65 hover:text-white/90 hover:-translate-y-px",
-                        item.disabled && "cursor-not-allowed"
+                        "group flex items-center justify-center px-3 py-1.5 rounded-[8px]",
+                        "relative isolate transition-all",
+                        active ? [
+                          "bg-gradient-to-br from-brand-blue/10 to-brand-blue/10",
+                          "border border-brand-blue/20 backdrop-blur-xl",
+                          "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_2px_8px_rgba(0,87,224,0.2),0_0_0_1px_rgba(0,87,224,0.3)]",
+                          "duration-400",
+                          // Animated glow
+                          "before:content-[''] before:absolute before:inset-[-1px] before:rounded-xl before:z-[-1]",
+                          "before:bg-gradient-to-br before:from-brand-blue/40 before:via-transparent before:to-brand-blue/20",
+                          "before:opacity-50 before:blur-[8px] before:animate-pulse-gentle-glow",
+                        ] : [
+                          "border border-transparent cursor-pointer",
+                          "duration-300",
+                          "active:scale-[0.98]",
+                          // Hover background
+                          "before:content-[''] before:absolute before:inset-0 before:rounded-[8px]",
+                          "before:bg-white/10 before:opacity-0 before:transition-opacity before:duration-300",
+                          "hover:before:opacity-100",
+                        ],
+                        item.disabled && "opacity-40 cursor-not-allowed"
                       )}
                     >
-                      {item.label}
+                      <span className={cn(
+                        "font-secondary font-medium text-sm leading-normal whitespace-nowrap",
+                        "transition-all duration-300 tracking-[0.01em] relative z-10",
+                        active 
+                          ? "text-white/95 font-semibold drop-shadow-[0_0_20px_rgba(0,87,224,0.3)]"
+                          : "text-white/65 group-hover:text-white/90 group-hover:-translate-y-px"
+                      )}>
+                        {item.label}
+                      </span>
                     </Link>
                   </li>
                 );
