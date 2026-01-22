@@ -46,13 +46,13 @@ const Navbar: React.FC = () => {
     <>
       <header className={cn(
         "fixed top-0 left-0 w-full z-[1000] overflow-hidden inline-flex justify-center",
-        "bg-gradient-to-b from-black/80 to-black/40",
+        "bg-[linear-gradient(to_bottom,black_0%,#0a0a0f_50%,transparent_100%),radial-gradient(circle_at_50%_0%,rgba(0,87,224,0.12)_0%,transparent_70%)]",
         "backdrop-blur-xl backdrop-saturate-180",
         "border-b border-white/20",
         "transition-all duration-[400ms] ease-out",
         "max-lg:bg-black/90 max-lg:backdrop-blur-2xl"
       )}>
-        {/* Top glow */}
+        {/* Top glow line */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-blue/30 to-transparent opacity-60" />
 
         <div className={cn(

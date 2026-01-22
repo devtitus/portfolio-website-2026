@@ -29,6 +29,8 @@ const Footer: React.FC = () => {
       "relative px-[clamp(16px,4vw,60px)] py-[clamp(40px,5vw,60px)] pb-[clamp(30px,4vw,40px)] flex flex-col items-center",
       "bg-gradient-to-b from-black/60 to-black/80",
       "backdrop-blur-xl border-t border-brand-blue/20",
+      // Ambient glow shade
+      "after:content-[''] after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_50%_100%,rgba(0,87,224,0.1),transparent_70%)] after:pointer-events-none",
       // Top glow
       "before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-px",
       "before:bg-gradient-to-r before:from-transparent before:via-brand-blue/40 before:to-transparent",

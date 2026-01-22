@@ -140,22 +140,10 @@ const FrameHeroSection = () => {
         <div
             ref={sectionRef}
             className={cn(
-                "relative w-full",
-                "bg-gradient-to-b from-black via-[#0a0a0f] to-black"
+                "relative w-full"
             )}
             style={{ height: "500vh" }}
         >
-            {/* Ambient background glow wrapper */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className={cn(
-                    "absolute -top-1/2 -left-1/4",
-                    "w-[150%] h-[200%]",
-                    "bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,transparent_50%)]",
-                    "animate-ambient-pulse z-0",
-                    "motion-reduce:animate-none"
-                )} />
-            </div>
-
             <div className={cn(
                 "sticky top-0 w-full h-dvh min-h-[600px] overflow-hidden",
                 "max-sm:h-dvh max-sm:min-h-[500px]"

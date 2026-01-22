@@ -329,11 +329,18 @@ body {
 
 body {
   color: var(--default-text-color);
-  background: var(--page-bg);
+  background: linear-gradient(to bottom, #000000, #0a0a0f, #000000);
+  background-attachment: fixed;
   font-family: var(--font-family-secondary);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  @apply fixed -top-1/2 -left-1/4 w-[150%] h-[200%] pointer-events-none -z-10 animate-ambient-pulse motion-reduce:animate-none;
+  background: radial-gradient(ellipse at center, rgba(0,87,224,0.15) 0%, rgba(0,87,224,0.05) 25%, transparent 50%);
 }
 
 body::-webkit-scrollbar {
