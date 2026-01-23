@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/features/about/about.module.css";
 import { ProjectsHero } from "@/components/features/projects/projectsHero";
 import { ProjectsGrid } from "@/components/features/projects/projectsGrid";
 import ContactSection from "@/components/features/home/contactSection";
@@ -14,7 +13,7 @@ const ProjectsPage = async () => {
   const projects = await getProjects();
 
   return (
-    <main className={styles.aboutPage}>
+    <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
       <ProjectsHero />
       <ProjectsGrid projects={projects} />
       <ContactSection

@@ -1,19 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
-import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
-declare module "@react-three/fiber" {
-  interface ThreeElements {
-    threeGlobe: ThreeElements["mesh"] & {
-      new (): ThreeGlobe;
-    };
-  }
-}
-
-extend({ ThreeGlobe: ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
 const cameraZ = 300;
@@ -60,7 +50,8 @@ interface WorldProps {
 }
 
 export function Globe({ globeConfig, data }: WorldProps) {
-  const globeRef = useRef<ThreeGlobe | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const globeRef = useRef<any>(null);
   const groupRef = useRef<HTMLDivElement>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -84,10 +75,13 @@ export function Globe({ globeConfig, data }: WorldProps) {
   // Initialize globe only once
   useEffect(() => {
     if (!globeRef.current && groupRef.current) {
-      globeRef.current = new ThreeGlobe();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (groupRef.current as any).add(globeRef.current);
-      setIsInitialized(true);
+      import("three-globe").then((mod) => {
+        const ThreeGlobe = mod.default;
+        globeRef.current = new ThreeGlobe();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (groupRef.current as any).add(globeRef.current);
+        setIsInitialized(true);
+      });
     }
   }, []);
 

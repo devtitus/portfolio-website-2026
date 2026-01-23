@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/features/about/about.module.css";
 import { ContactHero } from "@/components/features/contact/contactHero";
 import { ContactFormSection } from "@/components/features/contact/contactFormSection";
 
@@ -10,7 +9,7 @@ export const metadata = {
 
 const ContactPage = () => {
   return (
-    <main className={styles.aboutPage}>
+    <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
       <ContactHero />
       <ContactFormSection />
     </main>

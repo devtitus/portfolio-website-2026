@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/features/about/about.module.css";
 import { AboutHeroSection } from "@/components/features/about/aboutHeroSection";
 import { AboutSelectedPath } from "@/components/features/about/aboutSelectedPath";
 import ContactSection from "@/components/features/home/contactSection";
@@ -14,7 +13,7 @@ const AboutPage = async () => {
   const skills = await getSkills();
 
   return (
-    <main className={styles.aboutPage}>
+    <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
       <AboutHeroSection />
       <AboutSelectedPath
         experiences={experiences}
