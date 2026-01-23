@@ -1,21 +1,33 @@
 import React from "react";
+import { cn } from "@/lib/utils";
 
 const ProjectsHero: React.FC = () => {
   return (
-    <section className="flex flex-col justify-center px-[clamp(16px,4vw,60px)] pt-[100px] pb-[60px] max-w-[1440px] mx-auto relative overflow-hidden">
-      {/* Decorative background element */}
+    <section
+      className={cn(
+        // Base Fluid Layout
+        "flex flex-col justify-center",
+        "px-[clamp(16px,4vw,60px)] 2xl:px-0",
+        "py-[clamp(60px,10vh,100px)]",
+        "max-w-[1400px] mx-auto relative overflow-hidden",
+        "mt-[64px] lg:mt-[70px]",
+        // Mobile/Tablet Overrides
+        "max-sm:py-[60px] max-sm:text-center",
+        "max-lg:py-[80px]"
+      )}
+    >
+      {/* Decorative background element - optimized for mobile */}
       <div
-        className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] rounded-full -z-10 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(0,87,224,0.08) 0%, rgba(0,87,224,0) 70%)",
-        }}
+        className={cn(
+          "absolute -top-[20%] -right-[10%] rounded-full -z-10 pointer-events-none",
+          "w-[600px] h-[600px]",
+          "max-sm:w-[400px] max-sm:h-[400px] max-sm:-top-[10%] max-sm:-right-[20%]"
+        )}
       />
 
-      <h1 className="text-[clamp(3rem,6vw,7rem)] leading-[0.9] font-medium text-foreground mb-[30px] font-secondary tracking-tight">
+      <h1 className="flex flex-row items-center gap-[clamp(4px,1vw,10px)] text-[clamp(28px,3.25vw,44px)] font-medium text-foreground mb-[clamp(8px,1vw,12px)] font-primary">
         Selected <br />
         <span
-          className="italic"
           style={{
             background:
               "linear-gradient(90deg, #0057E0 0%, #2b7fff 55%, #0057E0 100%)",
@@ -26,7 +38,13 @@ const ProjectsHero: React.FC = () => {
           Works
         </span>
       </h1>
-      <p className="text-xl text-muted-foreground max-w-[600px] leading-relaxed">
+      <p
+        className={cn(
+          "text-[clamp(16px,1vw,20px)] text-muted-foreground leading-relaxed",
+          "max-w-[600px] max-sm:text-left",
+          "max-sm:max-w-full max-sm:mx-auto"
+        )}
+      >
         A collection of projects where design meets code. From interactive web
         apps to robust backend systems, each piece represents a unique problem
         solved.

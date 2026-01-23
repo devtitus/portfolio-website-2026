@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ProjectItem } from "@/lib/types/sanity";
 import { ExternalLink, Github } from "lucide-react";
 import { ProjectDetailsModal } from "./project-details-modal";
+import { cn } from "@/lib/utils";
 
 interface ProjectsGridProps {
   projects: ProjectItem[];
@@ -24,11 +25,26 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
 
   return (
     <>
-      <section className="max-w-[1440px] mx-auto px-[clamp(16px,4vw,60px)] pb-[100px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <section
+        className={cn(
+          "max-w-[1440px] mx-auto",
+          "px-[clamp(16px,4vw,60px)] 2xl:px-0",
+          "py-[clamp(60px,10vh,100px)]",
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+          "gap-[clamp(24px,4vw,40px)]"
+        )}
+      >
         {projects.map((project) => (
           <article
             key={project.id}
-            className="bg-white/[0.03] backdrop-blur-[10px] border border-white/5 rounded-[20px] overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-white/10 flex flex-col h-full cursor-pointer group"
+            className={cn(
+              "bg-white/[0.03] backdrop-blur-[10px] border border-white/5",
+              "rounded-[20px] overflow-hidden",
+              "transition-all duration-300 ease-in-out",
+              "hover:-translate-y-1.5 hover:border-white/10",
+              "motion-reduce:hover:translate-y-0",
+              "flex flex-col h-full cursor-pointer group"
+            )}
             onClick={() => handleProjectClick(project)}
           >
             <div className="w-full aspect-[16/10] relative overflow-hidden bg-black">
@@ -37,7 +53,12 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                   src={project.mainImage}
                   alt={project.title}
                   fill
-                  className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  className={cn(
+                    "object-cover w-full h-full",
+                    "transition-transform duration-500 ease-in-out",
+                    "group-hover:scale-105",
+                    "motion-reduce:group-hover:scale-100"
+                  )}
                 />
               ) : (
                 <div className="w-full h-full bg-gray-900 flex items-center justify-center text-gray-700">
@@ -46,9 +67,9 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
               )}
             </div>
 
-            <div className="p-6 flex-1 flex flex-col">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="text-2xl font-medium font-secondary text-foreground m-0">
+            <div className="p-[clamp(16px,3vw,24px)] flex-1 flex flex-col">
+              <div className="flex justify-between items-center mb-[clamp(8px,1.5vw,12px)]">
+                <h3 className="text-[clamp(1.25rem,2vw,1.5rem)] font-medium font-secondary text-foreground m-0">
                   {project.title}
                 </h3>
                 <div className="flex gap-3">
@@ -77,7 +98,7 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                 </div>
               </div>
 
-              <p className="text-[0.95rem] text-muted-foreground leading-relaxed mb-5 flex-1">
+              <p className="text-[clamp(0.875rem,1vw,0.95rem)] text-muted-foreground leading-relaxed mb-[clamp(16px,2vw,20px)] flex-1">
                 {project.description}
               </p>
 

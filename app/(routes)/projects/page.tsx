@@ -13,7 +13,7 @@ const ProjectsPage = async () => {
   const projects = await getProjects();
 
   return (
-    <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
+    <main className="min-h-dvh text-[var(--default-text-color)]">
       <ProjectsHero />
       <ProjectsGrid projects={projects} />
       <ContactSection
