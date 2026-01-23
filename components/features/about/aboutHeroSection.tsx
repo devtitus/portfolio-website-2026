@@ -10,20 +10,9 @@ const AboutHeroSection: React.FC = () => {
         "relative min-h-dvh flex items-center overflow-hidden",
         "px-[clamp(16px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
         // Background Gradient matching the design
-        "bg-[linear-gradient(180deg,var(--page-bg)_10%,rgba(0,0,0,0.1)_42%,var(--page-bg)_82%)]"
+        // "bg-[linear-gradient(180deg,var(--page-bg)_10%,rgba(0,0,0,0.1)_42%,var(--page-bg)_82%)]"
       )}
     >
-      {/* Background Pattern (formerly ::before) */}
-      <div className="absolute inset-0 z-[-1] opacity-10 pointer-events-none">
-        <Image
-          src="/home/spinImage.png"
-          alt="background pattern"
-          fill
-          className="object-cover object-center"
-          priority
-        />
-      </div>
-
       <div className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-[clamp(32px,10vw,120px)] z-10">
         {/* Text Content - Left Side */}
         <div className="flex-1 flex flex-col w-full text-center lg:text-left lg:order-1 order-1">

@@ -13,8 +13,8 @@ const AboutPage = async () => {
   const skills = await getSkills();
 
   return (
-    <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
-      <AboutHeroSection />  
+    <main className="min-h-dvh text-[var(--default-text-color)]">
+      <AboutHeroSection />
       <AboutSelectedPath
         experiences={experiences}
         education={education}
