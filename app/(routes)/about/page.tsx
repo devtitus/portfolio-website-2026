@@ -14,7 +14,7 @@ const AboutPage = async () => {
 
   return (
     <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
-      <AboutHeroSection />
+      <AboutHeroSection />  
       <AboutSelectedPath
         experiences={experiences}
         education={education}
@@ -22,12 +22,12 @@ const AboutPage = async () => {
       />
       <ContactSection
         headingHtml={
-          <div className="flex flex-col items-center text-center">
-            <span className="text-[clamp(2.5rem,5vw,5rem)] font-serif leading-none block">
+          <div className="flex flex-col items-center text-center gap-[clamp(8px,1vw,12px)]">
+            <span className="text-[clamp(26px,3.2vw,48px)] font-primary leading-none block">
               Let's build the
             </span>
             <span
-              className="text-[clamp(2.5rem,5vw,5rem)] font-serif leading-none block italic"
+              className="text-[clamp(26px,3.2vw,48px)] font-serif leading-normal block italic"
               style={{
                 background:
                   "linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)",
