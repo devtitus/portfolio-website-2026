@@ -90,10 +90,6 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                     </div>
                 ))}
             </div>
-
-            {/* Gradient Overlays for fade effect */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#08080A] to-transparent pointer-events-none z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#08080A] to-transparent pointer-events-none z-10" />
         </div>
     );
 }

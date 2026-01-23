@@ -27,7 +27,7 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
     <>
       <section
         className={cn(
-          "max-w-[1440px] mx-auto",
+          "max-w-[1400px] mx-auto",
           "px-[clamp(16px,4vw,60px)] 2xl:px-0",
           "py-[clamp(60px,10vh,100px)]",
           "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3",

@@ -9,7 +9,7 @@ export const metadata = {
 
 const ContactPage = () => {
   return (
-    <main className="min-h-dvh bg-[var(--page-bg)] text-[var(--default-text-color)]">
+    <main className="min-h-dvh text-[var(--default-text-color)]">
       <ContactHero />
       <ContactFormSection />
     </main>
