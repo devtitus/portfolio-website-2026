@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import styles from "@/styles/features/home/hero.module.css";
 import { AuroraText } from "@/components/ui/magicui/aurora-text";

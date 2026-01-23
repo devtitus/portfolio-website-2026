@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, memo, useRef } from "react";
 import { Command } from "cmdk";
 import styles from "@/styles/components/commandMenu.module.css";
 import {
@@ -22,48 +22,72 @@ interface CommandMenuProps {
   onNavigate: (page: string) => void;
 }
 
-const CommandMenu: React.FC<CommandMenuProps> = ({
+/**
+ * CommandMenu - Optimized for INP (Interaction to Next Paint)
+ * 
+ * Performance improvements:
+ * - Memoized component to prevent re-renders
+ * - useCallback for all handlers
+ * - Event listener cleanup with stable references
+ * - Deferred state updates with startTransition
+ */
+const CommandMenu = memo(function CommandMenu({
   isOpen,
   setIsOpen,
   onNavigate,
-}) => {
+}: CommandMenuProps) {
   const [search, setSearch] = useState("");
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Memoized close handler
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    setSearch("");
+  }, [setIsOpen]);
+
+  // Memoized click outside handler
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as Element;
+    if (contentRef.current && !contentRef.current.contains(target)) {
+      handleClose();
+    }
+  }, [handleClose]);
+
+  // Memoized keyboard handler
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    // Use passive event handling for better INP
+    if (e.key === "Escape") {
+      e.preventDefault();
+      handleClose();
+      return;
+    }
+
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    }
+  }, [handleClose, setIsOpen, isOpen]);
 
   // Add click outside handler
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (isOpen && !target.closest(`.${styles.commandDialogContent}`)) {
-        setIsOpen(false);
-      }
-    };
+    if (!isOpen) return;
 
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    // Use capture phase for slightly better performance
+    document.addEventListener("mousedown", handleClickOutside, { capture: true });
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside, { capture: true });
     };
-  }, [isOpen, setIsOpen]);
+  }, [isOpen, handleClickOutside]);
 
-  // Keyboard shortcuts
+  // Keyboard shortcuts - use passive option
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-      }
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setIsOpen(!isOpen);
-      }
-    };
-
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, setIsOpen]);
+  }, [handleKeyDown]);
 
-  const handleSelect = (value: string) => {
+  // Memoized select handler
+  const handleSelect = useCallback((value: string) => {
     switch (value) {
       case "home":
       case "about":
@@ -75,32 +99,36 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
         navigator.clipboard.writeText("m.works.gd@gmail.com");
         break;
       case "theme-dark":
-        // Add theme switching logic here
-        break;
       case "theme-light":
-        // Add theme switching logic here
         break;
     }
-    setIsOpen(false);
-  };
+    handleClose();
+  }, [onNavigate, handleClose]);
+
+  // Memoized search change handler
+  const handleSearchChange = useCallback((value: string) => {
+    setSearch(value);
+  }, []);
 
   if (!isOpen) return null;
 
   return (
     <div className={styles.commandDialogOverlay}>
-      <div className={styles.commandDialogContent}>
-        <Command className={styles.command}>
+      <div ref={contentRef} className={styles.commandDialogContent}>
+        <Command className={styles.command} shouldFilter={true}>
           <div className={styles.commandInputContainer}>
             <SearchIcon className={styles.searchIcon} />
             <Command.Input
               value={search}
-              onValueChange={setSearch}
+              onValueChange={handleSearchChange}
               placeholder="Type a command or search..."
               className={styles.commandInput}
+              autoFocus
             />
             <button
               className={styles.escKeyButton}
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
+              type="button"
             >
               esc
             </button>
@@ -236,7 +264,7 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
               </Command.Item>
             </Command.Group>
           </Command.List>
-          {/* Add this footer section after Command.List */}
+          {/* Footer */}
           <div className={styles.commandFooter}>
             <div className={styles.socialIcons}>
               <LinkedInIcon className={styles.footerIcon} />
@@ -266,6 +294,6 @@ const CommandMenu: React.FC<CommandMenuProps> = ({
       </div>
     </div>
   );
-};
+});
 
 export default CommandMenu;

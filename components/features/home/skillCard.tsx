@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { GlassCard } from "@/components/ui";
 
 interface SkillCardProps {
@@ -6,7 +6,11 @@ interface SkillCardProps {
   skillIcon: string;
 }
 
-const SkillCard = ({ skillName, skillIcon }: SkillCardProps) => {
+/**
+ * SkillCard - Memoized to prevent re-renders when parent updates
+ * Only re-renders when skillName or skillIcon changes
+ */
+const SkillCard = memo(function SkillCard({ skillName, skillIcon }: SkillCardProps) {
   return (
     <GlassCard
       hover
@@ -20,6 +24,7 @@ const SkillCard = ({ skillName, skillIcon }: SkillCardProps) => {
             src={skillIcon}
             alt={`${skillName} icon`}
             className="w-full h-full object-contain"
+            loading="lazy"
           />
         </div>
         <span className="text-white/80 text-[clamp(14px,1vw,16px)] font-medium text-center group-hover:text-white transition-colors duration-300">
@@ -28,6 +33,6 @@ const SkillCard = ({ skillName, skillIcon }: SkillCardProps) => {
       </div>
     </GlassCard>
   );
-};
+});
 
 export default SkillCard;

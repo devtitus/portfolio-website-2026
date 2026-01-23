@@ -1,24 +1,22 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { memo } from "react";
 import { cn } from "@/lib/utils";
 import { TestimonialCarousel } from "@/components/ui/testimonial-carousel";
 import { SectionHeader } from "@/components/ui";
-import {
-  getTestimonials,
-  TestimonialItem,
-} from "@/lib/services/sanity/getTestimonials";
+import type { TestimonialItem } from "@/lib/services/sanity/getTestimonials";
 
-const TestimonialSection = () => {
-  const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
+interface TestimonialSectionProps {
+  testimonials: TestimonialItem[];
+}
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      const testimonialsData = await getTestimonials();
-      setTestimonials(testimonialsData);
-    };
-    fetchTestimonials();
-  }, []);
-
+/**
+ * TestimonialSection - Client Component (receives data as props from server)
+ * 
+ * Performance improvements:
+ * - Data is fetched server-side and passed as props (no useEffect)
+ * - Component is memoized to prevent unnecessary re-renders
+ */
+const TestimonialSection = memo(function TestimonialSection({ testimonials }: TestimonialSectionProps) {
   // Don't render if no testimonials
   if (!testimonials || testimonials.length === 0) {
     return null;
@@ -46,7 +44,6 @@ const TestimonialSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default TestimonialSection;
-

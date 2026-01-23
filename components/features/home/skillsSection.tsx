@@ -1,27 +1,34 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, memo } from "react";
 import { cn } from "@/lib/utils";
 import { SkillSpinningImage } from "@/lib/utils/icons";
 import SkillCard from "@/components/features/home/skillCard";
-import { getSkills, SkillItem } from "@/lib/services/sanity/getSkills";
 import { SectionHeader, GlassButton } from "@/components/ui";
+import type { SkillItem } from "@/lib/services/sanity/getSkills";
 
-const SkillsSection = () => {
-  const [skills, setSkills] = useState<SkillItem[]>([]);
+interface SkillsSectionProps {
+  skills: SkillItem[];
+}
+
+/**
+ * SkillsSection - Client Component (receives data as props from server)
+ * 
+ * Performance improvements:
+ * - Data is fetched server-side and passed as props (no useEffect)
+ * - Component is memoized to prevent unnecessary re-renders
+ * - SkillCards are memoized individually
+ */
+const SkillsSection = memo(function SkillsSection({ skills }: SkillsSectionProps) {
   const [showAllSkills, setShowAllSkills] = useState(false);
-
-  useEffect(() => {
-    const fetchSkills = async () => {
-      const skillsData = await getSkills();
-      setSkills(skillsData);
-    };
-    fetchSkills();
-  }, []);
 
   // Check if we have more than 10 skills
   const shouldShowToggle = skills.length > 10;
   const visibleSkills = shouldShowToggle && !showAllSkills ? skills.slice(0, 10) : skills;
   const remainingSkillsCount = skills.length - 10;
+
+  if (!skills || skills.length === 0) {
+    return null;
+  }
 
   return (
     <section className={cn(
@@ -83,7 +90,6 @@ const SkillsSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default SkillsSection;
-

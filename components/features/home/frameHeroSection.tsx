@@ -1,120 +1,192 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { AuroraText } from "@/components/ui/magicui/aurora-text";
 import { CopyIcon } from "@/lib/utils/icons";
 import Image from "next/image";
 
-const frameCount = 192;
-const framePath = "/macbook/ezgif-frame-";
+const FRAME_COUNT = 192;
+const FRAME_PATH = "/macbook-webp/ezgif-frame-";
+const FRAME_EXT = ".webp";
+const INITIAL_BATCH_SIZE = 10; // Load first 10 frames immediately
+const BATCH_SIZE = 30; // Load subsequent frames in batches
 
 const FrameHeroSection = () => {
     const [isCopied, setIsCopied] = useState(false);
     const email = "m.works.gd@gmail.com";
     const sectionRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [images, setImages] = useState<HTMLImageElement[]>([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(FRAME_COUNT).fill(null));
+    const [loadProgress, setLoadProgress] = useState(0);
+    const [isInitialLoaded, setIsInitialLoaded] = useState(false);
+    const loadedCountRef = useRef(0);
+    const isLoadingRef = useRef(false);
+    const rafIdRef = useRef<number | null>(null);
+    const currentFrameRef = useRef(0);
 
-    // Preload images
-    useEffect(() => {
-        const loadImages = async () => {
-            const loadedImages: HTMLImageElement[] = [];
-            const promises = [];
+    // Load a batch of images
+    const loadImageBatch = useCallback((startIndex: number, endIndex: number): Promise<void[]> => {
+        const promises: Promise<void>[] = [];
 
-            for (let i = 1; i <= frameCount; i++) {
-                const img = new window.Image();
-                const src = `${framePath}${i.toString().padStart(3, "0")}.jpg`;
-                const promise = new Promise((resolve, reject) => {
-                    img.onload = () => resolve(img);
-                    img.onerror = reject;
-                });
-                img.src = src;
-                loadedImages.push(img);
-                promises.push(promise);
-            }
+        for (let i = startIndex; i <= endIndex && i <= FRAME_COUNT; i++) {
+            if (imagesRef.current[i - 1]) continue; // Already loaded
 
-            try {
-                await Promise.all(promises);
-                setImages(loadedImages);
-                setIsLoaded(true);
-            } catch (error) {
-                console.error("Failed to load hero frames", error);
-            }
-        };
+            const img = new window.Image();
+            const promise = new Promise<void>((resolve) => {
+                img.onload = () => {
+                    imagesRef.current[i - 1] = img;
+                    loadedCountRef.current++;
+                    setLoadProgress((loadedCountRef.current / FRAME_COUNT) * 100);
+                    resolve();
+                };
+                img.onerror = () => {
+                    console.warn(`Failed to load frame ${i}`);
+                    resolve(); // Don't block on failures
+                };
+            });
+            img.src = `${FRAME_PATH}${i.toString().padStart(3, "0")}${FRAME_EXT}`;
+            promises.push(promise);
+        }
 
-        loadImages();
+        return Promise.all(promises);
     }, []);
 
-    // Scroll Logic
+    // Progressive image loading
     useEffect(() => {
-        if (!isLoaded || images.length === 0 || !canvasRef.current || !sectionRef.current) return;
+        if (isLoadingRef.current) return;
+        isLoadingRef.current = true;
 
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
-        if (!context) return;
+        const loadProgressively = async () => {
+            // Priority 1: Load first batch immediately for initial display
+            await loadImageBatch(1, INITIAL_BATCH_SIZE);
+            setIsInitialLoaded(true);
 
-        // Set canvas size to match window
-        const updateSize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            // Draw current frame immediately after resize
-            const scrollPos = window.scrollY;
-            updateFrame(scrollPos);
+            // Priority 2: Load remaining frames in batches
+            for (let start = INITIAL_BATCH_SIZE + 1; start <= FRAME_COUNT; start += BATCH_SIZE) {
+                const end = Math.min(start + BATCH_SIZE - 1, FRAME_COUNT);
+                await loadImageBatch(start, end);
+            }
         };
 
-        const updateFrame = (scrollY: number) => {
-            const sectionHeight = sectionRef.current?.offsetHeight || 0;
-            const windowHeight = window.innerHeight;
-            // The scrollable distance is sectionHeight - windowHeight
-            const maxScroll = sectionHeight - windowHeight;
+        loadProgressively();
+    }, [loadImageBatch]);
 
-            if (maxScroll <= 0) return;
+    // Optimized scroll handler with rAF throttling
+    useEffect(() => {
+        if (!isInitialLoaded || !canvasRef.current || !sectionRef.current) return;
 
-            const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
-            const frameIndex = Math.min(
-                Math.floor(progress * (frameCount - 1)),
-                frameCount - 1
-            );
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d", { alpha: false });
+        if (!context) return;
 
-            const img = images[frameIndex];
+        // Set canvas size
+        const updateSize = () => {
+            const dpr = Math.min(window.devicePixelRatio, 2); // Cap at 2x for performance
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            canvas.style.width = `${window.innerWidth}px`;
+            canvas.style.height = `${window.innerHeight}px`;
+            context.scale(dpr, dpr);
+        };
 
-            // Draw image 'cover' style
-            if (img) {
-                const hRatio = canvas.width / img.width;
-                const vRatio = canvas.height / img.height;
+        const drawFrame = (frameIndex: number) => {
+            const img = imagesRef.current[frameIndex];
+
+            // Fallback: find nearest loaded frame
+            let actualImg = img;
+            if (!actualImg) {
+                for (let offset = 1; offset <= 10; offset++) {
+                    actualImg = imagesRef.current[frameIndex - offset] || imagesRef.current[frameIndex + offset];
+                    if (actualImg) break;
+                }
+            }
+
+            if (actualImg) {
+                const displayWidth = window.innerWidth;
+                const displayHeight = window.innerHeight;
+
+                const hRatio = displayWidth / actualImg.width;
+                const vRatio = displayHeight / actualImg.height;
                 const ratio = Math.max(hRatio, vRatio);
-                const centerShift_x = (canvas.width - img.width * ratio) / 2;
-                const centerShift_y = (canvas.height - img.height * ratio) / 2;
+                const centerShift_x = (displayWidth - actualImg.width * ratio) / 2;
+                const centerShift_y = (displayHeight - actualImg.height * ratio) / 2;
 
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.clearRect(0, 0, displayWidth, displayHeight);
                 context.drawImage(
-                    img,
+                    actualImg,
                     0,
                     0,
-                    img.width,
-                    img.height,
+                    actualImg.width,
+                    actualImg.height,
                     centerShift_x,
                     centerShift_y,
-                    img.width * ratio,
-                    img.height * ratio
+                    actualImg.width * ratio,
+                    actualImg.height * ratio
                 );
             }
         };
 
-        window.addEventListener("resize", updateSize);
-        window.addEventListener("scroll", () => updateFrame(window.scrollY));
+        const updateFrame = () => {
+            const sectionHeight = sectionRef.current?.offsetHeight || 0;
+            const windowHeight = window.innerHeight;
+            const maxScroll = sectionHeight - windowHeight;
 
-        updateSize(); // Initial draw
+            if (maxScroll <= 0) return;
+
+            const scrollY = window.scrollY;
+            const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+            const frameIndex = Math.min(
+                Math.floor(progress * (FRAME_COUNT - 1)),
+                FRAME_COUNT - 1
+            );
+
+            // Only redraw if frame changed
+            if (frameIndex !== currentFrameRef.current) {
+                currentFrameRef.current = frameIndex;
+                drawFrame(frameIndex);
+            }
+        };
+
+        // Throttled scroll handler using rAF
+        let ticking = false;
+        const handleScroll = () => {
+            if (!ticking) {
+                rafIdRef.current = requestAnimationFrame(() => {
+                    updateFrame();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        // Throttled resize handler
+        let resizeTimeout: ReturnType<typeof setTimeout>;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateSize();
+                drawFrame(currentFrameRef.current);
+            }, 100);
+        };
+
+        updateSize();
+        drawFrame(0);
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleResize, { passive: true });
 
         return () => {
-            window.removeEventListener("resize", updateSize);
-            window.removeEventListener("scroll", () => updateFrame(window.scrollY));
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
+            clearTimeout(resizeTimeout);
+            if (rafIdRef.current) {
+                cancelAnimationFrame(rafIdRef.current);
+            }
         };
-    }, [isLoaded, images]);
+    }, [isInitialLoaded]);
 
     // Email Copy Handle Function
-    const handleCopyEmail = async () => {
+    const handleCopyEmail = useCallback(async () => {
         try {
             await navigator.clipboard.writeText(email);
             setIsCopied(true);
@@ -134,20 +206,28 @@ const FrameHeroSection = () => {
                 setIsCopied(false);
             }, 2000);
         }
-    };
+    }, [email]);
 
     return (
         <div
             ref={sectionRef}
-            className={cn(
-                "relative w-full"
-            )}
+            className={cn("relative w-full")}
             style={{ height: "500vh" }}
         >
             <div className={cn(
                 "sticky top-0 w-full h-dvh min-h-[600px] overflow-hidden",
                 "max-sm:h-dvh max-sm:min-h-[500px]"
             )}>
+                {/* Loading Progress Bar */}
+                {loadProgress < 100 && (
+                    <div className="absolute top-0 left-0 w-full h-1 bg-white/10 z-50">
+                        <div
+                            className="h-full bg-brand-blue transition-all duration-300 ease-out"
+                            style={{ width: `${loadProgress}%` }}
+                        />
+                    </div>
+                )}
+
                 {/* Canvas */}
                 <canvas
                     ref={canvasRef}
@@ -155,7 +235,8 @@ const FrameHeroSection = () => {
                         "absolute top-0 left-0 w-full h-full object-contain aspect-[16/9] z-[1] mt-[64px] lg:mt-[70px]",
                         "brightness-[0.7] contrast-[1.1] transition-[filter] duration-300",
                         "max-lg:brightness-[0.6] max-lg:contrast-[1.15]",
-                        "max-sm:brightness-[0.5]"
+                        "max-sm:brightness-[0.5]",
+                        !isInitialLoaded && "opacity-0"
                     )}
                 />
 
@@ -202,7 +283,7 @@ const FrameHeroSection = () => {
                                 </span>
                             </h1>
 
-                            {/* Hero Description - hidden on mobile */}
+                            {/* Hero Description */}
                             <div className="flex flex-row items-center gap-3 max-sm:flex max-sm:flex-col">
                                 <span className={cn(
                                     "text-left font-secondary text-[clamp(16px,1.5vw,20px)] font-normal",
@@ -287,4 +368,3 @@ const FrameHeroSection = () => {
 };
 
 export default FrameHeroSection;
-

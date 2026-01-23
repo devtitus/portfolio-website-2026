@@ -1,42 +1,66 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { PrimaryButton } from "@/components/ui";
-import {
-  getSiteSettings,
-  type SiteSettings,
-} from "@/lib/services/sanity/getSiteSettings";
+import type { SiteSettings } from "@/lib/services/sanity/getSiteSettings";
 
 interface ContactSectionProps {
   headingHtml?: React.ReactNode;
   ctaText?: string;
   subHeading?: string;
   paragraph?: string;
+  siteSettings?: SiteSettings | null;
 }
 
-const ContactSection = ({
+/**
+ * ContactSection - Client Component (receives data as props from server)
+ * 
+ * Performance improvements:
+ * - Data is fetched server-side and passed as props (no useEffect)
+ * - Component is memoized to prevent unnecessary re-renders
+ * - Background image is lazy loaded with IntersectionObserver
+ * - Uses Next.js Image component for optimization
+ */
+const ContactSection = memo(function ContactSection({
   headingHtml,
   ctaText,
   subHeading,
   paragraph,
-}: ContactSectionProps = {}) => {
-  const [ctaSettings, setSiteSettings] = useState<SiteSettings | null>(null);
+  siteSettings,
+}: ContactSectionProps) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Lazy load background image with IntersectionObserver
   useEffect(() => {
-    const fetchSettings = async () => {
-      const settings = await getSiteSettings();
-      setSiteSettings(settings);
-    };
+    if (!sectionRef.current || !siteSettings?.contactBackgroundImageUrl) return;
 
-    fetchSettings();
-  }, []);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: "200px", // Start loading 200px before visible
+        threshold: 0,
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, [siteSettings?.contactBackgroundImageUrl]);
 
   return (
     <section
+      ref={sectionRef}
       className={cn(
         "min-h-dvh px-[clamp(16px,4vw,60px)] relative",
         "flex flex-col justify-center items-center overflow-hidden",
-        "bg-cover bg-center bg-no-repeat",
         "scroll-mt-20", // Navbar clearance
         // Glassmorphic overlay
         "before:content-[''] before:absolute before:inset-0",
@@ -50,12 +74,25 @@ const ContactSection = ({
         "after:animate-ambient-pulse after:pointer-events-none after:z-[1]",
         "motion-reduce:after:animate-none"
       )}
-      style={{
-        backgroundImage: ctaSettings?.contactBackgroundImageUrl
-          ? `url(${ctaSettings.contactBackgroundImageUrl})`
-          : undefined,
-      }}
     >
+      {/* Lazy loaded background image using Next.js Image */}
+      {siteSettings?.contactBackgroundImageUrl && isVisible && (
+        <Image
+          src={siteSettings.contactBackgroundImageUrl}
+          alt=""
+          fill
+          priority={false}
+          loading="lazy"
+          quality={75}
+          sizes="100vw"
+          className={cn(
+            "object-cover object-center -z-10 transition-opacity duration-500",
+            imageLoaded ? "opacity-100" : "opacity-0"
+          )}
+          onLoad={() => setImageLoaded(true)}
+        />
+      )}
+
       <div className={cn(
         "w-full max-w-[1400px] flex flex-col items-center justify-center",
         "gap-fluid-lg animate-fade-in-up motion-reduce:animate-none",
@@ -124,7 +161,6 @@ const ContactSection = ({
       </div>
     </section>
   );
-};
+});
 
 export default ContactSection;
-

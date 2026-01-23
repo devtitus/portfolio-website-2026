@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { cn } from "@/lib/utils";
 import ProjectCard from "@/components/features/home/projectCard";
@@ -16,12 +17,12 @@ const ProjectSection = () => {
         "w-full max-w-[1400px] flex flex-col justify-center items-center",
         "gap-fluid-lg animate-fade-in-up motion-reduce:animate-none"
       )}>
-        <SectionHeader 
-          title="Featured Projects" 
+        <SectionHeader
+          title="Featured Projects"
           subtitle="A showcase of my recent work"
           align="center"
         />
-        
+
         {/* Project Grid */}
         <div className={cn(
           "w-full grid gap-fluid-md",
@@ -32,7 +33,7 @@ const ProjectSection = () => {
           <ProjectCard />
           <ProjectCard />
         </div>
-        
+
         <PrimaryButton variant="outline" size="md" className="mt-6">
           View All Projects
         </PrimaryButton>
