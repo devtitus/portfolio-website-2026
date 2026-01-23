@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Suppress React DevTools version validation errors
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'react-devtools-core': false,
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
