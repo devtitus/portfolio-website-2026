@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectItem } from "@/lib/types/sanity";
-import styles from "@/styles/features/projects/projectsGrid.module.css";
 import { ExternalLink, Github } from "lucide-react";
 import { ProjectDetailsModal } from "./project-details-modal";
 
@@ -25,20 +24,20 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
 
   return (
     <>
-      <section className={styles.gridWrapper}>
+      <section className="max-w-[1440px] mx-auto px-[clamp(16px,4vw,60px)] pb-[100px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project) => (
           <article
             key={project.id}
-            className={`${styles.projectCard} cursor-pointer group`}
+            className="bg-white/[0.03] backdrop-blur-[10px] border border-white/5 rounded-[20px] overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-white/10 flex flex-col h-full cursor-pointer group"
             onClick={() => handleProjectClick(project)}
           >
-            <div className={styles.imageWrapper}>
+            <div className="w-full aspect-[16/10] relative overflow-hidden bg-black">
               {project.mainImage ? (
                 <Image
                   src={project.mainImage}
                   alt={project.title}
                   fill
-                  className={styles.projectImage}
+                  className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full bg-gray-900 flex items-center justify-center text-gray-700">
@@ -47,15 +46,17 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
               )}
             </div>
 
-            <div className={styles.content}>
-              <div className={styles.meta}>
-                <h3 className={styles.title}>{project.title}</h3>
-                <div className={styles.links}>
+            <div className="p-6 flex-1 flex flex-col">
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-2xl font-medium font-secondary text-foreground m-0">
+                  {project.title}
+                </h3>
+                <div className="flex gap-3">
                   {project.codeLink && (
                     <Link
                       href={project.codeLink}
                       target="_blank"
-                      className={styles.linkIcon}
+                      className="w-5 h-5 text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       title="View Code"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -66,7 +67,7 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                     <Link
                       href={project.projectLink}
                       target="_blank"
-                      className={styles.linkIcon}
+                      className="w-5 h-5 text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       title="Live Project"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -76,20 +77,28 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                 </div>
               </div>
 
-              <p className={styles.description}>{project.description}</p>
+              <p className="text-[0.95rem] text-muted-foreground leading-relaxed mb-5 flex-1">
+                {project.description}
+              </p>
 
-              <div className={styles.tags}>
+              <div className="flex flex-wrap gap-2 mt-auto">
                 {project.technologies && project.technologies.length > 0
                   ? project.technologies.map((tech) => (
-                      <span key={tech.id} className={styles.tag}>
-                        {tech.label}
-                      </span>
-                    ))
+                    <span
+                      key={tech.id}
+                      className="text-xs px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-muted-foreground"
+                    >
+                      {tech.label}
+                    </span>
+                  ))
                   : project.tags?.map((tag) => (
-                      <span key={tag} className={styles.tag}>
-                        {tag}
-                      </span>
-                    ))}
+                    <span
+                      key={tag}
+                      className="text-xs px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
               </div>
             </div>
           </article>
