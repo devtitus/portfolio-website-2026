@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import CommandMenu from "@/components/layouts/command-menu";
 
 // Navigation items configuration
@@ -40,6 +39,13 @@ const Navbar: React.FC = () => {
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href;
+  };
+
+  const handleNavItemClick = (e: React.MouseEvent, item: NavItem) => {
+    if (item.disabled) {
+      e.preventDefault();
+      return;
+    }
   };
 
   return (
@@ -94,7 +100,7 @@ const Navbar: React.FC = () => {
                   <li key={item.id}>
                     <Link
                       href={item.href}
-                      onClick={item.disabled ? (e) => e.preventDefault() : undefined}
+                      onClick={(e) => handleNavItemClick(e, item)}
                       aria-current={active ? "page" : undefined}
                       aria-disabled={item.disabled}
                       className={cn(

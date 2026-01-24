@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { PrimaryButton } from "@/components/ui";
 import type { SiteSettings } from "@/lib/services/sanity/getSiteSettings";
+import { useContactModal } from "@/components/providers/contact-modal-provider";
 
 interface ContactSectionProps {
   headingHtml?: React.ReactNode;
@@ -32,6 +33,7 @@ const ContactSection = memo(function ContactSection({
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { openContactModal } = useContactModal();
 
   // Lazy load background image with IntersectionObserver
   useEffect(() => {
@@ -138,6 +140,7 @@ const ContactSection = memo(function ContactSection({
             variant="solid"
             size="md"
             className="mt-3"
+            onClick={openContactModal}
           >
             {ctaText || "Get In Touch"}
           </PrimaryButton>

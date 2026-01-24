@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { SmoothScrollProvider } from "@/components/providers";
+import { ContactModalProvider } from "@/components/providers/contact-modal-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning={true}
       >
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <ContactModalProvider>{children}</ContactModalProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
