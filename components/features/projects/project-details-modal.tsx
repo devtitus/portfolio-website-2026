@@ -30,12 +30,13 @@ export function ProjectDetailsModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
         className={cn(
-          "bg-card backdrop-blur-[20px] border border-[var(--glass-border-color)]",
+          "bg-background/95 backdrop-blur-xl border border-[var(--glass-border-color)]",
           "text-foreground max-w-[90vw] w-[1000px] h-[85vh] max-h-[85vh]",
           "overflow-hidden flex flex-col p-0 rounded-2xl",
           "shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border-none gap-0",
           "sm:max-w-[1000px]",
-          "mt-[48px] lg:mt-[60px]"
+          "mt-[48px] lg:mt-[60px]",
+          "bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,rgba(10,10,15,0.95)_100%)]"
         )}
       >
         <div
@@ -51,7 +52,7 @@ export function ProjectDetailsModal({
           <DialogHeader
             className={cn(
               "flex justify-between items-start",
-              "mb-[clamp(24px,4vw,40px)]",
+              "mb-[clamp(24px,4vw,32px)]",
               "max-sm:flex-col max-sm:gap-2"
             )}
           >
@@ -60,7 +61,7 @@ export function ProjectDetailsModal({
                 {project.title}
               </DialogTitle>
               {project.tagline && (
-                <span className="font-secondary text-[var(--skill-text-color)] text-left text-[clamp(16px,1vw,18px)] mb-[clamp(4px,1vw,10px)]">
+                <span className="font-secondary text-[var(--skill-text-color)] text-left text-[clamp(16px,1vw,18px)] mb-[clamp(4px,1vw,8px)]">
                   {project.tagline}
                 </span>
               )}
@@ -160,14 +161,14 @@ export function ProjectDetailsModal({
                   "rounded-xl p-[clamp(16px,3vw,24px)] mb-4"
                 )}
               >
-                <h4 className="text-[clamp(14px,1vw,16px)] text-[var(--skill-text-color)] mb-2 uppercase tracking-wider">
+                <h4 className="text-[clamp(12px,1vw,14px)] text-[var(--skill-text-color)] mb-[clamp(12px,1vw,18px)] uppercase tracking-wider">
                   Technologies
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies?.map((tech) => (
                     <span
                       key={tech.id}
-                      className="text-[clamp(14px,1vw,16px)] px-3 py-1 bg-muted text-foreground border border-[var(--glass-border-color)] rounded-full whitespace-nowrap"
+                      className="text-[clamp(12px,1vw,14px)] px-3 py-1 bg-muted text-foreground border border-[var(--glass-border-color)] rounded-full whitespace-nowrap"
                     >
                       {tech.label}
                     </span>
@@ -176,7 +177,7 @@ export function ProjectDetailsModal({
                     project.tags?.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[clamp(14px,1vw,16px)] px-3 py-1 bg-muted text-foreground border border-[var(--glass-border-color)] rounded-full whitespace-nowrap"
+                        className="text-[clamp(12px,1vw,14px)] px-3 py-1 bg-muted text-foreground border border-[var(--glass-border-color)] rounded-full whitespace-nowrap"
                       >
                         {tag}
                       </span>
