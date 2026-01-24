@@ -127,7 +127,7 @@
 
 .commandList[cmdk-list] {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
 
 .commandList::-webkit-scrollbar {
@@ -139,8 +139,11 @@
 }
 
 .commandList::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
+}
+.commandList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 .commandList:focus-visible {
   outline: none;
