@@ -14,246 +14,9 @@ import {
   XIcon,
   GithubIcon,
 } from "@/lib/utils/icons";
-import { cn } from "@/lib/utils"; // Assuming you have a cn utility, if not I'll handle it or import clsx/tailwind-merge if standard
+import { cn } from "@/lib/utils";
 
-interface CommandMenuProps {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-  onNavigate: (page: string) => void;
-}
-
-/**
- * CommandMenu - Optimized for INP (Interaction to Next Paint)
- *
- * Performance improvements:
- * - Memoized component to prevent re-renders
- * - useCallback for all handlers
- * - Event listener cleanup with stable references
- * - Deferred state updates with startTransition
- */
-const CommandMenu = memo(function CommandMenu({
-  isOpen,
-  setIsOpen,
-  onNavigate,
-}: CommandMenuProps) {
-  const [search, setSearch] = useState("");
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  // Memoized close handler
-  const handleClose = useCallback(() => {
-    setIsOpen(false);
-    setSearch("");
-  }, [setIsOpen]);
-
-  // Memoized click outside handler
-  const handleClickOutside = useCallback((event: MouseEvent) => {
-    const target = event.target as Element;
-    if (contentRef.current && !contentRef.current.contains(target)) {
-      handleClose();
-    }
-  }, [handleClose]);
-
-  // Memoized keyboard handler
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    // Use passive event handling for better INP
-    if (e.key === "Escape") {
-      e.preventDefault();
-      handleClose();
-      return;
-    }
-
-    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault();
-      setIsOpen(!isOpen);
-    }
-  }, [handleClose, setIsOpen, isOpen]);
-
-  // Add click outside handler
-  useEffect(() => {
-    if (!isOpen) return;
-
-    // Use capture phase for slightly better performance
-    document.addEventListener("mousedown", handleClickOutside, { capture: true });
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside, { capture: true });
-    };
-  }, [isOpen, handleClickOutside]);
-
-  // Keyboard shortcuts - use passive option
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
-
-  // Memoized select handler
-  const handleSelect = useCallback((value: string) => {
-    switch (value) {
-      case "home":
-      case "about":
-      case "projects":
-      case "contact":
-        onNavigate(value);
-        break;
-      case "copy-email":
-        navigator.clipboard.writeText("m.works.gd@gmail.com");
-        break;
-      case "theme-dark":
-      case "theme-light":
-        break;
-    }
-    handleClose();
-  }, [onNavigate, handleClose]);
-
-  // Memoized search change handler
-  const handleSearchChange = useCallback((value: string) => {
-    setSearch(value);
-  }, []);
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4 sm:p-0">
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-[4px] animate-in fade-in duration-200"
-        onClick={handleClose}
-      />
-
-      {/* Content */}
-      <div
-        ref={contentRef}
-        className="relative z-50 w-full max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-[#08080a]/90 shadow-2xl backdrop-blur-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-200"
-      >
-        <Command
-          className="h-full w-full overflow-hidden bg-transparent"
-          shouldFilter={true}
-        >
-          {/* Input Area */}
-          <div className="flex items-center border-b border-white/10 px-4">
-            <SearchIcon className="mr-3 h-5 w-5 shrink-0 text-white/50" />
-            <Command.Input
-              value={search}
-              onValueChange={handleSearchChange}
-              placeholder="Type a command or search..."
-              className="flex h-14 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-white/50 text-white font-secondary disabled:cursor-not-allowed disabled:opacity-50"
-              autoFocus
-            />
-            <button
-              className="ml-2 hidden sm:inline-flex h-6 select-none items-center gap-1 rounded border border-white/20 bg-white/5 px-2 text-[10px] font-medium text-white/70 opacity-100 hover:bg-white/10 transition-colors"
-              onClick={handleClose}
-              type="button"
-            >
-              ESC
-            </button>
-          </div>
-
-          {/* List Area */}
-          <Command.List className="max-h-[60vh] overflow-y-auto overflow-x-hidden p-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-            <Command.Empty className="py-6 text-center text-sm text-white/50 font-secondary">
-              No results found.
-            </Command.Empty>
-
-            {/* Pages */}
-            <Command.Group heading="Pages" className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground">
-              <CommandItem
-                value="home"
-                onSelect={() => handleSelect("home")}
-                icon={<HomeIcon className="h-5 w-5" />}
-                label="Home"
-                description="Go to the home page"
-              />
-              <CommandItem
-                value="about"
-                onSelect={() => handleSelect("about")}
-                icon={<AboutIcon className="h-5 w-5" />}
-                label="About"
-                description="Learn more about me"
-              />
-              <CommandItem
-                value="projects"
-                onSelect={() => handleSelect("projects")}
-                icon={<ProjectsIcon className="h-5 w-5" />}
-                label="Projects"
-                description="View my projects"
-              />
-            </Command.Group>
-
-            {/* Actions */}
-            <Command.Group heading="Actions" className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider">
-              <CommandItem
-                value="copy-email"
-                onSelect={() => handleSelect("copy-email")}
-                icon={<CopyIcon className="h-5 w-5" />}
-                label="Copy Email"
-                description="Copy my email to clipboard"
-              />
-              <CommandItem
-                value="contact"
-                onSelect={() => handleSelect("contact")}
-                icon={<ContactIcon className="h-5 w-5" />}
-                label="Contact"
-                description="Get in touch with me"
-              />
-            </Command.Group>
-
-            {/* Socials */}
-            <Command.Group heading="Socials" className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider">
-              <CommandItem
-                value="linkedin"
-                icon={<LinkedInIcon className="h-5 w-5" />}
-                label="LinkedIn"
-                description="Connect with me on LinkedIn"
-                shortcut={<LinkIcon className="h-3 w-3" />}
-              />
-              <CommandItem
-                value="x"
-                icon={<XIcon className="h-5 w-5" />}
-                label="X"
-                description="Connect with me on X"
-                shortcut={<LinkIcon className="h-3 w-3" />}
-              />
-              <CommandItem
-                value="github"
-                icon={<GithubIcon className="h-5 w-5" />}
-                label="Github"
-                description="Connect with me on Github"
-                shortcut={<LinkIcon className="h-3 w-3" />}
-              />
-            </Command.Group>
-          </Command.List>
-
-          {/* Footer */}
-          <div className="hidden sm:flex items-center justify-between border-t border-white/10 bg-white/[0.02] px-4 py-3">
-            <div className="flex items-center gap-4">
-              <LinkedInIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
-              <XIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
-              <GithubIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
-            </div>
-
-            <div className="flex items-center gap-4 text-xs text-white/60 font-secondary">
-              <div className="flex items-center gap-1.5">
-                <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↑</span>
-                <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↓</span>
-                <span>navigate</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↵</span>
-                <span>select</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="flex items-center justify-center px-1.5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">esc</span>
-                <span>close</span>
-              </div>
-            </div>
-          </div>
-        </Command>
-      </div>
-    </div>
-  );
-});
-
-// Helper component for cleaner code
+// Helper component must be defined before usage or hoisted
 interface CommandItemProps {
   value: string;
   onSelect?: () => void;
@@ -263,7 +26,14 @@ interface CommandItemProps {
   shortcut?: React.ReactNode;
 }
 
-const CommandItem = ({ value, onSelect, icon, label, description, shortcut }: CommandItemProps) => {
+const CommandItem = ({
+  value,
+  onSelect,
+  icon,
+  label,
+  description,
+  shortcut,
+}: CommandItemProps) => {
   return (
     <Command.Item
       value={value}
@@ -291,5 +61,265 @@ const CommandItem = ({ value, onSelect, icon, label, description, shortcut }: Co
     </Command.Item>
   );
 };
+
+interface CommandMenuProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+  onNavigate: (page: string) => void;
+}
+
+/**
+ * CommandMenu - Optimized for INP (Interaction to Next Paint)
+ */
+const CommandMenu = memo(function CommandMenu({
+  isOpen,
+  setIsOpen,
+  onNavigate,
+}: CommandMenuProps) {
+  const [search, setSearch] = useState("");
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Memoized close handler
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    setSearch("");
+  }, [setIsOpen]);
+
+  // Memoized click outside handler
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (contentRef.current && !contentRef.current.contains(target)) {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
+  // Memoized keyboard handler
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        handleClose();
+        return;
+      }
+
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsOpen(!isOpen);
+      }
+    },
+    [handleClose, setIsOpen, isOpen]
+  );
+
+  // Add click outside handler
+  useEffect(() => {
+    if (!isOpen) return;
+
+    document.addEventListener("mousedown", handleClickOutside, {
+      capture: true,
+    });
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside, {
+        capture: true,
+      });
+    };
+  }, [isOpen, handleClickOutside]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  // Memoized select handler
+  const handleSelect = useCallback(
+    (value: string) => {
+      switch (value) {
+        case "home":
+        case "about":
+        case "projects":
+        case "contact":
+          onNavigate(value);
+          break;
+        case "copy-email":
+          navigator.clipboard.writeText("m.works.gd@gmail.com");
+          break;
+      }
+      handleClose();
+    },
+    [onNavigate, handleClose]
+  );
+
+  // Memoized search change handler
+  const handleSearchChange = useCallback((value: string) => {
+    setSearch(value);
+  }, []);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4 sm:p-0">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-[4px] animate-in fade-in duration-200"
+        onClick={handleClose}
+      />
+
+      {/* Content Wrapper */}
+      <div
+        ref={contentRef}
+        className="relative z-50 w-full max-w-2xl animate-in zoom-in-95 slide-in-from-bottom-2 duration-200"
+      >
+        {/* Glow Effect - Matching Body Gradient */}
+        <div
+          className="absolute -inset-4 -z-10 rounded-xl opacity-50 blur-xl transition-all duration-500"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(0, 87, 224, 0.15) 0%, rgba(0, 87, 224, 0.05) 25%, transparent 50%)",
+          }}
+        />
+
+        {/* Command Menu */}
+        <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#08080a]/80 shadow-2xl backdrop-blur-md">
+          <Command
+            className="h-full w-full overflow-hidden bg-transparent"
+            shouldFilter={true}
+          >
+            {/* Input Area */}
+            <div className="flex items-center border-b border-white/10 px-4">
+              <SearchIcon className="mr-3 h-5 w-5 shrink-0 text-white/50" />
+              <Command.Input
+                value={search}
+                onValueChange={handleSearchChange}
+                placeholder="Type a command or search..."
+                className="flex h-14 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-white/50 text-white font-secondary disabled:cursor-not-allowed disabled:opacity-50"
+                autoFocus
+              />
+              <button
+                className="ml-2 hidden sm:inline-flex h-6 select-none items-center gap-1 rounded border border-white/20 bg-white/5 px-2 text-[10px] font-medium text-white/70 opacity-100 hover:bg-white/10 transition-colors"
+                onClick={handleClose}
+                type="button"
+              >
+                ESC
+              </button>
+            </div>
+
+            {/* List Area */}
+            <Command.List className="max-h-[60vh] overflow-y-auto overflow-x-hidden p-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+              <Command.Empty className="py-6 text-center text-sm text-white/50 font-secondary">
+                No results found.
+              </Command.Empty>
+
+              {/* Pages */}
+              <Command.Group
+                heading="Pages"
+                className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground"
+              >
+                <CommandItem
+                  value="home"
+                  onSelect={() => handleSelect("home")}
+                  icon={<HomeIcon className="h-5 w-5" />}
+                  label="Home"
+                  description="Go to the home page"
+                />
+                <CommandItem
+                  value="about"
+                  onSelect={() => handleSelect("about")}
+                  icon={<AboutIcon className="h-5 w-5" />}
+                  label="About"
+                  description="Learn more about me"
+                />
+                <CommandItem
+                  value="projects"
+                  onSelect={() => handleSelect("projects")}
+                  icon={<ProjectsIcon className="h-5 w-5" />}
+                  label="Projects"
+                  description="View my projects"
+                />
+              </Command.Group>
+
+              {/* Actions */}
+              <Command.Group
+                heading="Actions"
+                className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider"
+              >
+                <CommandItem
+                  value="copy-email"
+                  onSelect={() => handleSelect("copy-email")}
+                  icon={<CopyIcon className="h-5 w-5" />}
+                  label="Copy Email"
+                  description="Copy my email to clipboard"
+                />
+                <CommandItem
+                  value="contact"
+                  onSelect={() => handleSelect("contact")}
+                  icon={<ContactIcon className="h-5 w-5" />}
+                  label="Contact"
+                  description="Get in touch with me"
+                />
+              </Command.Group>
+
+              {/* Socials */}
+              <Command.Group
+                heading="Socials"
+                className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider"
+              >
+                <CommandItem
+                  value="linkedin"
+                  icon={<LinkedInIcon className="h-5 w-5" />}
+                  label="LinkedIn"
+                  description="Connect with me on LinkedIn"
+                  shortcut={<LinkIcon className="h-3 w-3" />}
+                />
+                <CommandItem
+                  value="x"
+                  icon={<XIcon className="h-5 w-5" />}
+                  label="X"
+                  description="Connect with me on X"
+                  shortcut={<LinkIcon className="h-3 w-3" />}
+                />
+                <CommandItem
+                  value="github"
+                  icon={<GithubIcon className="h-5 w-5" />}
+                  label="Github"
+                  description="Connect with me on Github"
+                  shortcut={<LinkIcon className="h-3 w-3" />}
+                />
+              </Command.Group>
+            </Command.List>
+
+            {/* Footer */}
+            <div className="hidden sm:flex items-center justify-between border-t border-white/10 bg-white/[0.02] px-4 py-3">
+              <div className="flex items-center gap-4">
+                <LinkedInIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
+                <XIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
+                <GithubIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
+              </div>
+
+              <div className="flex items-center gap-4 text-xs text-white/60 font-secondary">
+                <div className="flex items-center gap-1.5">
+                  <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↑</span>
+                  <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↓</span>
+                  <span>navigate</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↵</span>
+                  <span>select</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="flex items-center justify-center px-1.5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">esc</span>
+                  <span>close</span>
+                </div>
+              </div>
+            </div>
+          </Command>
+        </div>
+      </div>
+    </div>
+  );
+});
 
 export default CommandMenu;
