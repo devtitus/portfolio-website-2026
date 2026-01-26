@@ -35,8 +35,8 @@ export function ProjectDetailsModal({
           "overflow-hidden flex flex-col p-0 rounded-2xl",
           "shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border-none gap-0",
           "sm:max-w-[1000px]",
-          "mt-[48px] lg:mt-[60px]",
-          "bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,rgba(10,10,15,0.95)_100%)]"
+          "mt-[48px] lg:mt-[40px]",
+          "bg-[radial-gradient(ellipse_at_center,rgba(0,87,224,0.15)_0%,rgba(0,87,224,0.05)_25%,rgba(10,10,15,0.95)_100%)]",
         )}
       >
         <div
@@ -46,14 +46,14 @@ export function ProjectDetailsModal({
             "py-[clamp(32px,4vw,40px)] px-[clamp(20px,4vw,40px)]",
             "[&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent",
             "[&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full",
-            "[&::-webkit-scrollbar-thumb:hover]:bg-white/20"
+            "[&::-webkit-scrollbar-thumb:hover]:bg-white/20",
           )}
         >
           <DialogHeader
             className={cn(
               "flex justify-between items-start",
               "mb-[clamp(24px,4vw,32px)]",
-              "max-sm:flex-col max-sm:gap-2"
+              "max-sm:flex-col max-sm:gap-2",
             )}
           >
             <div className="flex flex-col gap-2">
@@ -68,7 +68,10 @@ export function ProjectDetailsModal({
             </div>
 
             <div
-              className={cn("flex gap-3", "max-sm:w-full max-sm:justify-start self-end")}
+              className={cn(
+                "flex gap-3",
+                "max-sm:w-full max-sm:justify-start self-end",
+              )}
             >
               {project.projectLink && (
                 <Link
@@ -80,7 +83,7 @@ export function ProjectDetailsModal({
                     "transition-all duration-200",
                     "hover:bg-primary hover:-translate-y-0.5 hover:border-primary",
                     "w-[clamp(32px,3vw,44px)] h-[clamp(32px,3vw,44px)]",
-                    "max-sm:w-10 max-sm:h-10"
+                    "max-sm:w-10 max-sm:h-10",
                   )}
                   aria-label="View Live Site"
                 >
@@ -97,7 +100,7 @@ export function ProjectDetailsModal({
                     "transition-all duration-200",
                     "hover:bg-primary hover:-translate-y-0.5 hover:border-primary",
                     "w-[clamp(32px,3vw,44px)] h-[clamp(32px,3vw,44px)]",
-                    "max-sm:w-10 max-sm:h-10"
+                    "max-sm:w-10 max-sm:h-10",
                   )}
                   aria-label="View Source Code"
                 >
@@ -114,7 +117,7 @@ export function ProjectDetailsModal({
                     "transition-all duration-200",
                     "hover:bg-primary hover:-translate-y-0.5 hover:border-primary",
                     "w-[clamp(32px,3vw,44px)] h-[clamp(32px,3vw,44px)]",
-                    "max-sm:w-10 max-sm:h-10"
+                    "max-sm:w-10 max-sm:h-10",
                   )}
                   aria-label="View Design"
                 >
@@ -128,7 +131,7 @@ export function ProjectDetailsModal({
             className={cn(
               "relative w-full aspect-video rounded-xl overflow-hidden",
               "mb-[clamp(24px,4vw,40px)]",
-              "border border-[var(--glass-border-color)]"
+              "border border-[var(--glass-border-color)]",
             )}
           >
             <Image
@@ -143,7 +146,7 @@ export function ProjectDetailsModal({
           <div
             className={cn(
               "grid grid-cols-1 md:grid-cols-[2fr_1fr]",
-              "gap-[clamp(24px,4vw,40px)]"
+              "gap-[clamp(24px,4vw,40px)]",
             )}
           >
             <div className="text-[clamp(16px,1vw,18px)] leading-relaxed text-[var(--skill-text-color)] prose-custom">
@@ -158,7 +161,7 @@ export function ProjectDetailsModal({
               <div
                 className={cn(
                   "bg-[var(--glass-color)] border border-[var(--glass-border-color)]",
-                  "rounded-xl p-[clamp(16px,3vw,24px)] mb-4"
+                  "rounded-xl p-[clamp(16px,3vw,24px)] mb-4",
                 )}
               >
                 <h4 className="text-[clamp(12px,1vw,14px)] text-[var(--skill-text-color)] mb-[clamp(12px,1vw,18px)] uppercase tracking-wider">
