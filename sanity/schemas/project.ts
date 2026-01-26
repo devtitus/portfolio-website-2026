@@ -69,10 +69,9 @@ export default defineType({
       of: [{ type: "reference", to: { type: "skill" } }],
     }),
     defineField({
-      name: "detailedDescription",
-      title: "Detailed Content",
-      type: "array",
-      of: [defineArrayMember({ type: "block" })],
+      name: "formattedContent",
+      title: "Detailed Content (Markdown)",
+      type: "markdown",
       description: "Full project details displayed in the modal",
     }),
   ],

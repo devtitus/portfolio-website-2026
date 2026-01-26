@@ -7,7 +7,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ProjectItem } from "@/lib/types/sanity";
-import { PortableText } from "@portabletext/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Github, Globe, Figma } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -149,9 +150,26 @@ export function ProjectDetailsModal({
               "gap-[clamp(24px,4vw,40px)]",
             )}
           >
-            <div className="text-[clamp(16px,1vw,18px)] leading-relaxed text-[var(--skill-text-color)] prose-custom">
-              {project.detailedDescription ? (
-                <PortableText value={project.detailedDescription} />
+            <div className="text-[clamp(16px,1vw,18px)] leading-relaxed text-[var(--skill-text-color)]">
+              {project.formattedContent ? (
+                <div
+                  className={cn(
+                    "prose prose-invert max-w-none",
+                    "prose-headings:font-secondary prose-headings:text-foreground",
+                    "prose-p:font-secondary prose-p:text-[var(--skill-text-color)]",
+                    "prose-li:font-secondary prose-li:text-[var(--skill-text-color)]",
+                    "prose-strong:text-foreground prose-strong:font-semibold",
+                    "prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
+                    "prose-code:text-accent prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none",
+                    "prose-pre:bg-[#08080a] prose-pre:border prose-pre:border-white/10",
+                    "prose-blockquote:border-l-primary prose-blockquote:bg-white/5 prose-blockquote:py-1 prose-blockquote:pr-4",
+                    "prose-hr:border-white/10"
+                  )}
+                >
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {project.formattedContent}
+                  </ReactMarkdown>
+                </div>
               ) : (
                 <p>{project.description}</p>
               )}

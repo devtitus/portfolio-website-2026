@@ -100,7 +100,7 @@ export interface ProjectItem {
   designLink?: string;
   tags?: string[];
   technologies?: SkillItem[];
-  detailedDescription?: any[]; // Typed as any[] for Portable Text blocks
+  formattedContent?: string; // Markdown content
 }
 
 export interface SanityProject {
@@ -115,7 +115,7 @@ export interface SanityProject {
   designLink?: string;
   tags?: string[];
   technologies?: SanitySkill[];
-  detailedDescription?: any[];
+  formattedContent?: string;
 }
 
 // Re-export all types for convenience

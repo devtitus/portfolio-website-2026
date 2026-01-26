@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { markdownSchema } from 'sanity-plugin-markdown'
 
 import { schemaTypes } from './schemas'
 import { apiVersion, dataset, projectId } from './env'
@@ -15,6 +16,7 @@ export default defineConfig({
   plugins: [
     structureTool(),
     visionTool({ defaultApiVersion: apiVersion }),
+    markdownSchema(),
   ],
 
   schema: {

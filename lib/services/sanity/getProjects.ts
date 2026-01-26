@@ -19,7 +19,7 @@ export const getProjects = async (): Promise<ProjectItem[]> => {
       label,
       icon
     },
-    detailedDescription
+    formattedContent
   }`;
 
   try {
@@ -43,7 +43,7 @@ export const getProjects = async (): Promise<ProjectItem[]> => {
           iconUrl: urlForImage(tech.icon)?.url() || "",
           uid: null,
         })) || [],
-      detailedDescription: project.detailedDescription,
+      formattedContent: project.formattedContent,
     }));
   } catch (error) {
     console.error("Error fetching projects from Sanity:", error);
