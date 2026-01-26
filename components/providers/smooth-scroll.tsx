@@ -59,6 +59,9 @@ const SmoothScrollProvider = ({ children }: { children: React.ReactNode }) => {
 
     lenisRef.current = lenisInstance;
 
+    // Make Lenis instance globally accessible for modal interactions
+    (window as any).lenis = lenisInstance;
+
     // Handle visibility change - pause when tab is hidden
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -73,6 +76,8 @@ const SmoothScrollProvider = ({ children }: { children: React.ReactNode }) => {
     const handleMotionPreferenceChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
         stopLoop();
+        // Clean up global reference
+        delete (window as any).lenis;
         lenisInstance.destroy();
         lenisRef.current = null;
       }
@@ -88,6 +93,8 @@ const SmoothScrollProvider = ({ children }: { children: React.ReactNode }) => {
 
     return () => {
       stopLoop();
+      // Clean up global reference
+      delete (window as any).lenis;
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       mediaQuery.removeEventListener("change", handleMotionPreferenceChange);
       lenisInstance.destroy();

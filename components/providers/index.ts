@@ -3,3 +3,4 @@
 // export { ThemeProvider } from './theme-provider';
 // export { DataProvider } from './data-provider';
 export { default as SmoothScrollProvider } from "./smooth-scroll";
+export { ContactModalProvider, useContactModal } from "./contact-modal-provider";

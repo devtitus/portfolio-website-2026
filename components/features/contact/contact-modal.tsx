@@ -7,7 +7,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { Input, Textarea, Button } from "@/components/ui";
+import { Input, Textarea } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { Mail, MapPin, Send } from "lucide-react";
 import { PrimaryButton } from "@/components/ui";

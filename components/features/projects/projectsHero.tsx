@@ -10,10 +10,10 @@ const ProjectsHero: React.FC = () => {
         "px-[clamp(16px,4vw,60px)] 2xl:px-0",
         "py-[clamp(60px,10vh,100px)]",
         "max-w-[1400px] mx-auto relative overflow-hidden",
-        "mt-[64px] lg:mt-[70px]",
+        "mt-[64px] lg:mt-[0px]",
         // Mobile/Tablet Overrides
         "max-sm:py-[60px] max-sm:text-center",
-        "max-lg:py-[80px]"
+        "max-lg:py-[80px]",
       )}
     >
       {/* Decorative background element - optimized for mobile */}
@@ -21,7 +21,7 @@ const ProjectsHero: React.FC = () => {
         className={cn(
           "absolute -top-[20%] -right-[10%] rounded-full -z-10 pointer-events-none",
           "w-[600px] h-[600px]",
-          "max-sm:w-[400px] max-sm:h-[400px] max-sm:-top-[10%] max-sm:-right-[20%]"
+          "max-sm:w-[400px] max-sm:h-[400px] max-sm:-top-[10%] max-sm:-right-[20%]",
         )}
       />
 
@@ -42,7 +42,7 @@ const ProjectsHero: React.FC = () => {
         className={cn(
           "text-[clamp(16px,1vw,20px)] text-muted-foreground leading-relaxed",
           "max-w-[600px] max-sm:text-left",
-          "max-sm:max-w-full max-sm:mx-auto"
+          "max-sm:max-w-full max-sm:mx-auto",
         )}
       >
         A collection of projects where design meets code. From interactive web

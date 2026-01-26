@@ -13,7 +13,7 @@ const ProjectsPage = async () => {
   const projects = await getProjects();
 
   return (
-    <main className="min-h-dvh text-[var(--default-text-color)]">
+    <div className="min-h-dvh text-[var(--default-text-color)]">
       <ProjectsHero />
       <ProjectsGrid projects={projects} />
       <ContactSection
@@ -21,7 +21,7 @@ const ProjectsPage = async () => {
         subHeading="Have a project in mind?"
         paragraph="I'm always open to discussing new opportunities and interesting projects."
       />
-    </main>
+    </div>
   );
 };
 

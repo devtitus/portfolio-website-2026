@@ -1,10 +1,14 @@
-import { Navbar, Footer } from "@/components/layouts/index"
+import { Navbar, Footer } from "@/components/layouts/index";
 
-export default function RoutesLayout({ children }: { children: React.ReactNode }) {
+export default function RoutesLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="min-h-dvh text-[var(--default-text-color)] w-full max-w-full min-w-full">
         {children}
       </main>
       <Footer />

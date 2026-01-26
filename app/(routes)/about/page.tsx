@@ -13,7 +13,7 @@ const AboutPage = async () => {
   const skills = await getSkills();
 
   return (
-    <main className="min-h-dvh text-[var(--default-text-color)]">
+    <div className="min-h-dvh text-[var(--default-text-color)]">
       <AboutHeroSection />
       <AboutSelectedPath
         experiences={experiences}
@@ -43,7 +43,7 @@ const AboutPage = async () => {
         subHeading=" "
         paragraph="I craft digital experiences that feel tangible. Bridging the gap between robust engineering and intuitive design."
       />
-    </main>
+    </div>
   );
 };
 

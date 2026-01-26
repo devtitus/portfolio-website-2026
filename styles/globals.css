@@ -69,7 +69,8 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/font/satoshi/Satoshi-VariableItalic.woff2") format("woff2-variations");
+  src: url("/font/satoshi/Satoshi-VariableItalic.woff2")
+    format("woff2-variations");
   font-weight: 300 900;
   font-style: italic;
   font-display: swap;
@@ -202,10 +203,12 @@
     --default-text-color: #ffffff;
     --default-text-color-dark: #08080a;
     --skill-text-color: #a1a1aa;
-    --default-violet-color: #0057E0;
-    --monochrome-gradient-text-color: linear-gradient(180deg,
-        #ffffff 0%,
-        #a1a1aa 100%);
+    --default-violet-color: #0057e0;
+    --monochrome-gradient-text-color: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #a1a1aa 100%
+    );
     --hero-separator-border-color: rgba(255, 255, 255, 0.08);
     --copy-button-text-color: #a1a1aa;
     --glass-color: rgba(255, 255, 255, 0.03);
@@ -342,14 +345,12 @@ body {
 body::before {
   content: "";
   @apply fixed -top-1/2 -left-1/4 w-[150%] h-[200%] pointer-events-none -z-10 animate-ambient-pulse motion-reduce:animate-none;
-  background: radial-gradient(ellipse at center, rgba(0, 87, 224, 0.15) 0%, rgba(0, 87, 224, 0.05) 25%, transparent 50%);
-}
-
-/* Hide scrollbar for webkit browsers */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 87, 224, 0.15) 0%,
+    rgba(0, 87, 224, 0.05) 25%,
+    transparent 50%
+  );
 }
 
 /* Scrollbar utility class for elements that need visible thin scrollbars */
@@ -383,7 +384,8 @@ body::-webkit-scrollbar {
 
 /* Marquee (global fallback) */
 .animate-scroll {
-  animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+  animation: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
 }
 
 @keyframes scroll {
