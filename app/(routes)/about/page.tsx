@@ -6,11 +6,13 @@ import ContactSection from "@/components/features/home/contactSection";
 import { getExperience } from "@/lib/services/sanity/getExperience";
 import { getEducation } from "@/lib/services/sanity/getEducation";
 import { getSkills } from "@/lib/services/sanity/getSkills";
+import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
 
 const AboutPage = async () => {
   const experiences = await getExperience();
   const education = await getEducation();
   const skills = await getSkills();
+  const siteSettings = await getSiteSettings();
 
   return (
     <div className="min-h-dvh text-[var(--default-text-color)]">
@@ -21,6 +23,7 @@ const AboutPage = async () => {
         skills={skills}
       />
       <ContactSection
+        siteSettings={siteSettings}
         headingHtml={
           <div className="flex flex-col items-center text-center gap-[clamp(8px,1vw,12px)]">
             <span className="text-[clamp(26px,3.2vw,48px)] font-primary leading-none block">
