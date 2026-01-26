@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback, memo, useRef } from "react";
 import { Command } from "cmdk";
-import styles from "@/styles/components/commandMenu.module.css";
 import {
   HomeIcon,
   SearchIcon,
@@ -15,6 +14,7 @@ import {
   XIcon,
   GithubIcon,
 } from "@/lib/utils/icons";
+import { cn } from "@/lib/utils"; // Assuming you have a cn utility, if not I'll handle it or import clsx/tailwind-merge if standard
 
 interface CommandMenuProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ interface CommandMenuProps {
 
 /**
  * CommandMenu - Optimized for INP (Interaction to Next Paint)
- * 
+ *
  * Performance improvements:
  * - Memoized component to prevent re-renders
  * - useCallback for all handlers
@@ -113,180 +113,137 @@ const CommandMenu = memo(function CommandMenu({
   if (!isOpen) return null;
 
   return (
-    <div className={styles.commandDialogOverlay}>
-      <div ref={contentRef} className={styles.commandDialogContent}>
-        <Command className={styles.command} shouldFilter={true}>
-          <div className={styles.commandInputContainer}>
-            <SearchIcon className={styles.searchIcon} />
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4 sm:p-0">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-[4px] animate-in fade-in duration-200"
+        onClick={handleClose}
+      />
+
+      {/* Content */}
+      <div
+        ref={contentRef}
+        className="relative z-50 w-full max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-[#08080a]/90 shadow-2xl backdrop-blur-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-200"
+      >
+        <Command
+          className="h-full w-full overflow-hidden bg-transparent"
+          shouldFilter={true}
+        >
+          {/* Input Area */}
+          <div className="flex items-center border-b border-white/10 px-4">
+            <SearchIcon className="mr-3 h-5 w-5 shrink-0 text-white/50" />
             <Command.Input
               value={search}
               onValueChange={handleSearchChange}
               placeholder="Type a command or search..."
-              className={styles.commandInput}
+              className="flex h-14 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-white/50 text-white font-secondary disabled:cursor-not-allowed disabled:opacity-50"
               autoFocus
             />
             <button
-              className={styles.escKeyButton}
+              className="ml-2 hidden sm:inline-flex h-6 select-none items-center gap-1 rounded border border-white/20 bg-white/5 px-2 text-[10px] font-medium text-white/70 opacity-100 hover:bg-white/10 transition-colors"
               onClick={handleClose}
               type="button"
             >
-              esc
+              ESC
             </button>
           </div>
-          <Command.List className={styles.commandList}>
-            <Command.Empty className={styles.commandEmpty}>
+
+          {/* List Area */}
+          <Command.List className="max-h-[60vh] overflow-y-auto overflow-x-hidden p-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+            <Command.Empty className="py-6 text-center text-sm text-white/50 font-secondary">
               No results found.
             </Command.Empty>
+
             {/* Pages */}
-            <Command.Group className={styles.commandGroup}>
-              <span className={styles.commandGroupHeading}>Pages</span>
-              <Command.Item
+            <Command.Group heading="Pages" className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground">
+              <CommandItem
                 value="home"
                 onSelect={() => handleSelect("home")}
-                className={styles.commandItem}
-              >
-                <div className={styles.commandIconWrapper}>
-                  <HomeIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>Home</span>
-                  <p className={styles.commandDescription}>
-                    Go to the home page
-                  </p>
-                </div>
-              </Command.Item>
-
-              <Command.Item
+                icon={<HomeIcon className="h-5 w-5" />}
+                label="Home"
+                description="Go to the home page"
+              />
+              <CommandItem
                 value="about"
                 onSelect={() => handleSelect("about")}
-                className={styles.commandItem}
-              >
-                <div className={styles.commandIconWrapper}>
-                  <AboutIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>About</span>
-                  <p className={styles.commandDescription}>
-                    Learn more about me
-                  </p>
-                </div>
-              </Command.Item>
-
-              <Command.Item
+                icon={<AboutIcon className="h-5 w-5" />}
+                label="About"
+                description="Learn more about me"
+              />
+              <CommandItem
                 value="projects"
                 onSelect={() => handleSelect("projects")}
-                className={styles.commandItem}
-              >
-                <div className={styles.commandIconWrapper}>
-                  <ProjectsIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>Projects</span>
-                  <p className={styles.commandDescription}>View my projects</p>
-                </div>
-              </Command.Item>
+                icon={<ProjectsIcon className="h-5 w-5" />}
+                label="Projects"
+                description="View my projects"
+              />
             </Command.Group>
+
             {/* Actions */}
-            <Command.Group className={styles.commandGroup}>
-              <span className={styles.commandGroupHeading}>Actions</span>
-              <Command.Item
+            <Command.Group heading="Actions" className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider">
+              <CommandItem
                 value="copy-email"
                 onSelect={() => handleSelect("copy-email")}
-                className={styles.commandItem}
-              >
-                <div className={styles.commandIconWrapper}>
-                  <CopyIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>Copy Email</span>
-                  <p className={styles.commandDescription}>
-                    Copy my email to clipboard
-                  </p>
-                </div>
-              </Command.Item>
-              <Command.Item
+                icon={<CopyIcon className="h-5 w-5" />}
+                label="Copy Email"
+                description="Copy my email to clipboard"
+              />
+              <CommandItem
                 value="contact"
                 onSelect={() => handleSelect("contact")}
-                className={styles.commandItem}
-              >
-                <div className={styles.commandIconWrapper}>
-                  <ContactIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>Contact</span>
-                  <p className={styles.commandDescription}>
-                    Get in touch with me
-                  </p>
-                </div>
-              </Command.Item>
+                icon={<ContactIcon className="h-5 w-5" />}
+                label="Contact"
+                description="Get in touch with me"
+              />
             </Command.Group>
+
             {/* Socials */}
-            <Command.Group className={styles.commandGroup}>
-              <span className={styles.commandGroupHeading}>Socials</span>
-
-              <Command.Item value="linkedin" className={styles.commandItem}>
-                <div className={styles.commandIconWrapper}>
-                  <LinkedInIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>LinkedIn</span>
-                  <p className={styles.commandDescription}>
-                    Connect with me on LinkedIn
-                  </p>
-                </div>
-
-                <LinkIcon className={styles.commandShortcut} />
-              </Command.Item>
-
-              <Command.Item value="x" className={styles.commandItem}>
-                <div className={styles.commandIconWrapper}>
-                  <XIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>X</span>
-                  <p className={styles.commandDescription}>
-                    Connect with me on X
-                  </p>
-                </div>
-                <LinkIcon className={styles.commandShortcut} />
-              </Command.Item>
-              <Command.Item value="github" className={styles.commandItem}>
-                <div className={styles.commandIconWrapper}>
-                  <GithubIcon className={styles.commandIcon} />
-                </div>
-                <div className={styles.commandTextContainer}>
-                  <span className={styles.commandText}>Github</span>
-                  <p className={styles.commandDescription}>
-                    Connect with me on Github
-                  </p>
-                </div>
-                <LinkIcon className={styles.commandShortcut} />
-              </Command.Item>
+            <Command.Group heading="Socials" className="text-white/50 px-2 py-1.5 text-xs font-medium font-secondary uppercase tracking-wider">
+              <CommandItem
+                value="linkedin"
+                icon={<LinkedInIcon className="h-5 w-5" />}
+                label="LinkedIn"
+                description="Connect with me on LinkedIn"
+                shortcut={<LinkIcon className="h-3 w-3" />}
+              />
+              <CommandItem
+                value="x"
+                icon={<XIcon className="h-5 w-5" />}
+                label="X"
+                description="Connect with me on X"
+                shortcut={<LinkIcon className="h-3 w-3" />}
+              />
+              <CommandItem
+                value="github"
+                icon={<GithubIcon className="h-5 w-5" />}
+                label="Github"
+                description="Connect with me on Github"
+                shortcut={<LinkIcon className="h-3 w-3" />}
+              />
             </Command.Group>
           </Command.List>
+
           {/* Footer */}
-          <div className={styles.commandFooter}>
-            <div className={styles.socialIcons}>
-              <LinkedInIcon className={styles.footerIcon} />
-              <XIcon className={styles.footerIcon} />
-              <GithubIcon className={styles.footerIcon} />
+          <div className="hidden sm:flex items-center justify-between border-t border-white/10 bg-white/[0.02] px-4 py-3">
+            <div className="flex items-center gap-4">
+              <LinkedInIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
+              <XIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
+              <GithubIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
             </div>
 
-            <div className={styles.navigationControls}>
-              <div className={styles.controlGroup}>
-                <span className={styles.controlKey}>↑</span>
-                <span className={styles.controlKey}>↓</span>
-                <span className={styles.controlText}>navigate</span>
+            <div className="flex items-center gap-4 text-xs text-white/60 font-secondary">
+              <div className="flex items-center gap-1.5">
+                <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↑</span>
+                <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↓</span>
+                <span>navigate</span>
               </div>
-
-              <div className={styles.controlGroup}>
-                <span className={styles.controlKey}>←</span>
-                <span className={styles.controlText}>select</span>
+              <div className="flex items-center gap-1.5">
+                <span className="flex items-center justify-center w-5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">↵</span>
+                <span>select</span>
               </div>
-
-              <div className={styles.controlGroup}>
-                <span className={styles.controlKey}>esc</span>
-                <span className={styles.controlText}>close</span>
+              <div className="flex items-center gap-1.5">
+                <span className="flex items-center justify-center px-1.5 h-5 rounded border border-white/20 bg-white/5 text-[10px] font-medium">esc</span>
+                <span>close</span>
               </div>
             </div>
           </div>
@@ -295,5 +252,44 @@ const CommandMenu = memo(function CommandMenu({
     </div>
   );
 });
+
+// Helper component for cleaner code
+interface CommandItemProps {
+  value: string;
+  onSelect?: () => void;
+  icon: React.ReactNode;
+  label: string;
+  description: string;
+  shortcut?: React.ReactNode;
+}
+
+const CommandItem = ({ value, onSelect, icon, label, description, shortcut }: CommandItemProps) => {
+  return (
+    <Command.Item
+      value={value}
+      onSelect={onSelect}
+      className="group relative flex cursor-pointer select-none items-center rounded-lg px-2 py-2 text-sm outline-none data-[selected=true]:bg-white/10 data-[selected=true]:text-white transition-colors"
+    >
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/5 bg-white/5 text-white/50 group-data-[selected=true]:text-white group-data-[selected=true]:border-white/20 group-data-[selected=true]:bg-white/10 transition-colors">
+        {icon}
+      </div>
+      <div className="ml-3 flex flex-col justify-center">
+        <span className="text-[clamp(12px,.5vw,16px)] font-medium text-white/80 group-data-[selected=true]:text-white font-secondary">
+          {label}
+        </span>
+        <span className="text-[clamp(10px,.5vw,12px)] text-white/40 group-data-[selected=true]:text-white/60 font-secondary">
+          {description}
+        </span>
+      </div>
+      {shortcut && (
+        <div className="ml-auto flex items-center gap-1">
+          <div className="flex h-5 w-5 items-center justify-center rounded bg-white/5 text-white/50 group-data-[selected=true]:text-white/70">
+            {shortcut}
+          </div>
+        </div>
+      )}
+    </Command.Item>
+  );
+};
 
 export default CommandMenu;
