@@ -6,9 +6,10 @@ import { LinkIcon } from "@/lib/utils/icons";
 
 interface ProjectCardProps {
   project: ProjectItem;
+  onClick?: () => void;
 }
 
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
   const linkUrl = project.projectLink || project.codeLink || "#";
 
   return (
@@ -16,7 +17,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       hover
       glow
       padding="none"
-      className="group overflow-hidden"
+      className="group overflow-hidden cursor-pointer"
+      onClick={onClick}
     >
       {/* Image Container with Overlay */}
       <div className="relative aspect-video overflow-hidden bg-black/10">
@@ -43,6 +45,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               href={linkUrl}
               target={linkUrl !== "#" ? "_blank" : undefined}
               className="w-10 h-10 rounded-full bg-[rgba(0,87,224,0.2)] backdrop-blur-sm border border-[rgba(0,87,224,0.4)] flex items-center justify-center text-white hover:bg-[rgba(0,87,224,0.3)] hover:scale-110 transition-all duration-300"
+              onClick={(e) => e.stopPropagation()}
             >
               <LinkIcon className="w-5 h-5" />
             </Link>

@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import ProjectCard from "@/components/features/home/projectCard";
 import { SectionHeader, PrimaryButton } from "@/components/ui";
+import { ProjectDetailsModal } from "@/components/features/projects/project-details-modal";
 
 import { ProjectItem } from "@/lib/types/sanity";
 
@@ -11,39 +13,61 @@ interface ProjectSectionProps {
 }
 
 const ProjectSection = ({ projects = [] }: ProjectSectionProps) => {
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: ProjectItem) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
-    <section className={cn(
-      "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
-      "flex flex-col justify-center items-center overflow-hidden",
-      "scroll-mt-20", // Navbar clearance
-      "max-sm:min-h-auto max-sm:py-[60px]",
-      "max-lg:min-h-auto max-lg:py-[80px]"
-    )}>
-      <div className={cn(
-        "w-full max-w-[1400px] flex flex-col justify-center items-center",
-        "gap-fluid-lg animate-fade-in-up motion-reduce:animate-none"
+    <>
+      <section className={cn(
+        "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+        "flex flex-col justify-center items-center overflow-hidden",
+        "scroll-mt-20", // Navbar clearance
+        "max-sm:min-h-auto max-sm:py-[60px]",
+        "max-lg:min-h-auto max-lg:py-[80px]"
       )}>
-        <SectionHeader
-          title="Featured Projects"
-          subtitle="A showcase of my recent work"
-          align="center"
-        />
-
-        {/* Project Grid */}
         <div className={cn(
-          "w-full grid gap-fluid-md",
-          "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
+          "w-full max-w-[1400px] flex flex-col justify-center items-center",
+          "gap-fluid-lg animate-fade-in-up motion-reduce:animate-none"
         )}>
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+          <SectionHeader
+            title="Featured Projects"
+            subtitle="A showcase of my recent work"
+            align="center"
+          />
 
-        <PrimaryButton variant="outline" size="md" className="mt-6">
-          View All Projects
-        </PrimaryButton>
-      </div>
-    </section>
+          {/* Project Grid */}
+          <div className={cn(
+            "w-full grid gap-fluid-md",
+            "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
+          )}>
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onClick={() => handleProjectClick(project)}
+              />
+            ))}
+          </div>
+
+          <Link href="/projects">
+            <PrimaryButton variant="outline" size="md" className="mt-6">
+              View All Projects
+            </PrimaryButton>
+          </Link>
+        </div>
+      </section>
+
+      <ProjectDetailsModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={setIsModalOpen}
+      />
+    </>
   );
 };
 

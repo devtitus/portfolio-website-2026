@@ -6,6 +6,7 @@ interface GlassCardProps {
   glow?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
   className?: string;
+  onClick?: () => void;
 }
 
 const GlassCard: React.FC<GlassCardProps> = ({
@@ -14,6 +15,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
   glow = false,
   padding = 'md',
   className = '',
+  onClick,
 }) => {
   const paddingStyles = {
     none: 'p-0',
@@ -36,6 +38,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
         ${paddingStyles[padding]}
         ${className}
       `}
+      onClick={onClick}
     >
       {/* Ambient glow border effect */}
       {glow && (
@@ -43,10 +46,10 @@ const GlassCard: React.FC<GlassCardProps> = ({
           <div className="absolute inset-[-1px] rounded-2xl bg-gradient-to-br from-[rgba(0,87,224,0.3)] via-transparent to-[rgba(0,87,224,0.1)] blur-sm"></div>
         </div>
       )}
-      
+
       {/* Inner highlight */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.1)] to-transparent"></div>
-      
+
       {/* Content */}
       <div className="relative z-10">
         {children}
