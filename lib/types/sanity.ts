@@ -101,6 +101,7 @@ export interface ProjectItem {
   tags?: string[];
   technologies?: SkillItem[];
   formattedContent?: string; // Markdown content
+  isFeatured?: boolean;
 }
 
 export interface SanityProject {
@@ -116,6 +117,7 @@ export interface SanityProject {
   tags?: string[];
   technologies?: SanitySkill[];
   formattedContent?: string;
+  isFeatured?: boolean;
 }
 
 // Re-export all types for convenience

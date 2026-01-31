@@ -10,6 +10,7 @@ import {
 import { getSkills } from "@/lib/services/sanity/getSkills";
 import { getTestimonials } from "@/lib/services/sanity/getTestimonials";
 import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
+import { getFeaturedProjects } from "@/lib/services/sanity/getFeaturedProjects";
 
 /**
  * Home Page - Server Component
@@ -19,10 +20,11 @@ import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
  */
 export default async function HomePage() {
   // Parallel data fetching for performance
-  const [skills, testimonials, siteSettings] = await Promise.all([
+  const [skills, testimonials, siteSettings, featuredProjects] = await Promise.all([
     getSkills(),
     getTestimonials(),
     getSiteSettings(),
+    getFeaturedProjects(),
   ]);
 
   return (
@@ -30,7 +32,7 @@ export default async function HomePage() {
       <FrameHeroSection />
       <div className="page-content">
         <FobSection />
-        <ProjectSection />
+        <ProjectSection projects={featuredProjects} />
         <SkillsSection skills={skills} />
         <TestimonialSection testimonials={testimonials} />
         <ContactSection siteSettings={siteSettings} />

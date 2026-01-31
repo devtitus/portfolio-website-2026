@@ -4,7 +4,13 @@ import { cn } from "@/lib/utils";
 import ProjectCard from "@/components/features/home/projectCard";
 import { SectionHeader, PrimaryButton } from "@/components/ui";
 
-const ProjectSection = () => {
+import { ProjectItem } from "@/lib/types/sanity";
+
+interface ProjectSectionProps {
+  projects?: ProjectItem[];
+}
+
+const ProjectSection = ({ projects = [] }: ProjectSectionProps) => {
   return (
     <section className={cn(
       "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
@@ -28,10 +34,9 @@ const ProjectSection = () => {
           "w-full grid gap-fluid-md",
           "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
         )}>
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
         </div>
 
         <PrimaryButton variant="outline" size="md" className="mt-6">

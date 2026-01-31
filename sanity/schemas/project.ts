@@ -27,6 +27,13 @@ export default defineType({
       },
     }),
     defineField({
+      name: "isFeatured",
+      title: "Featured Project (Home Page)",
+      type: "boolean",
+      description: "Toggle to show this project on the home page",
+      initialValue: false,
+    }),
+    defineField({
       name: "mainImage",
       title: "Main image",
       type: "image",
