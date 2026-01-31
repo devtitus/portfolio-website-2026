@@ -34,7 +34,7 @@ export default async function HomePage() {
         <FobSection />
         <ProjectSection projects={featuredProjects} />
         <SkillsSection skills={skills} />
-        <TestimonialSection testimonials={testimonials} />
+        {/* <TestimonialSection testimonials={testimonials} /> */}
         <ContactSection siteSettings={siteSettings} />
       </div>
     </>
