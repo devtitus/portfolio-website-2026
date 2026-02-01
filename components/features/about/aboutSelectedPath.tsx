@@ -1,176 +1,196 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import type {
-  ExperienceItem,
-  EducationItem,
-} from "@/lib/types/sanity";
+import React from "react";
+import type { ExperienceItem, EducationItem } from "@/lib/types/sanity";
 
 interface AboutSelectedPathProps {
   experiences: ExperienceItem[];
   education: EducationItem[];
 }
 
+// SVG Component for the Connector Branch
+const ThreadBranch = ({ color }: { color: string }) => (
+  <svg
+    width="40"
+    height="120"
+    viewBox="0 0 40 120"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="absolute -left-[39px] top-6 pointer-events-none"
+  >
+    {/* The Branch Path */}
+    {/* Starts from spine (x=-1, so it connects), curves to the right, ends at the card */}
+    <path
+      d="M 1 0 V 20 Q 1 40 20 40 H 40"
+      stroke={`url(#gradient-${color})`}
+      strokeWidth="2"
+      fill="none"
+      className="opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+    />
+
+    {/* Definitions for Gradients */}
+    <defs>
+      <linearGradient id="gradient-orange" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#FB923C" stopOpacity="0.2" />{/* orange-400 */}
+        <stop offset="100%" stopColor="#FB923C" stopOpacity="1" />
+      </linearGradient>
+      <linearGradient id="gradient-blue" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.2" />{/* blue-400 */}
+        <stop offset="100%" stopColor="#60A5FA" stopOpacity="1" />
+      </linearGradient>
+    </defs>
+
+    {/* The Terminal Dot at the card entry */}
+    <circle cx="40" cy="40" r="3" fill={color === 'orange' ? '#FB923C' : '#60A5FA'} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" />
+  </svg>
+);
+
 export const AboutSelectedPath: React.FC<AboutSelectedPathProps> = ({
   experiences,
   education,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Determine the maximum length to know when to stop
-  // We stop when we run out of BOTH experience and education items
-  const maxLength = Math.max(experiences.length, education.length);
-
-  const handleNext = () => {
-    if (currentIndex < maxLength - 1) {
-      setCurrentIndex((prev) => prev + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-    }
-  };
-
-  const currentExperience = experiences[currentIndex];
-  const currentEducation = education[currentIndex];
-
   return (
     <section className="px-[clamp(16px,4vw,60px)] py-[clamp(60px,10vh,100px)] max-w-[1400px] mx-auto 2xl:px-0">
       {/* Header */}
-      <div className="mb-[clamp(32px,5vw,48px)] flex flex-col md:flex-row justify-between items-end gap-6">
-        <div className="w-full md:w-auto">
-          <h2 className="text-[clamp(26px,2vw,36px)] font-primary mb-3 text-[var(--foreground)] leading-[1.1]">
-            Selected Path
-          </h2>
-          <p className="text-[var(--muted-foreground)] text-[clamp(16px,1vw,18px)]">
-            A curated timeline of milestones
-          </p>
-        </div>
-
-        {/* Navigation - Hidden on mobile, visible on tablet+ */}
-        <div className="hidden md:flex gap-3">
-          <button
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-            className={`w-12 h-12 flex items-center justify-center rounded-full border border-[var(--border)] transition-colors text-[var(--foreground)] ${currentIndex === 0
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-[var(--accent)]"
-              }`}
-            aria-label="Previous"
-          >
-            ←
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentIndex >= maxLength - 1}
-            className={`w-12 h-12 flex items-center justify-center rounded-full border border-[var(--border)] transition-colors text-[var(--foreground)] ${currentIndex >= maxLength - 1
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-[var(--accent)]"
-              }`}
-            aria-label="Next"
-          >
-            →
-          </button>
-        </div>
+      <div className="mb-[clamp(40px,5vw,60px)]">
+        <h2 className="text-[clamp(26px,2vw,36px)] font-primary mb-3 text-[var(--foreground)] leading-[1.1]">
+          Selected Path
+        </h2>
+        <p className="text-[var(--muted-foreground)] text-[clamp(16px,1vw,18px)]">
+          System activity & milestones
+        </p>
       </div>
 
-      {/* Grid - Mobile: 1col, Tablet: 2col, Desktop: 2col */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(24px,2vw,32px)] auto-rows-fr">
-        {/* Card 1: Experience */}
-        <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-md border border-[rgba(255,255,255,0.05)] p-[clamp(16px,3vw,24px)] rounded-3xl flex flex-col justify-between h-full min-h-[320px]">
-          {currentExperience ? (
-            <>
-              <div className="flex flex-col gap-[clamp(12px,2vw,18px)]">
-                <div className="flex justify-between items-start">
-                  {currentExperience.isCurrent ? (
-                    <span className="text-orange-400 text-[clamp(10px,1vw,12px)] font-medium tracking-wider uppercase py-1 px-2 bg-orange-400/10 rounded-full">
-                      Current
-                    </span>
-                  ) : (
-                    <span className="text-[var(--muted-foreground)] text-[clamp(10px,1vw,12px)] font-medium tracking-wider uppercase py-1 px-2 bg-white/5 rounded-full">
-                      {currentExperience.endDate
-                        ? new Date(currentExperience.endDate).getFullYear()
-                        : "Past"}
-                    </span>
-                  )}
-                  <div className="w-10 h-10 bg-orange-100/10 rounded-full flex items-center justify-center text-orange-400 text-lg">
-                    💼
+      {/* Main Grid: Two independent columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(40px,5vw,80px)]">
+
+        {/* Column 1: Experience */}
+        <div className="relative pl-10">
+          {/* Main Spine (The Thread) */}
+          <div className="absolute left-[2px] top-0 bottom-12 w-[2px] bg-gradient-to-b from-orange-500/0 via-orange-500/40 to-orange-500/0"></div>
+
+          {/* Spine Header */}
+          <div className="absolute -left-[19px] top-0 w-11 h-11 bg-[var(--background)] border border-orange-500/30 rounded-full flex items-center justify-center z-10 shadow-[0_0_20px_rgba(251,146,60,0.2)]">
+            <span className="text-xl">💼</span>
+          </div>
+
+          <div className="mt-20 space-y-12">
+            {experiences.length > 0 ? (
+              experiences.map((exp) => (
+                <div key={exp.id} className="group relative">
+                  {/* The Connector Wire */}
+                  <div className="absolute -left-[42px] top-[-20px]">
+                    {/* Horizontal line from spine */}
+                    <div className="absolute top-[20px] -left-0.5 w-5 h-[2px] bg-orange-500/30 group-hover:bg-orange-400 transition-colors"></div>
+                    {/* Curve */}
+                    <svg width="40" height="40" viewBox="0 0 40 40" className="absolute left-[18px] top-[20px]">
+                      <path d="M 0 0 H 20 C 30 0 40 10 40 20 V 22" fill="none" stroke="#fb923c" strokeOpacity="0.3" strokeWidth="2" className="group-hover:stroke-opacity-100 transition-all duration-300" />
+                    </svg>
+                    {/* Dot on spine */}
+                    <div className="absolute top-[16px] -left-[6px] w-3 h-3 bg-[var(--background)] border-2 border-orange-500/50 rounded-full group-hover:border-orange-400 group-hover:bg-orange-400 transition-colors z-20"></div>
+                  </div>
+
+                  {/* Card */}
+                  <div className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] p-[clamp(20px,3vw,28px)] rounded-r-2xl rounded-bl-2xl rounded-tl-sm hover:border-orange-500/30 transition-all duration-300 group-hover:bg-[rgba(255,255,255,0.04)] hover:shadow-[0_0_30px_rgba(0,0,0,0.2)]">
+                    <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-2 mb-3">
+                      <div>
+                        <h4 className="text-[clamp(18px,1.2vw,22px)] font-primary text-[var(--foreground)] group-hover:text-orange-100 transition-colors">
+                          {exp.title}
+                        </h4>
+                        <p className="text-[var(--muted-foreground)] text-sm font-mono mt-1">
+                          {exp.company}
+                        </p>
+                      </div>
+                      {exp.isCurrent ? (
+                        <span className="self-start text-orange-400 text-[10px] sm:text-xs font-bold tracking-wider uppercase py-1 px-3 bg-orange-400/10 border border-orange-400/20 rounded-full">
+                          Current
+                        </span>
+                      ) : (
+                        <span className="self-start text-[var(--muted-foreground)] text-[10px] sm:text-xs font-mono py-1 px-3 bg-white/5 border border-white/5 rounded-full">
+                          {exp.endDate
+                            ? new Date(exp.endDate).getFullYear()
+                            : "Past"}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-[var(--muted-foreground)] text-[clamp(14px,1vw,16px)] leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                      {exp.description}
+                    </div>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  <h3 className="text-[clamp(20px,2vw,24px)] font-primary leading-tight text-[var(--foreground)]">
-                    {currentExperience.title}
-                  </h3>
-                  <p className="text-[var(--muted-foreground)] font-normal italic text-[clamp(14px,1vw,16px)]">
-                    {currentExperience.company}
-                  </p>
-                </div>
-
-                <div className="text-[var(--muted-foreground)] text-[clamp(14px,1vw,16px)] leading-relaxed line-clamp-4">
-                  {currentExperience.description}
-                </div>
+              ))
+            ) : (
+              <div className="p-8 text-center text-[var(--muted-foreground)] opacity-50 border border-dashed border-[var(--border)] rounded-2xl">
+                No experience data.
               </div>
-
-              <div className="flex flex-wrap gap-2 mt-8">
-                {/* Note: Tags are not currently in the schema, using placeholders if needed or removing */}
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-[var(--muted-foreground)] opacity-50">
-              <p>No further experience data.</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
-        {/* Card 2: Education */}
-        <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-md border border-[rgba(255,255,255,0.05)] p-[clamp(16px,3vw,24px)] rounded-3xl flex flex-col justify-between h-full min-h-[280px]">
-          {currentEducation ? (
-            <>
-              <div>
-                <div className="mb-[clamp(18px,3vw,24px)]">
-                  <div className="w-10 h-10 flex items-center justify-center bg-white/5 rounded-full text-2xl">
-                    🎓
+        {/* Column 2: Education */}
+        <div className="relative pl-10 md:mt-0 mt-12">
+          {/* Main Spine (The Thread) */}
+          <div className="absolute left-[2px] top-0 bottom-12 w-[2px] bg-gradient-to-b from-blue-500/0 via-blue-500/40 to-blue-500/0"></div>
+
+          {/* Spine Header */}
+          <div className="absolute -left-[19px] top-0 w-11 h-11 bg-[var(--background)] border border-blue-500/30 rounded-full flex items-center justify-center z-10 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+            <span className="text-xl">🎓</span>
+          </div>
+
+          <div className="mt-20 space-y-12">
+            {education.length > 0 ? (
+              education.map((edu) => (
+                <div key={edu.id} className="group relative">
+                  {/* The Connector Wire - Blue */}
+                  <div className="absolute -left-[42px] top-[-20px]">
+                    {/* Horizontal line from spine */}
+                    <div className="absolute top-[20px] -left-0.5 w-5 h-[2px] bg-blue-500/30 group-hover:bg-blue-400 transition-colors"></div>
+                    {/* Curve */}
+                    <svg width="40" height="40" viewBox="0 0 40 40" className="absolute left-[18px] top-[20px]">
+                      <path d="M 0 0 H 20 C 30 0 40 10 40 20 V 22" fill="none" stroke="#60A5FA" strokeOpacity="0.3" strokeWidth="2" className="group-hover:stroke-opacity-100 transition-all duration-300" />
+                    </svg>
+                    {/* Dot on spine */}
+                    <div className="absolute top-[16px] -left-[6px] w-3 h-3 bg-[var(--background)] border-2 border-blue-500/50 rounded-full group-hover:border-blue-400 group-hover:bg-blue-400 transition-colors z-20"></div>
+                  </div>
+
+                  {/* Card */}
+                  <div className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] p-[clamp(20px,3vw,28px)] rounded-r-2xl rounded-bl-2xl rounded-tl-sm hover:border-blue-500/30 transition-all duration-300 group-hover:bg-[rgba(255,255,255,0.04)] hover:shadow-[0_0_30px_rgba(0,0,0,0.2)]">
+                    <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-2 mb-3">
+                      <div>
+                        <h4 className="text-[clamp(18px,1.2vw,22px)] font-primary text-[var(--foreground)] group-hover:text-blue-100 transition-colors">
+                          {edu.university}
+                        </h4>
+                        <p className="text-[var(--muted-foreground)] text-sm font-mono mt-1">
+                          {edu.degree}
+                        </p>
+                      </div>
+                      <span className="self-start text-[var(--muted-foreground)] text-[10px] sm:text-xs font-mono py-1 px-3 bg-white/5 border border-white/5 rounded-full">
+                        {edu.endDate
+                          ? new Date(edu.endDate).getFullYear()
+                          : "Present"}
+                      </span>
+                    </div>
+                    {edu.details && (
+                      <ul className="space-y-2 text-[clamp(14px,1vw,16px)] text-[var(--muted-foreground)] opacity-80 group-hover:opacity-100 transition-opacity">
+                        {edu.details.split("\n").map((line, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="mr-3 text-blue-400/70 mt-1">▹</span>
+                            <span className="flex-1 leading-relaxed">{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
-
-                <h3 className="text-[clamp(20px,2vw,24px)] font-primary mb-2 text-[var(--foreground)]">
-                  {currentEducation.university}
-                </h3>
-                <p className="text-[var(--muted-foreground)] text-[clamp(12px,1vw,14px)] font-secondary italic font-medium tracking-wide uppercase">
-                  {currentEducation.degree}
-                </p>
-
-                <ul className="mt-6 space-y-3 text-[clamp(14px,1vw,16px)] text-[var(--muted-foreground)]">
-                  {currentEducation.details?.split("\n").map((line, i) => (
-                    <li key={i} className="flex items-center">
-                      <span className="mr-3 text-orange-400 mt-1">•</span>
-                      <span className="flex-1">{line}</span>
-                    </li>
-                  ))}
-                </ul>
+              ))
+            ) : (
+              <div className="p-8 text-center text-[var(--muted-foreground)] opacity-50 border border-dashed border-[var(--border)] rounded-2xl">
+                No education data.
               </div>
-
-              <div className="flex justify-between items-end border-t border-[rgba(255,255,255,0.1)] pt-6 mt-6">
-                <span className="text-[clamp(24px,4vw,36px)] font-light text-[var(--muted-foreground)] opacity-50 leading-none">
-                  {currentEducation.endDate
-                    ? new Date(currentEducation.endDate).getFullYear()
-                    : "Present"}
-                </span>
-                <span className="text-[clamp(10px,.75vw,12px)] tracking-[0.2em] uppercase text-[var(--muted-foreground)] opacity-70 mb-1.5">
-                  Graduated
-                </span>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-[var(--muted-foreground)] opacity-50">
-              <p>No further education data.</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
+
       </div>
     </section>
   );
