@@ -6,6 +6,18 @@ import ContactSection from "@/components/features/home/contactSection";
 import { getExperience } from "@/lib/services/sanity/getExperience";
 import { getEducation } from "@/lib/services/sanity/getEducation";
 import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'About Me',
+  description: 'Learn about Melwyn Titus, a Full Stack Developer with expertise in enterprise-grade web applications, modern JavaScript frameworks, and product engineering.',
+  openGraph: {
+    title: 'About Melwyn Titus | Full Stack Developer',
+    description: 'Turning complex problems into elegant, user-centric products.',
+    url: 'https://www.melwyn.co.in/about',
+    images: ['/og-image.png'],
+  },
+};
 
 const AboutPage = async () => {
   const experiences = await getExperience();

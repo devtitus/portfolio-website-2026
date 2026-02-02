@@ -5,6 +5,12 @@ import { ContactFormSection } from "@/components/features/contact/contactFormSec
 export const metadata = {
   title: "Contact | Melwyn Titus",
   description: "Get in touch for collaborations and opportunities.",
+  openGraph: {
+    title: 'Contact Melwyn Titus',
+    description: 'Get in touch for collaborations and opportunities.',
+    url: 'https://www.melwyn.co.in/contact',
+    images: ['/og-image.png'],
+  },
 };
 
 const ContactPage = () => {

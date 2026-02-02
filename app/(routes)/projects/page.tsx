@@ -8,6 +8,12 @@ import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
 export const metadata = {
   title: "Projects & Case Studies | Melwyn Titus",
   description: "Exploring the intersection of design, engineering, and user experience.",
+  openGraph: {
+    title: 'Projects & Case Studies | Melwyn Titus',
+    description: 'Exploring the intersection of design, engineering, and user experience.',
+    url: 'https://www.melwyn.co.in/projects',
+    images: ['/og-image.png'],
+  },
 };
 
 const ProjectsPage = async () => {

@@ -11,6 +11,19 @@ import { getSkills } from "@/lib/services/sanity/getSkills";
 import { getTestimonials } from "@/lib/services/sanity/getTestimonials";
 import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
 import { getFeaturedProjects } from "@/lib/services/sanity/getFeaturedProjects";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Transforming complex challenges into elegant solutions. Full Stack Developer & Product Engineer with expertise in modern web technologies.',
+  openGraph: {
+    title: 'Melwyn Titus | Full Stack Developer & Product Engineer',
+    description: 'Transforming complex challenges into elegant solutions.',
+    url: 'https://www.melwyn.co.in',
+    images: ['/og-image.png'],
+  },
+};
+
 
 /**
  * Home Page - Server Component
