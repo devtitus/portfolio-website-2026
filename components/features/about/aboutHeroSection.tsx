@@ -7,7 +7,7 @@ const AboutHeroSection: React.FC = () => {
     <section
       className={cn(
         // Layout & Spacing
-        "relative min-h-dvh flex items-center overflow-hidden",
+        "relative min-h-svh flex items-center overflow-hidden",
         "px-[clamp(16px,4vw,60px)] py-[clamp(60px,5vh,60px)]",
         // Background Gradient matching the design
         // "bg-[linear-gradient(180deg,var(--page-bg)_10%,rgba(0,0,0,0.1)_42%,var(--page-bg)_82%)]"

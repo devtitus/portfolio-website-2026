@@ -61,7 +61,7 @@ const ContactSection = memo(function ContactSection({
     <section
       ref={sectionRef}
       className={cn(
-        "min-h-dvh px-[clamp(16px,4vw,60px)] relative",
+        "min-h-svh px-[clamp(16px,4vw,60px)] relative",
         "flex flex-col justify-center items-center overflow-hidden",
         "scroll-mt-20", // Navbar clearance
         // Glassmorphic overlay

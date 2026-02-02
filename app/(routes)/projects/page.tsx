@@ -21,7 +21,7 @@ const ProjectsPage = async () => {
   const siteSettings = await getSiteSettings();
 
   return (
-    <div className="min-h-dvh text-[var(--default-text-color)]">
+    <div className="min-h-svh text-[var(--default-text-color)]">
       <ProjectsHero />
       <ProjectsGrid projects={projects} />
       <ContactSection

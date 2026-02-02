@@ -24,7 +24,7 @@ const TestimonialSection = memo(function TestimonialSection({ testimonials }: Te
 
   return (
     <section className={cn(
-      "min-h-dvh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+      "min-h-svh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
       "flex flex-col justify-center items-center overflow-hidden",
       "scroll-mt-20", // Navbar clearance
       "max-sm:min-h-auto max-sm:py-[60px]",

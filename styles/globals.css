@@ -69,8 +69,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/font/satoshi/Satoshi-VariableItalic.woff2")
-    format("woff2-variations");
+  src: url("/font/satoshi/Satoshi-VariableItalic.woff2") format("woff2-variations");
   font-weight: 300 900;
   font-style: italic;
   font-display: swap;
@@ -204,11 +203,9 @@
     --default-text-color-dark: #08080a;
     --skill-text-color: #a1a1aa;
     --default-violet-color: #0057e0;
-    --monochrome-gradient-text-color: linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #a1a1aa 100%
-    );
+    --monochrome-gradient-text-color: linear-gradient(180deg,
+        #ffffff 0%,
+        #a1a1aa 100%);
     --hero-separator-border-color: rgba(255, 255, 255, 0.08);
     --copy-button-text-color: #a1a1aa;
     --glass-color: rgba(255, 255, 255, 0.03);
@@ -226,6 +223,10 @@
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
   }
 
   body {
@@ -319,13 +320,14 @@
   --container-max: 1400px;
   --container-padding: clamp(16px, 4vw, 60px);
 
-  /* Section Heights (using dynamic viewport for mobile) */
-  --section-min-height: 100dvh;
+  /* Section Heights (using small viewport for mobile stability) */
+  --section-min-height: 100svh;
 }
 
 html,
 body {
   max-width: 100vw;
+  min-height: 100svh;
   /* overflow-x: hidden; - Temporarily removed as it might break sticky */
   /* Hide scrollbar by default */
   scrollbar-width: thin;
@@ -345,12 +347,10 @@ body {
 body::before {
   content: "";
   @apply fixed -top-1/2 -left-1/4 w-[150%] h-[200%] pointer-events-none -z-10 animate-ambient-pulse motion-reduce:animate-none;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 87, 224, 0.15) 0%,
-    rgba(0, 87, 224, 0.05) 25%,
-    transparent 50%
-  );
+  background: radial-gradient(ellipse at center,
+      rgba(0, 87, 224, 0.15) 0%,
+      rgba(0, 87, 224, 0.05) 25%,
+      transparent 50%);
 }
 
 /* Scrollbar utility class for elements that need visible thin scrollbars */
@@ -384,8 +384,7 @@ body::before {
 
 /* Marquee (global fallback) */
 .animate-scroll {
-  animation: scroll var(--animation-duration, 40s)
-    var(--animation-direction, forwards) linear infinite;
+  animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
 }
 
 @keyframes scroll {

@@ -1,5 +1,5 @@
 .commonStyleSection {
-  height: 100vh;
+  height: 100dvh;
   padding-inline: var(--padding-60px);
 }
 

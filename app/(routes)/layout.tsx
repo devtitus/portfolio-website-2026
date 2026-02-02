@@ -8,7 +8,7 @@ export default function RoutesLayout({
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh text-[var(--default-text-color)] w-full max-w-full min-w-full">
+      <main className="min-h-svh text-[var(--default-text-color)] w-full max-w-full min-w-full">
         {children}
       </main>
       <Footer />

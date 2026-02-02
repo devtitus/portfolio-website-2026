@@ -94,6 +94,7 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+  colorScheme: 'dark',
 };
 
 import { PersonSchema, WebsiteSchema } from "@/app/components/structured-data";
@@ -102,9 +103,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="min-h-svh">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} relative`}
+        className={`${geistSans.variable} ${geistMono.variable} relative min-h-svh bg-[#08080a]`}
         suppressHydrationWarning={true}
       >
         <PersonSchema />

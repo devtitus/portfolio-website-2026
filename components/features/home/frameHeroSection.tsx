@@ -228,8 +228,8 @@ const FrameHeroSection = () => {
     >
       <div
         className={cn(
-          "sticky top-0 w-full h-dvh min-h-[600px] overflow-hidden",
-          "max-sm:h-dvh max-sm:min-h-[500px]",
+          "sticky top-0 w-full h-svh min-h-[600px] overflow-hidden",
+          "max-sm:h-svh max-sm:min-h-[500px]",
         )}
       >
         {/* Loading Progress Bar */}
