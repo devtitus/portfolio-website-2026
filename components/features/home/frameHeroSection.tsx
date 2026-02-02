@@ -283,10 +283,10 @@ const FrameHeroSection = () => {
                 )}
               >
                 <span className="inline-block">
-                  I help founders turn ideas{" "}
+                  Transforming complex challenges{" "}
                 </span>
                 <span className="inline-block">
-                  into seamless{" "}
+                  into elegant{" "}
                   <AuroraText
                     colors={["#0057E0", "#F3F4F6", "#0057E0", "#0057E0"]}
                     speed={1.5}
@@ -297,7 +297,7 @@ const FrameHeroSection = () => {
                       "max-sm:text-[clamp(30px,6vw,32px)]",
                     )}
                   >
-                    Digital Experiences
+                    Solutions
                   </AuroraText>
                 </span>
               </h1>
@@ -332,7 +332,7 @@ const FrameHeroSection = () => {
                   )}
                   style={{ animationDelay: "0.2s" }}
                 >
-                  a Full stack Developer
+                  a Full Stack Developer & Product Engineer
                 </span>
               </div>
 
@@ -356,7 +356,7 @@ const FrameHeroSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#0057E0]/10 via-transparent to-[#0057E0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <span className="relative z-10 tracking-wide">
-                    Let's Connect
+                    Explore Projects
                   </span>
                   <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0057E0] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                 </button>

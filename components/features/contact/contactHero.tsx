@@ -8,7 +8,7 @@ const ContactHero: React.FC = () => {
 
       <div className="flex flex-col items-start gap-[clamp(4px,.25vw,8px)] mt-[64px] lg:mt-[70px]">
         <h1 className="font-primary text-[clamp(28px,3.25vw,44px)] font-medium text-foreground leading-normal m-0">
-          Contact
+          Let's Connect
         </h1>
         <p className="font-secondary text-[clamp(16px,1vw,20px)] font-normal leading-relaxed text-white/60 m-0">
           Let's start a conversation

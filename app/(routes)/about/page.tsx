@@ -40,8 +40,8 @@ const AboutPage = async () => {
           </div>
         }
         ctaText="Start a Project"
-        subHeading=" "
-        paragraph="I craft digital experiences that feel tangible. Bridging the gap between robust engineering and intuitive design."
+        subHeading="Ready to collaborate?"
+        paragraph="I bring technical expertise and product thinking to every project. Let's create something that makes a difference."
       />
     </div>
   );

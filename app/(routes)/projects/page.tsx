@@ -6,8 +6,8 @@ import { getProjects } from "@/lib/services/sanity/getProjects";
 import { getSiteSettings } from "@/lib/services/sanity/getSiteSettings";
 
 export const metadata = {
-  title: "Selected Works | Melwyn Titus",
-  description: "A showcase of my recent development and design projects.",
+  title: "Projects & Case Studies | Melwyn Titus",
+  description: "Exploring the intersection of design, engineering, and user experience.",
 };
 
 const ProjectsPage = async () => {
@@ -21,8 +21,8 @@ const ProjectsPage = async () => {
       <ContactSection
         siteSettings={siteSettings}
         ctaText="Get in Touch"
-        subHeading="Have a project in mind?"
-        paragraph="I'm always open to discussing new opportunities and interesting projects."
+        subHeading="Ready to Collaborate?"
+        paragraph="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
       />
     </div>
   );

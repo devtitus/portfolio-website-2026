@@ -39,10 +39,9 @@ const AboutHeroSection: React.FC = () => {
             )}
           >
             <p className="text-[clamp(16px,1vw,20px)] text-[var(--text-secondary)] text-left leading-relaxed font-light">
-              I craft digital experiences that feel tangible. Bridging the gap
-              between robust engineering and intuitive design, I build
-              applications that breathe. Currently obsessed with
-              micro-interactions and accessible UI.
+              Turning complex problems into elegant, user-centric products.
+              With expertise in modern web technologies, I specialize in creating
+              scalable, performant applications that make a difference.
             </p>
           </div>
         </div>

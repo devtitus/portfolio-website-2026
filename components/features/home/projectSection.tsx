@@ -56,7 +56,7 @@ const ProjectSection = ({ projects = [] }: ProjectSectionProps) => {
 
           <Link href="/projects">
             <PrimaryButton variant="outline" size="md" className="mt-6">
-              View All Projects
+              Explore More Work
             </PrimaryButton>
           </Link>
         </div>

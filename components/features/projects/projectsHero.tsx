@@ -26,7 +26,7 @@ const ProjectsHero: React.FC = () => {
       />
 
       <h1 className="flex flex-row items-center gap-[clamp(4px,1vw,10px)] text-[clamp(28px,3.25vw,44px)] font-medium text-foreground mb-[clamp(8px,1vw,12px)] font-primary">
-        Selected <br />
+        Projects & <br />
         <span
           style={{
             background:
@@ -35,7 +35,7 @@ const ProjectsHero: React.FC = () => {
             WebkitTextFillColor: "transparent",
           }}
         >
-          Works
+          Case Studies
         </span>
       </h1>
       <p
@@ -45,9 +45,7 @@ const ProjectsHero: React.FC = () => {
           "max-sm:max-w-full max-sm:mx-auto",
         )}
       >
-        A collection of projects where design meets code. From interactive web
-        apps to robust backend systems, each piece represents a unique problem
-        solved.
+        Each project represents a unique challenge and learning opportunity. From enterprise platforms to personal experiments, I approach every build with the same commitment to quality and innovation.
       </p>
     </section>
   );
