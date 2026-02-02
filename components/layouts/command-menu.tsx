@@ -147,6 +147,12 @@ const CommandMenu = memo(function CommandMenu({
         case "copy-email":
           navigator.clipboard.writeText("m.works.gd@gmail.com");
           break;
+        case "linkedin":
+          window.open("https://www.linkedin.com/in/melwyn-john-8125bb214", "_blank");
+          break;
+        case "github":
+          window.open("https://github.com/devtitus", "_blank");
+          break;
       }
       handleClose();
     },
@@ -269,20 +275,15 @@ const CommandMenu = memo(function CommandMenu({
               >
                 <CommandItem
                   value="linkedin"
+                  onSelect={() => handleSelect("linkedin")}
                   icon={<LinkedInIcon className="h-5 w-5" />}
                   label="LinkedIn"
                   description="Connect with me on LinkedIn"
                   shortcut={<LinkIcon className="h-3 w-3" />}
                 />
                 <CommandItem
-                  value="x"
-                  icon={<XIcon className="h-5 w-5" />}
-                  label="X"
-                  description="Connect with me on X"
-                  shortcut={<LinkIcon className="h-3 w-3" />}
-                />
-                <CommandItem
                   value="github"
+                  onSelect={() => handleSelect("github")}
                   icon={<GithubIcon className="h-5 w-5" />}
                   label="Github"
                   description="Connect with me on Github"
@@ -294,9 +295,14 @@ const CommandMenu = memo(function CommandMenu({
             {/* Footer */}
             <div className="hidden sm:flex items-center justify-between border-t border-white/10 bg-white/[0.02] px-4 py-3">
               <div className="flex items-center gap-4">
-                <LinkedInIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
-                <XIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
-                <GithubIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer" />
+                <LinkedInIcon
+                  className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer"
+                  onClick={() => window.open("https://www.linkedin.com/in/melwyn-john-8125bb214", "_blank")}
+                />
+                <GithubIcon
+                  className="h-4 w-4 text-white/60 hover:text-white transition-colors cursor-pointer"
+                  onClick={() => window.open("https://github.com/devtitus", "_blank")}
+                />
               </div>
 
               <div className="flex items-center gap-4 text-xs text-white/60 font-secondary">

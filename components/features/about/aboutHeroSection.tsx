@@ -59,8 +59,8 @@ const AboutHeroSection: React.FC = () => {
         >
           <div className="relative w-full h-full overflow-hidden rounded-xl">
             <Image
-              src="/home/hi.png"
-              alt="Profile"
+              src="/titus-pic.webp"
+              alt="Melwyn Titus - Full Stack Developer"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 550px"

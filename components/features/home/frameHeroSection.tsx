@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { AuroraText } from "@/components/ui/magicui/aurora-text";
 import { CopyIcon } from "@/lib/utils/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const FRAME_COUNT = 192;
 const FRAME_PATH = "/macbook-webp/ezgif-frame-";
@@ -344,22 +345,23 @@ const FrameHeroSection = () => {
                   "max-sm:flex-col max-sm:gap-5 max-sm:w-full",
                 )}
               >
-                <button
-                  className={cn(
-                    "group relative flex justify-center items-center",
-                    "px-6 py-3 bg-white text-[#08080a] text-base font-normal rounded-[8px]",
-                    "overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-                    "shadow-[0_0_0_1px_rgba(0,87,224,0.3),0_8px_24px_rgba(0,87,224,0.2)]",
-                    "hover:shadow-[0_0_0_1px_rgba(0,87,224,0.5),0_12px_32px_rgba(0,87,224,0.3)]",
-                    "max-sm:px-6 max-sm:py-3 max-sm:text-base max-sm:w-full max-sm:max-w-[280px]",
-                  )}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0057E0]/10 via-transparent to-[#0057E0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative z-10 tracking-wide">
-                    Explore Projects
-                  </span>
-                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0057E0] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                </button>
+                <Link href="/projects" className="w-full max-sm:max-w-[280px]">
+                  <button
+                    className={cn(
+                      "group relative flex justify-center items-center w-full",
+                      "px-6 py-3 bg-white text-[#08080a] text-base font-normal rounded-[8px]",
+                      "overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+                      "shadow-[0_0_0_1px_rgba(0,87,224,0.3),0_8px_24px_rgba(0,87,224,0.2)]",
+                      "hover:shadow-[0_0_0_1px_rgba(0,87,224,0.5),0_12px_32px_rgba(0,87,224,0.3)]",
+                    )}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0057E0]/10 via-transparent to-[#0057E0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10 tracking-wide">
+                      Explore Projects
+                    </span>
+                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0057E0] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                  </button>
+                </Link>
                 <div className="flex flex-row items-center gap-3 group max-sm:hidden">
                   <button
                     className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-110 active:scale-95"
