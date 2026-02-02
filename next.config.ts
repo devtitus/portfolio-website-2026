@@ -13,32 +13,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/about",
-        destination: "/",
-      },
-      {
-        source: "/projects",
-        destination: "/",
-      },
-      {
-        source: "/contact",
-        destination: "/",
-      },
-    ];
-  },
-  // Suppress React DevTools version validation errors
-  webpack: (config, { dev, isServer }) => {
-    if (dev && !isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        'react-devtools-core': false,
-      };
-    }
-    return config;
-  },
+  // Enable Turbopack compatibility by defining an empty config
+  // @ts-ignore - types might not be updated yet for Next.js 16 alpha/beta
+  // turbo: {},
 };
 
 export default nextConfig;
