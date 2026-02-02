@@ -18,7 +18,7 @@ const AboutHeroSection: React.FC = () => {
         <div className="flex-1 flex flex-col w-full text-center lg:text-left lg:order-1 order-1">
           <div className="flex flex-row gap-[clamp(4px,1vw,12px)] w-full">
             <h1 className="font-primary font-medium leading-[1.1] text-[clamp(28px,3.25vw,56px)] flex flex-row gap-[clamp(4px,1vw,12px)]">
-              Creative <br />
+              About{" "}
               <span
                 style={{
                   background:
@@ -27,7 +27,7 @@ const AboutHeroSection: React.FC = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Architect
+                Me
               </span>
             </h1>
           </div>
