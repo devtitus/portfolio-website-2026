@@ -3,7 +3,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import type { ProjectItem, SanityProject } from "@/lib/types/sanity";
 
 export const getFeaturedProjects = async (): Promise<ProjectItem[]> => {
-  const query = `*[_type == "project" && isFeatured == true] | order(_createdAt desc) [0...4] {
+  const query = `*[_type == "project" && isFeatured == true && isPublished == true] | order(_createdAt desc) [0...4] {
     _id,
     title,
     tagline,
@@ -20,7 +20,8 @@ export const getFeaturedProjects = async (): Promise<ProjectItem[]> => {
       icon
     },
     formattedContent,
-    isFeatured
+    isFeatured,
+    isPublished
   }`;
 
   try {
@@ -46,6 +47,7 @@ export const getFeaturedProjects = async (): Promise<ProjectItem[]> => {
         })) || [],
       formattedContent: project.formattedContent,
       isFeatured: project.isFeatured,
+      isPublished: project.isPublished,
     }));
   } catch (error) {
     console.error("Error fetching featured projects from Sanity:", error);

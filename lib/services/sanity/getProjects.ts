@@ -3,7 +3,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import type { ProjectItem, SanityProject } from "@/lib/types/sanity";
 
 export const getProjects = async (): Promise<ProjectItem[]> => {
-  const query = `*[_type == "project"] | order(_createdAt desc) {
+  const query = `*[_type == "project" && isPublished == true] | order(_createdAt desc) {
     _id,
     title,
     tagline,
@@ -19,7 +19,8 @@ export const getProjects = async (): Promise<ProjectItem[]> => {
       label,
       icon
     },
-    formattedContent
+    formattedContent,
+    isPublished
   }`;
 
   try {
@@ -44,6 +45,7 @@ export const getProjects = async (): Promise<ProjectItem[]> => {
           uid: null,
         })) || [],
       formattedContent: project.formattedContent,
+      isPublished: project.isPublished,
     }));
   } catch (error) {
     console.error("Error fetching projects from Sanity:", error);

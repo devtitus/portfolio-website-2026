@@ -34,6 +34,13 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
+      name: "isPublished",
+      title: "Published (Projects Page)",
+      type: "boolean",
+      description: "Toggle to show/hide this project on the projects page",
+      initialValue: true,
+    }),
+    defineField({
       name: "mainImage",
       title: "Main image",
       type: "image",
