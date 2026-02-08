@@ -60,7 +60,7 @@ const StarLayer = React.memo(function StarLayer({
       data-slot="star-layer"
       animate={isPaused ? {} : { y: [0, -2000] }}
       transition={animateTransition}
-      className={cn("absolute top-0 left-0 w-full h-[2000px]", className)}
+      className={cn("absolute top-0 left-0 w-full h-[2000px] bg-transparent", className)}
       {...props}
     >
       <div
@@ -167,7 +167,7 @@ export function StarsBackground({
       ref={containerRef}
       data-slot="stars-background"
       className={cn(
-        "relative size-full overflow-hidden bg-[radial-gradient(ellipse_at_bottom,_#262626_0%,_#000_100%)]",
+        "relative size-full overflow-hidden",
         className
       )}
       onMouseMove={handleMouseMove}

@@ -1,6 +1,7 @@
 import React from "react";
 import {
   FrameHeroSection,
+  PerformanceHeroSection,
   FobSection,
   ProjectSection,
   SkillsSection,
@@ -42,7 +43,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <FrameHeroSection />
+      <PerformanceHeroSection />
       <div className="page-content">
         <FobSection />
         <ProjectSection projects={featuredProjects} />
