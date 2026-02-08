@@ -4,6 +4,7 @@ import ctaSettings from "@/sanity/schemas/ctaSettings";
 import experience from "@/sanity/schemas/experience";
 import education from "@/sanity/schemas/education";
 import project from "@/sanity/schemas/project";
+import contact from "@/sanity/schemas/contact";
 
 export const schemaTypes = [
   skill,
@@ -12,4 +13,5 @@ export const schemaTypes = [
   experience,
   education,
   project,
+  contact,
 ];

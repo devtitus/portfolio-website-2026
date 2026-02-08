@@ -17,14 +17,35 @@ interface ContactModalProps {
     onClose: (open: boolean) => void;
 }
 
+import { submitContactForm } from "@/app/actions/submitContact";
+
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
-    // Simple submit handler
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Contact modal form submitted");
-        // Add logic here
-        onClose(false);
-    };
+    // State for form submission
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
+    const [message, setMessage] = React.useState<{ text: string; type: 'success' | 'error' } | null>(null);
+
+    async function handleSubmit(formData: FormData) {
+        setIsSubmitting(true);
+        setMessage(null);
+
+        try {
+            const result = await submitContactForm(null, formData);
+            if (result.success) {
+                setMessage({ text: result.message || "Message sent successfully!", type: 'success' });
+                // Reset form or close modal after a delay
+                setTimeout(() => {
+                    onClose(false);
+                    setMessage(null);
+                }, 2000);
+            } else {
+                setMessage({ text: result.message || "Something went wrong.", type: 'error' });
+            }
+        } catch (error) {
+            setMessage({ text: "An unexpected error occurred.", type: 'error' });
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -117,7 +138,15 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                 "rounded-xl p-[clamp(20px,3vw,32px)]"
                             )}
                         >
-                            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+                            <form className="flex flex-col gap-6" action={handleSubmit}>
+                                {message && (
+                                    <div className={cn(
+                                        "p-3 rounded-lg text-sm font-medium",
+                                        message.type === 'success' ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
+                                    )}>
+                                        {message.text}
+                                    </div>
+                                )}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[14px] font-medium text-[var(--skill-text-color)]">
@@ -127,6 +156,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                             placeholder="John Doe"
                                             className="bg-black/20 border-white/10 text-foreground placeholder:text-white/20 focus-visible:ring-primary/50"
                                             required
+                                            name="name"
+                                            disabled={isSubmitting}
                                         />
                                     </div>
                                     <div className="flex flex-col gap-2">
@@ -138,6 +169,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                             placeholder="john@example.com"
                                             className="bg-black/20 border-white/10 text-foreground placeholder:text-white/20 focus-visible:ring-primary/50"
                                             required
+                                            name="email"
+                                            disabled={isSubmitting}
                                         />
                                     </div>
                                 </div>
@@ -150,6 +183,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                         placeholder="Project Inquiry..."
                                         className="bg-black/20 border-white/10 text-foreground placeholder:text-white/20 focus-visible:ring-primary/50"
                                         required
+                                        name="subject"
+                                        disabled={isSubmitting}
                                     />
                                 </div>
 
@@ -161,6 +196,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                         placeholder="Tell me about your project..."
                                         className="bg-black/20 border-white/10 text-foreground placeholder:text-white/20 min-h-[150px] resize-none focus-visible:ring-primary/50"
                                         required
+                                        name="message"
+                                        disabled={isSubmitting}
                                     />
                                 </div>
 
@@ -168,10 +205,11 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                     type="submit"
                                     size="md"
                                     className="mt-3"
+                                    disabled={isSubmitting}
                                 >
                                     <div className="flex flex-row items-center gap-2">
                                         <Send className="w-4 h-4" />
-                                        Send Message
+                                        {isSubmitting ? "Sending..." : "Send Message"}
                                     </div>
                                 </PrimaryButton>
                             </form>
