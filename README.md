@@ -4,15 +4,16 @@ A modern, immersive portfolio website showcasing full-stack development expertis
 
 ## 📖 Overview
 
-This portfolio serves as a digital showcase for Melwyn Titus, a Full Stack Developer specializing in building exceptional digital experiences. The website features a sophisticated dark theme with glass morphism effects, interactive 3D elements, and a headless CMS for effortless content management.
+This portfolio serves as a digital showcase for Melwyn Titus, a Full Stack Developer specializing in building exceptional digital experiences. The website features a sophisticated dark theme with glass morphism effects, high-performance animations, and a headless CMS for effortless content management.
 
 **Live Site**: [melwyntitus.vercel.app](https://melwyntitus.vercel.app)
 
 ## ✨ Key Features
 
 - 🎨 **Modern Dark Theme** - Professional dark color scheme with glass morphism effects
+- ⚡ **Performance-First Architecture** - optimized for zero glitch and instant load
 - ⌨️ **Command Menu** - Keyboard-driven navigation (⌘K) for power users
-- 🌍 **3D Globe Visualization** - Interactive globe showcasing global reach
+- 🌍 **Global Reach** - Interactive map showcasing worldwide impact
 - ✨ **Aurora Text Effects** - Animated gradient text for visual impact
 - 📱 **Fully Responsive** - Mobile-first design with fluid typography
 - 🖱️ **Smooth Scrolling** - Lenis-powered smooth scroll experience
@@ -71,8 +72,10 @@ my-portfolio-new/
 │   │   ├── 📂 about/                # About page
 │   │   ├── 📂 contact/              # Contact page
 │   │   └── 📂 projects/             # Projects page
+│   ├── 📂 actions/                  # Server actions
 │   ├── 📂 components/               # App-level components
 │   │   └── structured-data.tsx      # SEO structured data
+│   ├── 📂 fonts/                    # Local fonts (Excon, Satoshi)
 │   └── 📂 studio/                   # Embedded Sanity Studio
 │       └── [[...tool]]/             # Studio route handler
 │
