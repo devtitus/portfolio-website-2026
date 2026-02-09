@@ -11,7 +11,13 @@ export async function serializeMDX(content: string): Promise<MDXRemoteSerializeR
   if (!content) {
     return serialize("");
   }
-  return await serialize(content, {
+
+  // Sanitize content: Escape < characters that are not part of valid tags
+  // This prevents MDX compilation errors when < is followed by a number or symbol
+  // e.g., "Value <5" becomes "Value &lt;5" which is valid MDX
+  const sanitizedContent = content.replace(/<(?![a-zA-Z_$]|\/|!)/g, "&lt;");
+
+  return await serialize(sanitizedContent, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       format: "mdx",

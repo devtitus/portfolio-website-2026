@@ -27,7 +27,6 @@ export const getFeaturedProjects = async (): Promise<ProjectItem[]> => {
 
   try {
     const projects: SanityProject[] = await client.fetch(query);
-    console.log("Fetched featured projects count:", projects.length);
 
     const serializedProjects = await Promise.all(projects.map(async (project) => {
       try {
