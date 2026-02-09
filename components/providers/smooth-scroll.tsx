@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 /**
@@ -35,6 +36,15 @@ const SmoothScrollProvider = ({ children }: { children: React.ReactNode }) => {
       rafIdRef.current = null;
     }
   }, []);
+
+  // Scroll restoration on route change
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [pathname]);
 
   useEffect(() => {
     // Check for reduced motion preference
