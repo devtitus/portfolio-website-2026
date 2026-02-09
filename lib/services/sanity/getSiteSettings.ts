@@ -10,7 +10,7 @@ export const getSiteSettings = async (): Promise<SiteSettings | null> => {
   }`;
 
   try {
-    const settings: SanitySiteSettings | null = await client.fetch(query);
+    const settings: SanitySiteSettings | null = await client.fetch(query, {}, { next: { revalidate: 3600 } });
 
     if (!settings) {
       return null;

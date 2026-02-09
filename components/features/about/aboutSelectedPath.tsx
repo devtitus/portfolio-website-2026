@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import type { ExperienceItem, EducationItem } from "@/lib/types/sanity";
 import { cn } from "@/lib/utils";
 

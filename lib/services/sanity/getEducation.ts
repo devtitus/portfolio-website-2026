@@ -12,7 +12,7 @@ export const getEducation = async (): Promise<EducationItem[]> => {
   }`;
 
   try {
-    const education: SanityEducation[] = await client.fetch(query);
+    const education: SanityEducation[] = await client.fetch(query, {}, { next: { revalidate: 3600 } });
 
     return education.map((edu) => ({
       id: edu._id,

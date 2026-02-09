@@ -14,7 +14,7 @@ export const getExperience = async (): Promise<ExperienceItem[]> => {
   }`;
 
   try {
-    const experiences: SanityExperience[] = await client.fetch(query);
+    const experiences: SanityExperience[] = await client.fetch(query, {}, { next: { revalidate: 3600 } });
 
     return experiences.map((exp) => ({
       id: exp._id,
