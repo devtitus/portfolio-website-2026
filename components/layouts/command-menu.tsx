@@ -26,14 +26,14 @@ interface CommandItemProps {
   shortcut?: React.ReactNode;
 }
 
-const CommandItem = ({
+const CommandItem = memo(function CommandItem({
   value,
   onSelect,
   icon,
   label,
   description,
   shortcut,
-}: CommandItemProps) => {
+}: CommandItemProps) {
   return (
     <Command.Item
       value={value}
@@ -60,7 +60,7 @@ const CommandItem = ({
       )}
     </Command.Item>
   );
-};
+});
 
 interface CommandMenuProps {
   isOpen: boolean;
@@ -164,13 +164,22 @@ const CommandMenu = memo(function CommandMenu({
     setSearch(value);
   }, []);
 
+  // Pre-created handlers to avoid inline functions
+  const handleSelectHome = useCallback(() => handleSelect("home"), [handleSelect]);
+  const handleSelectAbout = useCallback(() => handleSelect("about"), [handleSelect]);
+  const handleSelectProjects = useCallback(() => handleSelect("projects"), [handleSelect]);
+  const handleSelectCopyEmail = useCallback(() => handleSelect("copy-email"), [handleSelect]);
+  const handleSelectContact = useCallback(() => handleSelect("contact"), [handleSelect]);
+  const handleSelectLinkedIn = useCallback(() => handleSelect("linkedin"), [handleSelect]);
+  const handleSelectGithub = useCallback(() => handleSelect("github"), [handleSelect]);
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4 sm:p-0">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-[4px] animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/60 backdrop-blur-[2px] animate-in fade-in duration-200"
         onClick={handleClose}
       />
 
@@ -185,6 +194,7 @@ const CommandMenu = memo(function CommandMenu({
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(0, 87, 224, 0.15) 0%, rgba(0, 87, 224, 0.05) 25%, transparent 50%)",
+            willChange: "opacity",
           }}
         />
 
@@ -226,21 +236,21 @@ const CommandMenu = memo(function CommandMenu({
               >
                 <CommandItem
                   value="home"
-                  onSelect={() => handleSelect("home")}
+                  onSelect={handleSelectHome}
                   icon={<HomeIcon className="h-5 w-5" />}
                   label="Home"
                   description="Go to the home page"
                 />
                 <CommandItem
                   value="about"
-                  onSelect={() => handleSelect("about")}
+                  onSelect={handleSelectAbout}
                   icon={<AboutIcon className="h-5 w-5" />}
                   label="About"
                   description="Learn more about me"
                 />
                 <CommandItem
                   value="projects"
-                  onSelect={() => handleSelect("projects")}
+                  onSelect={handleSelectProjects}
                   icon={<ProjectsIcon className="h-5 w-5" />}
                   label="Projects"
                   description="View my projects"
@@ -254,14 +264,14 @@ const CommandMenu = memo(function CommandMenu({
               >
                 <CommandItem
                   value="copy-email"
-                  onSelect={() => handleSelect("copy-email")}
+                  onSelect={handleSelectCopyEmail}
                   icon={<CopyIcon className="h-5 w-5" />}
                   label="Copy Email"
                   description="Copy my email to clipboard"
                 />
                 <CommandItem
                   value="contact"
-                  onSelect={() => handleSelect("contact")}
+                  onSelect={handleSelectContact}
                   icon={<ContactIcon className="h-5 w-5" />}
                   label="Contact"
                   description="Get in touch with me"
@@ -275,7 +285,7 @@ const CommandMenu = memo(function CommandMenu({
               >
                 <CommandItem
                   value="linkedin"
-                  onSelect={() => handleSelect("linkedin")}
+                  onSelect={handleSelectLinkedIn}
                   icon={<LinkedInIcon className="h-5 w-5" />}
                   label="LinkedIn"
                   description="Connect with me on LinkedIn"
@@ -283,7 +293,7 @@ const CommandMenu = memo(function CommandMenu({
                 />
                 <CommandItem
                   value="github"
-                  onSelect={() => handleSelect("github")}
+                  onSelect={handleSelectGithub}
                   icon={<GithubIcon className="h-5 w-5" />}
                   label="Github"
                   description="Connect with me on Github"
