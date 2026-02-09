@@ -1,210 +1,155 @@
 "use client";
 
-import * as React from "react";
-import {
-  type HTMLMotionProps,
-  motion,
-  type SpringOptions,
-  type Transition,
-  useMotionValue,
-  useSpring,
-} from "motion/react";
-
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import { cn } from "@/lib/utils";
 
-type StarLayerProps = HTMLMotionProps<"div"> & {
-  count: number;
+interface Star {
+  x: number;
+  y: number;
+  z: number;
   size: number;
-  transition: Transition;
-  starColor: string;
-  isPaused?: boolean;
-};
-
-/**
- * Generate star positions as box-shadow CSS
- * Memoized outside component to avoid regeneration
- */
-function generateStars(count: number, starColor: string) {
-  const shadows: string[] = [];
-  for (let i = 0; i < count; i++) {
-    const x = Math.floor(Math.random() * 4000) - 2000;
-    const y = Math.floor(Math.random() * 4000) - 2000;
-    shadows.push(`${x}px ${y}px ${starColor}`);
-  }
-  return shadows.join(", ");
 }
 
-/**
- * StarLayer - Memoized to prevent unnecessary re-renders
- */
-const StarLayer = React.memo(function StarLayer({
-  count = 50,
-  size = 1,
-  transition = { repeat: Infinity, duration: 50, ease: "linear" },
-  starColor = "#fff",
-  isPaused = false,
+interface StarsBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+  starDensity?: number;
+  allStarsTwinkle?: boolean;
+  twinkleProbability?: number;
+  minStarSize?: number;
+  maxStarSize?: number;
+  speed?: number; // Speed factor
+  starColor?: string; // Hex or rgb
+}
+
+export const StarsBackground = ({
+  starDensity = 0.00015,
+  allStarsTwinkle = true,
+  twinkleProbability = 0.7,
+  minStarSize = 0.5,
+  maxStarSize = 1,
   className,
+  speed = 1,
+  starColor = "#FFFFFF",
   ...props
-}: StarLayerProps) {
-  // Memoize star generation - only regenerate when count/color changes
-  const boxShadow = React.useMemo(
-    () => generateStars(count, starColor),
-    [count, starColor]
+}: StarsBackgroundProps) => {
+  const [stars, setStars] = useState<Star[]>([]);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Generate stars
+  const generateStars = useCallback(
+    (width: number, height: number): Star[] => {
+      const area = width * height;
+      const numStars = Math.floor(area * starDensity);
+      return Array.from({ length: numStars }, () => {
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          z: Math.random(), // used for pseudo-depth or opacity
+          size:
+            Math.random() * (maxStarSize - minStarSize) + minStarSize,
+        };
+      });
+    },
+    [starDensity, maxStarSize, minStarSize]
   );
 
-  // Pause animation when reduced motion is preferred or not visible
-  const animateTransition = isPaused ? {} : transition;
+  useEffect(() => {
+    const updateStars = () => {
+      if (canvasRef.current) {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
 
-  return (
-    <motion.div
-      data-slot="star-layer"
-      animate={isPaused ? {} : { y: [0, -2000] }}
-      transition={animateTransition}
-      className={cn("absolute top-0 left-0 w-full h-[2000px] bg-transparent", className)}
-      {...props}
-    >
-      <div
-        className="absolute bg-transparent rounded-full"
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          boxShadow: boxShadow,
-        }}
-      />
-      <div
-        className="absolute bg-transparent rounded-full top-[2000px]"
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          boxShadow: boxShadow,
-        }}
-      />
-    </motion.div>
-  );
-});
+        const { width, height } = canvas.getBoundingClientRect();
+        // Handle high DPI displays - Cap at 1.5 to prevents mobile stutter
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
 
-type StarsBackgroundProps = React.ComponentProps<"div"> & {
-  factor?: number;
-  speed?: number;
-  transition?: SpringOptions;
-  starColor?: string;
-};
-
-/**
- * StarsBackground - Optimized with:
- * - Reduced motion support
- * - Visibility-based pause
- * - Memoized star layers
- * - Intersection observer for off-screen pause
- */
-export function StarsBackground({
-  children,
-  className,
-  factor = 0.05,
-  speed = 50,
-  transition = { stiffness: 50, damping: 20 },
-  starColor = "#fff",
-  ...props
-}: StarsBackgroundProps) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = React.useState(true);
-  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
-
-  const offsetX = useMotionValue(1);
-  const offsetY = useMotionValue(1);
-
-  const springX = useSpring(offsetX, transition);
-  const springY = useSpring(offsetY, transition);
-
-  // Check reduced motion preference
-  React.useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
+        setStars(generateStars(width, height));
+      }
     };
 
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+    updateStars();
 
-  // Intersection observer to pause when off-screen
-  React.useEffect(() => {
-    if (!containerRef.current) return;
+    const resizeObserver = new ResizeObserver(updateStars);
+    if (canvasRef.current) {
+      resizeObserver.observe(canvasRef.current);
+    }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
+    return () => {
+      if (canvasRef.current) {
+        resizeObserver.unobserve(canvasRef.current);
+      }
+    };
+  }, [starDensity, maxStarSize, minStarSize, generateStars]);
 
-    observer.observe(containerRef.current);
+  // Animation Loop
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    return () => observer.disconnect();
-  }, []);
+    let animationFrameId: number;
+    // Pre-calculate dpr inverse to avoid doing it every frame
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dprInv = 1 / dpr;
 
-  const handleMouseMove = React.useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (prefersReducedMotion) return;
+    const render = () => {
+      if (!canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const newOffsetX = -(e.clientX - centerX) * factor;
-      const newOffsetY = -(e.clientY - centerY) * factor;
-      offsetX.set(newOffsetX);
-      offsetY.set(newOffsetY);
-    },
-    [offsetX, offsetY, factor, prefersReducedMotion]
-  );
+      ctx.fillStyle = starColor;
 
-  // Determine if animations should be paused
-  const isPaused = prefersReducedMotion || !isVisible;
+      stars.forEach((star) => {
+        ctx.beginPath();
+
+        // Movement: Move stars upwards/float logic
+        star.y -= 0.3 * speed;
+
+        // Wrap around
+        const height = canvas.height * dprInv;
+        const width = canvas.width * dprInv;
+
+        if (star.y < 0) {
+          star.y = height;
+          star.x = Math.random() * width;
+        }
+
+        // Twinkle effect
+        const opacity = 0.5 + 0.5 * Math.sin(Date.now() * 0.001 * star.z * 10);
+        ctx.globalAlpha = opacity;
+
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [stars, starColor, speed]);
 
   return (
     <div
-      ref={containerRef}
       data-slot="stars-background"
-      className={cn(
-        "relative size-full overflow-hidden",
-        className
-      )}
-      onMouseMove={handleMouseMove}
+      className={cn("absolute inset-0 h-full w-full", className)}
       {...props}
     >
-      <motion.div style={{ x: springX, y: springY }}>
-        <StarLayer
-          count={50}
-          size={1}
-          transition={{ repeat: Infinity, duration: speed, ease: "linear" }}
-          starColor={starColor}
-          isPaused={isPaused}
-        />
-        <StarLayer
-          count={25}
-          size={2}
-          transition={{
-            repeat: Infinity,
-            duration: speed * 2,
-            ease: "linear",
-          }}
-          starColor={starColor}
-          isPaused={isPaused}
-        />
-        <StarLayer
-          count={15}
-          size={3}
-          transition={{
-            repeat: Infinity,
-            duration: speed * 3,
-            ease: "linear",
-          }}
-          starColor={starColor}
-          isPaused={isPaused}
-        />
-      </motion.div>
-      {children}
+      <canvas
+        ref={canvasRef}
+        className="h-full w-full block opacity-60"
+      />
     </div>
   );
-}
+};

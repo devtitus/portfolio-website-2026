@@ -17,9 +17,8 @@ export const AuroraText = memo(
     speed = 1,
   }: AuroraTextProps) => {
     const gradientStyle = {
-      backgroundImage: `linear-gradient(135deg, ${colors.join(", ")}, ${
-        colors[0]
-      })`,
+      backgroundImage: `linear-gradient(135deg, ${colors.join(", ")}, ${colors[0]
+        })`,
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       animationDuration: `${10 / speed}s`,
@@ -29,7 +28,7 @@ export const AuroraText = memo(
       <span className={`relative inline-block ${className}`}>
         <span className="sr-only">{children}</span>
         <span
-          className="relative animate-aurora bg-[length:200%_auto] bg-clip-text text-transparent"
+          className="relative animate-aurora bg-[length:200%_auto] bg-clip-text text-transparent will-change-[transform,background-position]"
           style={gradientStyle}
           aria-hidden="true"
         >

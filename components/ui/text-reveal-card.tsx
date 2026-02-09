@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState, memo } from "react";
-import { motion } from "motion/react";
+import { motion, useMotionValue, useTransform } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import { cn } from "@/lib/utils";
 import styles from "@/styles/components/textRevealCard.module.css";
@@ -16,48 +16,57 @@ export const TextRevealCard = ({
   children?: React.ReactNode;
   className?: string;
 }) => {
-  const [widthPercentage, setWidthPercentage] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
-  const [left, setLeft] = useState(0);
-  const [localWidth, setLocalWidth] = useState(0);
+
+  // Use MotionValues instead of State to avoid re-renders
+  const widthPercentage = useMotionValue(0);
+  const left = useRef(0);
+  const localWidth = useRef(0);
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   useEffect(() => {
     if (cardRef.current) {
-      const { left, width: localWidth } =
-        cardRef.current.getBoundingClientRect();
-      setLeft(left);
-      setLocalWidth(localWidth);
+      const rect = cardRef.current.getBoundingClientRect();
+      left.current = rect.left;
+      localWidth.current = rect.width;
     }
   }, []);
 
+  // Derived transforms
+  const rotateDeg = useTransform(widthPercentage, [0, 100], [-5, 5]);
+  const opacity = useTransform(widthPercentage, [0, 1], [0, 1]);
+  const clipPath = useTransform(widthPercentage, (val) => {
+    return `inset(0 ${100 - val}% 0 0)`;
+  });
+
   function mouseMoveHandler(event: React.MouseEvent<HTMLDivElement>) {
     event.preventDefault();
-
     const { clientX } = event;
     if (cardRef.current) {
-      const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 100);
+      const relativeX = clientX - left.current;
+      const percentage = Math.max(0, Math.min(100, (relativeX / localWidth.current) * 100));
+      widthPercentage.set(percentage);
     }
   }
 
   function mouseLeaveHandler() {
     setIsMouseOver(false);
-    setWidthPercentage(0);
+    widthPercentage.set(0);
   }
   function mouseEnterHandler() {
     setIsMouseOver(true);
   }
+
   function touchMoveHandler(event: React.TouchEvent<HTMLDivElement>) {
     event.preventDefault();
     const clientX = event.touches[0]!.clientX;
     if (cardRef.current) {
-      const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 100);
+      const relativeX = clientX - left.current;
+      const percentage = Math.max(0, Math.min(100, (relativeX / localWidth.current) * 100));
+      widthPercentage.set(percentage);
     }
   }
 
-  const rotateDeg = (widthPercentage - 50) * 0.1;
   return (
     <div
       onMouseEnter={mouseEnterHandler}
@@ -80,17 +89,9 @@ export const TextRevealCard = ({
         <motion.div
           style={{
             width: "100%",
+            opacity: isMouseOver ? 1 : 0,
+            clipPath: clipPath,
           }}
-          animate={
-            isMouseOver
-              ? {
-                  opacity: widthPercentage > 0 ? 1 : 0,
-                  clipPath: `inset(0 ${100 - widthPercentage}% 0 0)`,
-                }
-              : {
-                  clipPath: `inset(0 ${100 - widthPercentage}% 0 0)`,
-                }
-          }
           transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
           className="absolute bg-[#1d1c20] z-20  will-change-transform"
         >
@@ -103,11 +104,12 @@ export const TextRevealCard = ({
             {revealText}
           </p>
         </motion.div>
+
         <motion.div
-          animate={{
-            left: `${widthPercentage}%`,
-            rotate: `${rotateDeg}deg`,
-            opacity: widthPercentage > 0 ? 1 : 0,
+          style={{
+            left: useTransform(widthPercentage, (val) => `${val}%`),
+            rotate: rotateDeg,
+            opacity: useTransform(widthPercentage, (val) => val > 0 ? 1 : 0),
           }}
           transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
           className={`h-40 w-[8px] bg-gradient-to-b from-transparent via-neutral-800 to-transparent absolute z-50 will-change-transform`}
@@ -163,7 +165,6 @@ const Stars = () => {
     setIsClient(true);
   }, []);
 
-  // Only render stars on client side to avoid hydration mismatch
   if (!isClient) {
     return <div className="absolute inset-0" />;
   }
@@ -174,7 +175,7 @@ const Stars = () => {
 
   return (
     <div className="absolute inset-0">
-      {[...Array(80)].map((_, i) => (
+      {[...Array(20)].map((_, i) => (
         <motion.span
           key={`star-${i}`}
           animate={{

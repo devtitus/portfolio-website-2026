@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
-import { useThree, Canvas, extend } from "@react-three/fiber";
+import { useEffect, useRef, useState, useMemo } from "react";
+import { Color, Scene } from "three";
+import { useThree, Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
 
@@ -55,7 +55,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   const groupRef = useRef<HTMLDivElement>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const defaultProps = {
+  const defaultProps = useMemo(() => ({
     pointSize: 1,
     atmosphereColor: "#ffffff",
     showAtmosphere: true,
@@ -70,7 +70,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     rings: 1,
     maxRings: 3,
     ...globeConfig,
-  };
+  }), [globeConfig]);
 
   // Initialize globe only once
   useEffect(() => {
@@ -85,16 +85,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
     }
   }, []);
 
-  // Build material when globe is initialized or when relevant props change
+  // Build material
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
 
-    const globeMaterial = globeRef.current.globeMaterial() as unknown as {
-      color: Color;
-      emissive: Color;
-      emissiveIntensity: number;
-      shininess: number;
-    };
+    const globeMaterial = globeRef.current.globeMaterial();
     globeMaterial.color = new Color(globeConfig.globeColor);
     globeMaterial.emissive = new Color(globeConfig.emissive);
     globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
@@ -107,12 +102,12 @@ export function Globe({ globeConfig, data }: WorldProps) {
     globeConfig.shininess,
   ]);
 
-  // Build data when globe is initialized
+  // Build data
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
 
-    // Single point for Mumbai, India
     const mumbai = { lat: 19.076, lng: 72.8777, color: "#3b82f6" };
+    // Reuse this object instead of creating new ones in loops
     const filteredPoints = [
       {
         size: defaultProps.pointSize,
@@ -124,12 +119,8 @@ export function Globe({ globeConfig, data }: WorldProps) {
     ];
 
     globeRef.current
-      .globeImageUrl(
-        "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-      )
-      .bumpImageUrl(
-        "https://unpkg.com/three-globe/example/img/earth-topology.png"
-      )
+      .globeImageUrl("/assets/earth-blue-marble.webp")
+      .bumpImageUrl("/assets/earth-topology.webp")
       .hexPolygonsData(countries.features)
       .hexPolygonResolution(3)
       .hexPolygonMargin(0.7)
@@ -138,7 +129,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .atmosphereAltitude(defaultProps.atmosphereAltitude)
       .hexPolygonColor(() => defaultProps.polygonColor);
 
-    // No arcs when showing single point
     globeRef.current
       .arcsData([])
       .arcDashLength(0)
@@ -147,37 +137,32 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
     globeRef.current
       .pointsData(filteredPoints)
-      .pointColor((e: unknown) => (e as { color: string }).color)
+      .pointColor((e: any) => e.color)
       .pointsMerge(true)
       .pointAltitude(0.0)
       .pointRadius(2);
 
-    // Pulsing signal rings at Mumbai
+    // Initial ring
     globeRef.current
-      .ringsData([{ lat: mumbai.lat, lng: mumbai.lng, color: mumbai.color }])
+      .ringsData([mumbai])
       .ringColor(() => mumbai.color)
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
         (defaultProps.arcTime * defaultProps.arcLength) /
-          Math.max(1, defaultProps.rings)
+        Math.max(1, defaultProps.rings)
       );
-  }, [
-    isInitialized,
-    defaultProps.pointSize,
-    defaultProps.showAtmosphere,
-    defaultProps.atmosphereColor,
-    defaultProps.atmosphereAltitude,
-    defaultProps.polygonColor,
-  ]);
+  }, [isInitialized, defaultProps]);
 
-  // Keep rings pulsing around Mumbai
+  // Optimized Interval Loop - Reuse object
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
+
+    // Define static object outside interval
+    const ringData = [{ lat: 19.076, lng: 72.8777, color: "#3b82f6" }];
+
     const interval = setInterval(() => {
-      globeRef.current!.ringsData([
-        { lat: 19.076, lng: 72.8777, color: "#3b82f6" },
-      ]);
+      globeRef.current!.ringsData(ringData);
     }, 2000);
     return () => clearInterval(interval);
   }, [isInitialized]);
@@ -189,7 +174,7 @@ export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
+    gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
   }, [gl, size.width, size.height]);
@@ -200,7 +185,6 @@ export function WebGLRendererConfig() {
 export function World(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
-  scene.fog = new Fog(0xffffff, 400, 2000);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [autoRotateEnabled, setAutoRotateEnabled] = useState(
@@ -233,6 +217,7 @@ export function World(props: WorldProps) {
       onPointerLeave={handlePointerLeave}
     >
       <Canvas
+        shadows={false}
         scene={scene}
         camera={{ fov: 50, near: 180, far: 1800, position: [0, 0, cameraZ] }}
       >
@@ -240,15 +225,15 @@ export function World(props: WorldProps) {
         <ambientLight color={globeConfig.ambientLight} intensity={0.8} />
         <directionalLight
           color={globeConfig.directionalLeftLight}
-          position={new Vector3(-400, 100, 400)}
+          position={[-400, 100, 400]}
         />
         <directionalLight
           color={globeConfig.directionalTopLight}
-          position={new Vector3(-200, 500, 200)}
+          position={[-200, 500, 200]}
         />
         <pointLight
           color={globeConfig.pointLight}
-          position={new Vector3(-200, 500, 200)}
+          position={[-200, 500, 200]}
           intensity={1.2}
         />
         <Globe {...props} />
@@ -284,10 +269,10 @@ export function hexToRgb(hex: string) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16),
+    }
     : null;
 }
 

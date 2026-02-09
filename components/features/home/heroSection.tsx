@@ -39,9 +39,8 @@ const HeroSection = () => {
   return (
     <StarsBackground
       className={`${styles.starBackground} flex aspect-16/9 items-center justify-center`}
-      transition={{ stiffness: 15, damping: 50 }}
-      speed={120}
-      factor={0.02}
+      speed={0.5}
+      starDensity={0.0002}
     >
       <section className={`${styles.heroSection} ${styles.commonStyleSection}`}>
         <div className={styles.heroSectionWrapper}>

@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "@/styles/globals.css";
 import { SmoothScrollProvider } from "@/components/providers";
 import { ContactModalProvider } from "@/components/providers/contact-modal-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const excon = localFont({
+  src: [
+    {
+      path: "./fonts/Excon-Variable.woff2",
+      style: "normal",
+    },
+  ],
+  variable: "--font-excon",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const satoshi = localFont({
+  src: [
+    {
+      path: "./fonts/Satoshi-Variable.woff2",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Satoshi-VariableItalic.woff2",
+      style: "italic",
+    },
+  ],
+  variable: "--font-satoshi",
 });
 
 export const metadata: Metadata = {
@@ -94,6 +108,10 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+};
+
+export const viewport = {
+  themeColor: '#08080a',
   colorScheme: 'dark',
 };
 
@@ -105,7 +123,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="min-h-svh">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} relative min-h-svh bg-[#08080a]`}
+        className={`${excon.variable} ${satoshi.variable} relative min-h-svh bg-[#08080a]`}
         suppressHydrationWarning={true}
       >
         <PersonSchema />

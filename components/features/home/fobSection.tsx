@@ -2,6 +2,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import { useInView } from "framer-motion";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { ScriptCopyBtn } from "@/components/ui/magicui/script-copy-btn";
 import {
@@ -12,14 +13,28 @@ import {
 import { MapPinIcon, MailIcon, TechnologiesIcon } from "@/lib/utils/icons";
 import { SectionHeader } from "@/components/ui";
 
+import { GlobeLoading } from "@/components/ui/globe-loading";
+
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
   {
     ssr: false,
+    loading: () => <GlobeLoading />,
   },
 );
 
 const FobSection = () => {
+  const [shouldLoadGlobe, setShouldLoadGlobe] = React.useState(false);
+
+  // Defer Globe initialization to prevent main thread blocking during initial load
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldLoadGlobe(true);
+    }, 500); // Delay by 500ms to allow Hero and data to paint first
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#113aab",
@@ -405,14 +420,19 @@ const FobSection = () => {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px 200px 0px" });
+
   return (
-    <section className={cn(
-      "min-h-svh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
-      "flex flex-col justify-center items-center overflow-hidden",
-      "scroll-mt-20", // Navbar clearance
-      "max-sm:min-h-auto max-sm:py-[60px]",
-      "max-lg:min-h-auto max-lg:py-[80px]"
-    )}>
+    <section
+      ref={ref}
+      className={cn(
+        "min-h-svh px-[clamp(24px,4vw,60px)] py-[clamp(60px,10vh,100px)]",
+        "flex flex-col justify-center items-center overflow-hidden",
+        "scroll-mt-20", // Navbar clearance
+        "max-sm:min-h-auto max-sm:py-[60px]",
+        "max-lg:min-h-auto max-lg:py-[80px]"
+      )}>
       <div className={cn(
         "w-full flex flex-col justify-center gap-fluid-md",
         "animate-fade-in-up motion-reduce:animate-none max-w-[1400px]"
@@ -442,7 +462,7 @@ const FobSection = () => {
             "group"
           )}>
             <div className="flex-1 relative">
-              <World data={sampleArcs} globeConfig={globeConfig} />
+              {isInView && shouldLoadGlobe && <World data={sampleArcs} globeConfig={globeConfig} />}
             </div>
             <div className={cn(
               "flex flex-col gap-1",

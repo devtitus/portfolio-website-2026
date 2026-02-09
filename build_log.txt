@@ -1,0 +1,28 @@
+
+> my_portfolio_new@0.1.0 build E:\Projects\Websites\my-portfolios\melwyn-website
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Γû▓ Next.js 16.1.4 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Γ£ô Compiled successfully in 18.5s
+  Running TypeScript ...
+Failed to compile.
+
+./components/features/home/heroSection.tsx:42:7
+Type error: Type '{ children: Element; className: string; transition: { stiffness: number; damping: number; }; speed: number; factor: number; }' is not assignable to type 'IntrinsicAttributes & StarsBackgroundProps'.
+  Property 'transition' does not exist on type 'IntrinsicAttributes & StarsBackgroundProps'.
+
+  40 |     <StarsBackground
+  41 |       className={`${styles.starBackground} flex aspect-16/9 items-center justify-center`}
+> 42 |       transition={{ stiffness: 15, damping: 50 }}
+     |       ^
+  43 |       speed={120}
+  44 |       factor={0.02}
+  45 |     >
+Next.js build worker exited with code: 1 and signal: null
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.

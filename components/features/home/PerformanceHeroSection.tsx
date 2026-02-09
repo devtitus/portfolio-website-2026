@@ -40,9 +40,8 @@ const PerformanceHeroSection = () => {
             <div className="absolute inset-0 z-0">
                 <StarsBackground
                     className="w-full h-full absolute inset-0"
-                    transition={{ stiffness: 15, damping: 50 }}
-                    speed={120}
-                    factor={0.02}
+                    speed={0.5}
+                    starDensity={0.0002}
                 />
                 {/* Gradient Overlay for depth */}
                 {/* <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 to-brand-blue/10 pointer-events-none" />
@@ -108,6 +107,7 @@ const PerformanceHeroSection = () => {
                                     alt="Welcome Icon"
                                     width={32}
                                     height={32}
+                                    sizes="32px"
                                     className="w-8 h-8 origin-[70%_70%] animate-wave z-[5] drop-shadow-lg"
                                 />
                             </div>
