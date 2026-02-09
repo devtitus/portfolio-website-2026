@@ -53,6 +53,8 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                   src={project.mainImage}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={project === projects[0] || project === projects[1] || project === projects[2]}
                   className={cn(
                     "object-cover w-full h-full",
                     "transition-transform duration-500 ease-in-out",

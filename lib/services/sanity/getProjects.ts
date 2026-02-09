@@ -24,7 +24,7 @@ export const getProjects = async (): Promise<ProjectItem[]> => {
   }`;
 
   try {
-    const projects: SanityProject[] = await client.fetch(query);
+    const projects: SanityProject[] = await client.fetch(query, {}, { next: { revalidate: 3600 } });
 
     return projects.map((project) => ({
       id: project._id,
