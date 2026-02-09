@@ -1,6 +1,7 @@
 // Sanity CMS Type Definitions
 
 import type { Image } from "sanity";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 // Site Settings Types
 export interface SiteSettings {
@@ -101,6 +102,7 @@ export interface ProjectItem {
   tags?: string[];
   technologies?: SkillItem[];
   formattedContent?: string; // Markdown content
+  serializedContent?: MDXRemoteSerializeResult | null;
   isFeatured?: boolean;
   isPublished?: boolean;
 }
@@ -118,6 +120,7 @@ export interface SanityProject {
   tags?: string[];
   technologies?: SanitySkill[];
   formattedContent?: string;
+  serializedContent?: MDXRemoteSerializeResult | null;
   isFeatured?: boolean;
   isPublished?: boolean;
 }

@@ -7,8 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ProjectItem } from "@/lib/types/sanity";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { MDXRemote } from "next-mdx-remote";
 import { Github, Globe, Figma } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -151,7 +150,7 @@ export function ProjectDetailsModal({
             )}
           >
             <div className="text-[clamp(16px,1vw,18px)] leading-relaxed text-[var(--skill-text-color)]">
-              {project.formattedContent ? (
+              {project.serializedContent ? (
                 <div
                   className={cn(
                     "prose prose-invert max-w-none",
@@ -166,9 +165,7 @@ export function ProjectDetailsModal({
                     "prose-hr:border-white/10"
                   )}
                 >
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {project.formattedContent}
-                  </ReactMarkdown>
+                  <MDXRemote {...project.serializedContent} />
                 </div>
               ) : (
                 <p>{project.description}</p>
