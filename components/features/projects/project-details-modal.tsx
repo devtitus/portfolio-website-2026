@@ -31,7 +31,7 @@ export function ProjectDetailsModal({
       <DialogContent
         className={cn(
           "bg-background/95 backdrop-blur-xl border border-[var(--glass-border-color)]",
-          "text-foreground max-w-[90vw] w-[1000px] h-[85vh] max-h-[85vh]",
+          "text-foreground max-w-[90vw] w-[1000px] h-[88vh] max-h-[88vh]",
           "overflow-hidden flex flex-col p-0 rounded-2xl",
           "shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border-none gap-0",
           "sm:max-w-[1000px]",
@@ -143,68 +143,47 @@ export function ProjectDetailsModal({
             />
           </div>
 
-          <div
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-[2fr_1fr]",
-              "gap-[clamp(24px,4vw,40px)]",
-            )}
-          >
-            <div className="text-[clamp(16px,1vw,18px)] leading-relaxed text-[var(--skill-text-color)]">
-              {project.serializedContent ? (
-                <div
-                  className={cn(
-                    "prose prose-invert max-w-none",
-                    "prose-headings:font-secondary prose-headings:text-foreground",
-                    "prose-p:font-secondary prose-p:text-[var(--skill-text-color)]",
-                    "prose-li:font-secondary prose-li:text-[var(--skill-text-color)]",
-                    "prose-strong:text-foreground prose-strong:font-semibold",
-                    "prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
-                    "prose-code:text-accent prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none",
-                    "prose-pre:bg-[#08080a] prose-pre:border prose-pre:border-white/10",
-                    "prose-blockquote:border-l-primary prose-blockquote:bg-white/5 prose-blockquote:py-1 prose-blockquote:pr-4",
-                    "prose-hr:border-white/10"
-                  )}
+          <div className="flex flex-wrap gap-2 mb-[clamp(24px,4vw,32px)]">
+            {project.technologies?.map((tech) => (
+              <span
+                key={tech.id}
+                className="text-[12px] px-2.5 py-1 bg-white/5 text-[var(--skill-text-color)] border border-white/10 rounded-full whitespace-nowrap"
+              >
+                {tech.label}
+              </span>
+            ))}
+            {!project.technologies?.length &&
+              project.tags?.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[12px] px-2.5 py-1 bg-white/5 text-[var(--skill-text-color)] border border-white/10 rounded-full whitespace-nowrap"
                 >
-                  <MDXRemote {...project.serializedContent} />
-                </div>
-              ) : (
-                <p>{project.description}</p>
-              )}
-            </div>
+                  {tag}
+                </span>
+              ))}
+          </div>
 
-            <div className="space-y-6">
+          <div className="text-[clamp(16px,1vw,18px)] leading-relaxed text-[var(--skill-text-color)]">
+            {project.serializedContent ? (
               <div
                 className={cn(
-                  "bg-[var(--glass-color)] border border-[var(--glass-border-color)]",
-                  "rounded-xl p-[clamp(16px,3vw,24px)] mb-4",
+                  "prose prose-invert max-w-none",
+                  "prose-headings:font-secondary prose-headings:text-foreground",
+                  "prose-p:font-secondary prose-p:text-[var(--skill-text-color)]",
+                  "prose-li:font-secondary prose-li:text-[var(--skill-text-color)]",
+                  "prose-strong:text-foreground prose-strong:font-semibold",
+                  "prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
+                  "prose-code:text-accent prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none",
+                  "prose-pre:bg-[#08080a] prose-pre:border prose-pre:border-white/10",
+                  "prose-blockquote:border-l-primary prose-blockquote:bg-white/5 prose-blockquote:py-1 prose-blockquote:pr-4",
+                  "prose-hr:border-white/10"
                 )}
               >
-                <h4 className="text-[clamp(12px,1vw,14px)] text-[var(--skill-text-color)] mb-[clamp(12px,1vw,18px)] uppercase tracking-wider">
-                  Technologies
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies?.map((tech) => (
-                    <span
-                      key={tech.id}
-                      className="text-[clamp(12px,1vw,14px)] px-3 py-1 bg-muted text-foreground border border-[var(--glass-border-color)] rounded-full whitespace-nowrap"
-                    >
-                      {tech.label}
-                    </span>
-                  ))}
-                  {!project.technologies?.length &&
-                    project.tags?.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[clamp(12px,1vw,14px)] px-3 py-1 bg-muted text-foreground border border-[var(--glass-border-color)] rounded-full whitespace-nowrap"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                </div>
+                <MDXRemote {...project.serializedContent} />
               </div>
-
-              {/* Additional sidebar info could go here */}
-            </div>
+            ) : (
+              <p>{project.description}</p>
+            )}
           </div>
         </div>
       </DialogContent>
