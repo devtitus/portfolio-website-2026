@@ -29,7 +29,7 @@ export const getProjects = async (): Promise<ProjectItem[]> => {
 
     const serializedProjects = await Promise.all(projects.map(async (project) => {
       try {
-        const serialized = project.formattedContent ? await serializeMDX(project.formattedContent) : null;
+        const serialized = project.formattedContent?.trim() ? await serializeMDX(project.formattedContent) : null;
         const projectItem: ProjectItem = {
           id: project._id,
           title: project.title,
