@@ -49,6 +49,20 @@ export default defineType({
       },
     }),
     defineField({
+      name: "screenshots",
+      title: "Project Screenshots",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "image",
+          options: {
+            hotspot: true,
+          },
+        }),
+      ],
+      description: "Additional screenshots of the project (optional)",
+    }),
+    defineField({
       name: "description",
       title: "Short Description",
       type: "text",

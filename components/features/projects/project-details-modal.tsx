@@ -9,9 +9,9 @@ import {
 import { ProjectItem } from "@/lib/types/sanity";
 import { MDXRemote } from "next-mdx-remote";
 import { Github, Globe, Figma } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ScreenshotsCarousel } from "./screenshots-carousel";
 
 interface ProjectDetailsModalProps {
   project: ProjectItem | null;
@@ -25,6 +25,11 @@ export function ProjectDetailsModal({
   onClose,
 }: ProjectDetailsModalProps) {
   if (!project) return null;
+
+  const carouselImages = [
+    project.mainImage,
+    ...(project.screenshots ?? []),
+  ].filter((img): img is string => Boolean(img));
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -127,19 +132,10 @@ export function ProjectDetailsModal({
             </div>
           </DialogHeader>
 
-          <div
-            className={cn(
-              "relative w-full aspect-video rounded-xl overflow-hidden",
-              "mb-[clamp(24px,4vw,40px)]",
-              "border border-[var(--glass-border-color)]",
-            )}
-          >
-            <Image
-              src={project.mainImage}
-              alt={project.title}
-              fill
-              className="object-cover w-full h-full aspect-video"
-              priority
+          <div className="mb-[clamp(24px,4vw,40px)]">
+            <ScreenshotsCarousel
+              screenshots={carouselImages}
+              title={project.title}
             />
           </div>
 
@@ -176,7 +172,7 @@ export function ProjectDetailsModal({
                   "prose-code:text-accent prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none",
                   "prose-pre:bg-[#08080a] prose-pre:border prose-pre:border-white/10",
                   "prose-blockquote:border-l-primary prose-blockquote:bg-white/5 prose-blockquote:py-1 prose-blockquote:pr-4",
-                  "prose-hr:border-white/10"
+                  "prose-hr:border-white/10",
                 )}
               >
                 <MDXRemote {...project.serializedContent} />

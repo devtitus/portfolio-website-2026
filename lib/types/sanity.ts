@@ -105,6 +105,7 @@ export interface ProjectItem {
   serializedContent?: MDXRemoteSerializeResult | null;
   isFeatured?: boolean;
   isPublished?: boolean;
+  screenshots?: string[]; // Array of screenshot image URLs
 }
 
 export interface SanityProject {
@@ -123,6 +124,7 @@ export interface SanityProject {
   serializedContent?: MDXRemoteSerializeResult | null;
   isFeatured?: boolean;
   isPublished?: boolean;
+  screenshots?: Image[]; // Array of screenshot images
 }
 
 // Re-export all types for convenience
